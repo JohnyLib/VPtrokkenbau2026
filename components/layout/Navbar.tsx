@@ -49,13 +49,6 @@ export function Navbar() {
             FAQ
           </Link>
           <Link 
-            href="/rechtliches" 
-            onClick={() => setIsOpen(false)}
-            className="w-full md:w-auto text-center md:text-left font-bold uppercase tracking-tight text-sm text-[#091426] border border-[#091426] bg-white px-4 py-3 md:p-0 md:border-none md:bg-transparent hover:bg-[#fd761a] hover:text-white transition-all shadow-[2px_2px_0px_0px_#091426] md:shadow-none"
-          >
-            Rechtliches
-          </Link>
-          <Link 
             href="/kontakt" 
             onClick={() => setIsOpen(false)}
             className="w-full md:w-auto bg-[#091426] text-white font-bold uppercase text-sm px-6 py-4 border-2 border-[#091426] hover:bg-[#fd761a] hover:text-white hover:shadow-[4px_4px_0px_0px_#091426] md:hover:-translate-y-1 md:hover:-translate-x-1 transition-all md:ml-4 inline-block text-center shadow-[2px_2px_0px_0px_#091426] md:shadow-none"

@@ -33,6 +33,14 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://vptrokkenbau.de',
   },
+  icons: {
+    icon: '/Ico.ico',
+    shortcut: '/Ico.ico',
+    apple: '/Ico.ico',
+  },
+  verification: {
+    google: 'google-site-verification-token',
+  },
   openGraph: {
     title: 'VPTrokkenbau | Präzision im Trockenbau Dresden',
     description: 'Hochwertiger Trockenbau in Dresden für Architekten, Bauherren und das Gewerbe.',
@@ -87,7 +95,8 @@ const jsonLd = {
     longitude: 13.7373
   },
   url: 'https://vptrokkenbau.de',
-  telephone: '+4935112345678',
+  telephone: '+4915161559335',
+  email: 'info@vptrokenbau.de',
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',

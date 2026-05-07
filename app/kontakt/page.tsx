@@ -5,7 +5,7 @@ import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Kontakt & Anfrage | VPTrokkenbau Dresden',
-  description: 'Kontaktieren Sie Ihren Spezialisten für Trockenbau, Spachtelarbeiten und Brandschutz in Dresden. Fordern Sie jetzt ein unverbindliches Angebot an. Email: info@vptrokkenbau.de',
+  description: 'Kontaktieren Sie Ihren Spezialisten für Trockenbau, Spachtelarbeiten und Brandschutz in Dresden. Fordern Sie jetzt ein unverbindliches Angebot an. E-Mail: info@vptrokenbau.de, perevalovvasilii@gmail.com, Tel: +4915161559335',
   alternates: {
     canonical: 'https://vptrokkenbau.de/kontakt',
   },
@@ -24,8 +24,8 @@ export default function Kontakt() {
       '@type': 'LocalBusiness',
       'name': 'VPTrokkenbau GmbH',
       'image': 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
-      'telephone': '+4935112345678',
-      'email': 'info@vptrokkenbau.de',
+      'telephone': '+4915161559335',
+      'email': ['info@vptrokenbau.de', 'perevalovvasilii@gmail.com'],
       'address': {
         '@type': 'PostalAddress',
         'streetAddress': 'Baustraße 123',
@@ -80,15 +80,16 @@ export default function Kontakt() {
               <Phone className="w-6 h-6 text-[#fd761a] shrink-0" />
               <div>
                 <strong className="block text-[#091426] uppercase text-sm">Telefon</strong>
-                <a href="tel:+4935112345678" className="text-[#45474c] hover:text-[#fd761a] transition-colors">+49 (0) 351 123 456 78</a>
+                <a href="tel:+4915161559335" className="text-[#45474c] hover:text-[#fd761a] transition-colors">+49 (0) 151 61559335</a>
               </div>
             </div>
 
             <div className="flex gap-4 items-start">
               <Mail className="w-6 h-6 text-[#fd761a] shrink-0" />
-              <div>
+              <div className="flex flex-col gap-1">
                 <strong className="block text-[#091426] uppercase text-sm">E-Mail</strong>
-                <a href="mailto:info@vptrokkenbau.de" className="text-[#45474c] hover:text-[#fd761a] transition-colors">info@vptrokkenbau.de</a>
+                <a href="mailto:info@vptrokenbau.de" className="text-[#45474c] hover:text-[#fd761a] transition-colors">info@vptrokenbau.de</a>
+                <a href="mailto:perevalovvasilii@gmail.com" className="text-xs text-[#45474c] font-semibold hover:text-[#fd761a] transition-colors lowercase">perevalovvasilii@gmail.com</a>
               </div>
             </div>
 
@@ -142,7 +143,7 @@ export default function Kontakt() {
             <div className="flex items-start gap-3 mt-2">
               <input type="checkbox" id="privacy" required className="mt-1 w-4 h-4 accent-[#fd761a]" />
               <label htmlFor="privacy" className="text-sm text-[#45474c]">
-                Ich habe die <Link href="/rechtliches#datenschutz" className="text-[#fd761a] hover:underline">Datenschutzerklärung</Link> zur Kenntnis genommen und akzeptiert. Ich stimme zu, dass meine Angaben zur Kontaktaufnahme gespeichert werden. *
+                Ich stimme zu, dass meine Angaben zur Kontaktaufnahme gespeichert und verarbeitet werden dürfen. *
               </label>
             </div>
 

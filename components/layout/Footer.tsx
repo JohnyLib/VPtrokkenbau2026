@@ -7,8 +7,6 @@ export function Footer() {
         <Link href="/" className="text-white">VPTrokkenbau</Link>
       </div>
       <nav className="flex flex-wrap justify-center gap-6">
-        <Link href="/rechtliches#impressum" className="text-xs uppercase tracking-widest text-slate-400 hover:text-orange-500 underline transition-colors">Impressum</Link>
-        <Link href="/rechtliches#datenschutz" className="text-xs uppercase tracking-widest text-slate-400 hover:text-orange-500 underline transition-colors">Datenschutz</Link>
         <Link href="/karriere" className="text-xs uppercase tracking-widest text-slate-400 hover:text-orange-500 underline transition-colors">Karriere</Link>
       </nav>
       <div className="text-slate-400 text-xs uppercase tracking-widest text-center mt-4 md:mt-0">

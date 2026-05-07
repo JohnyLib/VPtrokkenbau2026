@@ -144,11 +144,16 @@ export default function Home() {
               <h2 className="text-3xl font-bold text-[#091426] uppercase tracking-tight">Kontakt & Ausschreibung</h2>
               <p className="text-[#45474c]">Senden Sie uns Ihre Projektunterlagen für eine präzise Kalkulation. Wir bearbeiten Anfragen für Gewerbe- und Großprojekte in Dresden und Umland mit höchster Priorität.</p>
               <div className="mt-auto flex flex-col gap-4 pt-8">
-                <div className="flex items-center gap-3 text-[#091426] font-bold text-sm uppercase">
-                  <Mail className="w-5 h-5 text-[#fd761a]" /> info@vptrokkenbau.de
+                <div className="flex items-start gap-3 text-[#091426] font-bold text-sm uppercase">
+                  <Mail className="w-5 h-5 text-[#fd761a] mt-0.5" />
+                  <div className="flex flex-col gap-1">
+                    <a href="mailto:info@vptrokenbau.de" className="hover:text-[#fd761a] transition-colors">info@vptrokenbau.de</a>
+                    <a href="mailto:perevalovvasilii@gmail.com" className="text-xs text-[#45474c] lowercase font-semibold hover:text-[#fd761a] transition-colors">perevalovvasilii@gmail.com</a>
+                  </div>
                 </div>
                 <div className="flex items-center gap-3 text-[#091426] font-bold text-sm uppercase">
-                  <Phone className="w-5 h-5 text-[#fd761a]" /> +49 (0) 123 456 789
+                  <Phone className="w-5 h-5 text-[#fd761a]" />
+                  <a href="tel:+4915161559335" className="hover:text-[#fd761a] transition-colors">+49 (0) 151 61559335</a>
                 </div>
               </div>
             </div>
