@@ -1,0 +1,117 @@
+import type { Metadata, Viewport } from 'next';
+import { Inter } from 'next/font/google';
+import Script from 'next/script';
+import './globals.css';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
+import { StickyCTA } from '@/components/layout/StickyCTA';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#091426',
+};
+
+export const metadata: Metadata = {
+  title: {
+    default: 'VPTrokkenbau | Trockenbau & Innenausbau Dresden',
+    template: '%s | VPTrokkenbau Dresden',
+  },
+  description: 'Ihr Spezialist für gewerbliche Spachtelarbeiten, Brandschutz, Akustikbau und Dachausbau in Dresden. Höchste Qualitätsstufen bis Q4.',
+  keywords: ['Trockenbau Dresden', 'Innenausbau Dresden', 'Spachtelarbeiten', 'Brandschutz', 'Akustikbau', 'Decken', 'Wände', 'Handwerker Sachsen', 'Fugenverspachtelung', 'Q4 Spachtelung', 'Objektbau'],
+  authors: [{ name: 'VPTrokkenbau' }],
+  creator: 'VPTrokkenbau',
+  publisher: 'VPTrokkenbau',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: 'https://vptrokkenbau.de',
+  },
+  openGraph: {
+    title: 'VPTrokkenbau | Präzision im Trockenbau Dresden',
+    description: 'Hochwertiger Trockenbau in Dresden für Architekten, Bauherren und das Gewerbe.',
+    url: 'https://vptrokkenbau.de',
+    siteName: 'VPTrokkenbau',
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
+        width: 1200,
+        height: 630,
+        alt: 'VPTrokkenbau - Hochwertiger Trockenbau',
+      },
+    ],
+    type: 'website',
+    locale: 'de_DE',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'VPTrokkenbau | Trockenbau & Innenausbau Dresden',
+    description: 'Ihr Spezialist für gewerbliche Spachtelarbeiten, Brandschutz und Akustikbau in Dresden.',
+    images: ['https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'VPTrokkenbau GmbH',
+  image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
+  description: 'Ihr Spezialist für gewerbliche Spachtelarbeiten, Brandschutz, Akustikbau und Dachausbau in Dresden.',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Baustraße 123',
+    addressLocality: 'Dresden',
+    postalCode: '01067',
+    addressCountry: 'DE'
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 51.0504,
+    longitude: 13.7373
+  },
+  url: 'https://vptrokkenbau.de',
+  telephone: '+4935112345678',
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '07:00',
+      closes: '18:00'
+    }
+  ]
+};
+
+export default function RootLayout({children}: {children: React.ReactNode}) {
+  return (
+    <html lang="de" className={`scroll-smooth ${inter.variable}`} suppressHydrationWarning>
+      <body className="font-sans antialiased bg-[#fbf8fa] text-[#1b1b1d] selection:bg-[#fd761a] selection:text-white flex flex-col min-h-screen" suppressHydrationWarning>
+        <Script
+          id="local-business-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <Navbar />
+        <main className="flex-grow pt-24 pb-16">{children}</main>
+        <Footer />
+        <StickyCTA />
+      </body>
+    </html>
+  );
+}
