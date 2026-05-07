@@ -4,8 +4,66 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { PencilRuler, Layers, PaintRoller, AudioWaveform, ArrowRight, Mail, Phone, Upload } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useState } from 'react';
+import { SuccessPopup } from '@/components/ui/SuccessPopup';
 
 export default function Home() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    service: 'Gewerblicher Innenausbau',
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email) {
+      alert('Bitte füllen Sie Name und E-Mail aus.');
+      return;
+    }
+    setIsLoading(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          service: formData.service,
+          message: 'Projekt-Anfrage mit Dokument-Upload (simuliert) über das Startseiten-Ausschreibungsformular.',
+          formType: 'contact'
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setIsPopupOpen(true);
+        setFormData({
+          name: '',
+          email: '',
+          service: 'Gewerblicher Innenausbau',
+        });
+      } else {
+        alert('Fehler beim Senden: ' + (data.error || 'Bitte versuchen Sie es später noch einmal.'));
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Verbindungsfehler beim Senden.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-12 max-w-[1280px] mx-auto px-4 md:px-8">
       {/* Hero */}
@@ -158,20 +216,20 @@ export default function Home() {
               </div>
             </div>
             <div className="md:w-2/3 bg-white border border-[#091426] p-8">
-              <form className="flex flex-col gap-6">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="flex flex-col gap-2">
-                    <label className="font-bold text-sm text-[#091426] uppercase">Name / Firma</label>
-                    <input className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-0 outline-none" type="text" />
+                    <label className="font-bold text-sm text-[#091426] uppercase">Name / Firma *</label>
+                    <input name="name" value={formData.name} onChange={handleChange} required className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-0 outline-none" type="text" />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label className="font-bold text-sm text-[#091426] uppercase">E-Mail</label>
-                    <input className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-0 outline-none" type="email" />
+                    <label className="font-bold text-sm text-[#091426] uppercase">E-Mail *</label>
+                    <input name="email" value={formData.email} onChange={handleChange} required className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-0 outline-none" type="email" />
                   </div>
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-bold text-sm text-[#091426] uppercase">Projektart</label>
-                  <select className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-0 outline-none appearance-none rounded-none">
+                  <select name="service" value={formData.service} onChange={handleChange} className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-0 outline-none appearance-none rounded-none">
                     <option>Gewerblicher Innenausbau</option>
                     <option>Wohnungsbau (Großprojekt)</option>
                     <option>Spezial-Akustikbau</option>
@@ -185,14 +243,16 @@ export default function Home() {
                     <span className="text-[#45474c] text-sm mt-2">Dateien hier ablegen oder klicken zum Auswählen</span>
                   </div>
                 </div>
-                <button type="button" className="bg-[#1e293b] text-white font-bold uppercase py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] transition-all hover:bg-[#fd761a] active:translate-y-1 mt-4">
-                  Anfrage Senden
+                <button type="submit" disabled={isLoading} className="bg-[#1e293b] text-white font-bold uppercase py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] transition-all hover:bg-[#fd761a] active:translate-y-1 mt-4 disabled:opacity-50">
+                  {isLoading ? 'Senden...' : 'Anfrage Senden'}
                 </button>
               </form>
             </div>
           </div>
         </div>
       </section>
+
+      <SuccessPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
     </div>
   );
 }
