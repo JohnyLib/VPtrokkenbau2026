@@ -62,6 +62,7 @@ We use inline `ld+json` schema scripts to map business-relevant entities directl
 ### 🛠️ Crawler Directives & Alternate Linkage
 - **Dynamic Sitemap (`/sitemap.xml`)**: Generated on-the-fly inside `app/sitemap.ts` to index all main landing pages with relative priority weighting.
 - **Robots Policy (`/robots.txt`)**: Controlled inside `app/robots.ts` to block indexation of admin and private endpoints, while highlighting sitemap placement.
+- **HTTP `X-Robots-Tag` Header**: Configured globally in `next.config.ts` to explicitly define indexing rules (`index, follow, max-image-preview:large, max-snippet:-1`) directly at the server header layer.
 - **Canonical Alternates**: Page-level metadata forces canonicalization (`https://vptrokkenbau.de/*`) to prevent duplicate content penalties across protocol domains.
 
 ---

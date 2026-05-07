@@ -40,10 +40,10 @@ export const metadata: Metadata = {
     siteName: 'VPTrokkenbau',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
+        url: 'https://vptrokkenbau.de/api/og',
         width: 1200,
         height: 630,
-        alt: 'VPTrokkenbau - Hochwertiger Trockenbau',
+        alt: 'VPTrokkenbau - Trockenbau & Innenausbau Dresden',
       },
     ],
     type: 'website',
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'VPTrokkenbau | Trockenbau & Innenausbau Dresden',
     description: 'Ihr Spezialist für gewerbliche Spachtelarbeiten, Brandschutz und Akustikbau in Dresden.',
-    images: ['https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80'],
+    images: ['https://vptrokkenbau.de/api/og'],
   },
   robots: {
     index: true,

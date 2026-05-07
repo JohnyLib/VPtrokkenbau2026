@@ -23,8 +23,10 @@ export default function Home() {
             Meisterhafte Spachtelarbeiten (Q1-Q4) und Fugenverspachtelung für gewerbliche und private High-End-Projekte. Absolute Termintreue und strukturelle Integrität.
           </p>
           <div className="mt-4">
-            <Link href="/kontakt" className="bg-[#1e293b] text-white font-bold uppercase px-8 py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:bg-[#fd761a] hover:text-white transition-all inline-flex items-center gap-2 group active:translate-y-1 active:shadow-[2px_2px_0px_0px_#091426]">
-              Ausschreibung einreichen (Dresden & Umgebung) <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <Link href="/kontakt" className="bg-[#1e293b] text-white font-bold uppercase px-6 sm:px-8 py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:bg-[#fd761a] hover:text-white transition-all inline-flex items-center gap-2 group active:translate-y-1 active:shadow-[2px_2px_0px_0px_#091426] text-xs sm:text-sm md:text-base text-center justify-center w-full sm:w-auto">
+              <span className="hidden sm:inline">Ausschreibung einreichen (Dresden & Umgebung)</span>
+              <span className="sm:hidden">Ausschreibung einreichen</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform shrink-0" />
             </Link>
           </div>
         </motion.div>
