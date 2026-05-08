@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { supabaseAdmin } from '@/lib/supabase';
 
 export async function POST(request: Request) {
   try {
@@ -9,6 +10,31 @@ export async function POST(request: Request) {
     const typeLabel = formType === 'career' ? 'Karriere-Bewerbung' : (formType === 'callback' ? 'Rückrufanforderung' : 'Kontaktanfrage');
 
     console.log(`[Form Submission - ${typeLabel}]`, { name, email, phone, service, message });
+
+    // Save to Supabase contact_submissions table
+    try {
+      const { error: dbError } = await supabaseAdmin
+        .from('contact_submissions')
+        .insert([
+          {
+            name: name || 'Nicht angegeben',
+            email: email || 'Nicht angegeben',
+            phone: phone || null,
+            service: service || null,
+            message: message || null,
+            form_type: formType || 'contact',
+            status: 'new'
+          }
+        ]);
+      
+      if (dbError) {
+        console.error('Error saving submission to Supabase:', dbError);
+      } else {
+        console.log('Successfully saved submission to Supabase');
+      }
+    } catch (dbErr) {
+      console.error('Exception while saving submission to Supabase:', dbErr);
+    }
 
     // HTML Email template
     const htmlContent = `
