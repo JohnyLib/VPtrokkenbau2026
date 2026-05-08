@@ -10,7 +10,7 @@ export function Navbar() {
     <header className="fixed top-0 w-full z-50 bg-[#fbf8fa] border-b-2 border-[#091426] shadow-[4px_4px_0px_0px_#091426] h-20 transition-all">
       <div className="flex justify-between items-center h-full px-4 md:px-8 max-w-[1440px] mx-auto">
         <Link href="/" className="text-2xl font-black tracking-tighter text-[#091426] uppercase">
-          VP<span className="text-[#fd761a]">Trokkenbau</span>
+          Vp<span className="text-[#fd761a]">Trockenbau</span>
         </Link>
         <button 
           className="md:hidden p-2 text-[#091426] hover:bg-[#eae7e9] border border-transparent active:border-[#091426] transition-all" 

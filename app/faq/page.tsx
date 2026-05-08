@@ -3,15 +3,15 @@ import { ChevronDown } from 'lucide-react';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  title: 'Häufig gestellte Fragen (FAQ) | VPTrokkenbau Dresden',
+  title: 'Häufig gestellte Fragen (FAQ) | VpTrockenbau Dresden',
   description: 'Antworten zu Trockenbau, Q1-Q4 Spachtelarbeiten, Brandschutz und Projektplanung im Raum Dresden von Ihrem Experten.',
   alternates: {
-    canonical: 'https://vptrokkenbau.de/faq',
+    canonical: 'https://vptrokenbau.de/faq',
   },
   openGraph: {
-    title: 'FAQ Trockenbau | VPTrokkenbau',
+    title: 'FAQ Trockenbau | VpTrockenbau',
     description: 'Fragen und Antworten zu unseren Leistungen rund um Trockenbau und Innenausbau.',
-    url: 'https://vptrokkenbau.de/faq',
+    url: 'https://vptrokenbau.de/faq',
   },
 };
 
@@ -47,7 +47,7 @@ export default function FAQ() {
         },
         {
           q: "Können Sie auch Großprojekte termingerecht abwickeln?",
-          a: "Absolut. VPTrokkenbau ist auf komplexe gewerbliche Innenausbauten spezialisiert. Durch unsere langjährige Erfahrung, qualifiziertes Personal und effiziente Logistik garantieren wir Ihnen höchste Termintreue, selbst bei engen Zeitplänen."
+          a: "Absolut. VpTrockenbau ist auf komplexe gewerbliche Innenausbauten spezialisiert. Durch unsere langjährige Erfahrung, qualifiziertes Personal und effiziente Logistik garantieren wir Ihnen höchste Termintreue, selbst bei engen Zeitplänen."
         }
       ]
     }

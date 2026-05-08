@@ -15,7 +15,7 @@ const projects = [
     duration: "8 Monate",
     client: "Immobilienfonds Dresden Ost",
     location: "Dresden Neustadt",
-    testimonial: "Höchste Präzision bei den komplexen Spachtelarbeiten, genau wie von den Architekten vorgegeben. Das Team von VPTrokkenbau hat unsere Erwartungen bei diesem Revitalisierungsprojekt übertroffen.",
+    testimonial: "Höchste Präzision bei den komplexen Spachtelarbeiten, genau wie von den Architekten vorgegeben. Das Team von VpTrockenbau hat unsere Erwartungen bei diesem Revitalisierungsprojekt übertroffen.",
     images: [
       "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80",
@@ -373,7 +373,7 @@ export function PortfolioClient() {
             Unsere Referenzen
           </h1>
           <p className="text-lg text-[#45474c] max-w-2xl leading-relaxed">
-            Entdecken Sie unsere herausragenden Projekte im Großraum Dresden. Von modernen Bürokomplexen bis hin zu luxuriösen Villen – VPTrokkenbau steht für höchste Qualität, Termintreue und architektonische Exzellenz im Trockenbau.
+            Entdecken Sie unsere herausragenden Projekte im Großraum Dresden. Von modernen Bürokomplexen bis hin zu luxuriösen Villen – VpTrockenbau steht für höchste Qualität, Termintreue und architektonische Exzellenz im Trockenbau.
           </p>
           <div className="pt-4">
             <Link href="/kontakt" className="bg-[#1e293b] text-white font-bold uppercase px-8 py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:bg-[#fd761a] transition-all inline-flex items-center gap-2 group active:translate-y-1">

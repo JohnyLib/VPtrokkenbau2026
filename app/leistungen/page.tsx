@@ -4,22 +4,22 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  title: 'Trockenbau Leistungen & Spachtelarbeiten | VPTrokkenbau Dresden',
-  description: 'Unsere Expertise umfassen hochwertigen Trockenbau, Spachtelarbeiten (Q1-Q4), zertifizierten Brandschutz, Fugenverspachtelung und Akustikbau für Dresden und Region.',
-  keywords: ['Trockenbauistungen', 'Spachtelarbeiten Q4', 'Brandschutz Decken', 'Akustikbau Fachbetrieb', 'Dresden Bau', 'VPTrokkenbau Leistungen'],
+  title: 'Trockenbau Leistungen & Spachtelarbeiten | VpTrockenbau Dresden',
+  description: 'Unsere Expertise umfasst hochwertigen Trockenbau, Spachtelarbeiten (Q1-Q4), zertifizierten Brandschutz, Fugenverspachtelung und Akustikbau für Dresden und Region.',
+  keywords: ['Trockenbau Leistungen', 'Spachtelarbeiten Q4', 'Brandschutz Decken', 'Akustikbau Fachbetrieb', 'Dresden Bau', 'VpTrockenbau Leistungen'],
   alternates: {
-    canonical: 'https://vptrokkenbau.de/leistungen',
+    canonical: 'https://vptrokenbau.de/leistungen',
   },
   openGraph: {
-    title: 'Unsere Leistungen im Trockenbau | VPTrokkenbau',
+    title: 'Unsere Leistungen im Trockenbau | VpTrockenbau',
     description: 'Expertise in Trockenbau, Spachtelarbeiten Q1-Q4, zertifizierter Brandschutz und Akustikbau.',
-    url: 'https://vptrokkenbau.de/leistungen',
+    url: 'https://vptrokenbau.de/leistungen',
     images: [
       {
         url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
         width: 1200,
         height: 630,
-        alt: 'Trockenbau Leistungen VPTrokkenbau',
+        alt: 'Trockenbau Leistungen VpTrockenbau',
       },
     ],
   },
@@ -39,7 +39,7 @@ export default function Leistungen() {
           'description': 'Höchste Oberflächenqualität für anspruchsvolle Raumkonzepte. Wir realisieren Verspachtelungen bis zur Qualitätsstufe Q4 für makellose, streiflichtfreie Ergebnisse.',
           'provider': {
             '@type': 'LocalBusiness',
-            'name': 'VPTrokkenbau GmbH',
+            'name': 'VpTrockenbau',
             'address': {
               '@type': 'PostalAddress',
               'streetAddress': 'Baustraße 123',
@@ -59,7 +59,7 @@ export default function Leistungen() {
           'description': 'Zertifizierte bauliche Brandschutzmaßnahmen für maximale Sicherheit. Wir verarbeiten spezialisierte Brandschutzplatten und Systemlösungen gemäß DIN-Normen für Decken, Wände und Trägerverkleidungen.',
           'provider': {
             '@type': 'LocalBusiness',
-            'name': 'VPTrokkenbau GmbH'
+            'name': 'VpTrockenbau'
           }
         }
       },
@@ -72,7 +72,7 @@ export default function Leistungen() {
           'description': 'Optimierung der Raumakustik durch hochwirksame Schallabsorber und Akustikdecken. Reduzierung von Nachhallzeiten und Verbesserung der Sprachverständlichkeit für Büros, Foyers und Veranstaltungsräume.',
           'provider': {
             '@type': 'LocalBusiness',
-            'name': 'VPTrokkenbau GmbH'
+            'name': 'VpTrockenbau'
           }
         }
       },
@@ -85,7 +85,7 @@ export default function Leistungen() {
           'description': 'Effiziente Transformation ungenutzter Dachgeschosse in hochwertigen Wohn- oder Gewerberaum. Inklusive fachgerechter Dämmung, Dampfsperren und präziser Beplankung komplexer Dachschrägen.',
           'provider': {
             '@type': 'LocalBusiness',
-            'name': 'VPTrokkenbau GmbH'
+            'name': 'VpTrockenbau'
           }
         }
       }

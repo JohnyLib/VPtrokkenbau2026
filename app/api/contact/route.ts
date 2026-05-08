@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     const htmlContent = `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #091426; border-radius: 4px;">
         <div style="background-color: #091426; color: #ffffff; padding: 15px; text-align: center; font-weight: bold; font-size: 20px; text-transform: uppercase; margin-bottom: 20px;">
-          VP<span style="color: #fd761a;">Trokkenbau</span> - ${typeLabel}
+          Vp<span style="color: #fd761a;">Trockenbau</span> - ${typeLabel}
         </div>
         <p style="font-size: 16px; color: #45474c;">Sie haben eine neue Nachricht über das Online-Formular erhalten:</p>
         
@@ -51,7 +51,7 @@ export async function POST(request: Request) {
     `;
 
     const textContent = `
-      VPTrokkenbau - ${typeLabel}
+      VpTrockenbau - ${typeLabel}
       --------------------------------------------------
       Name/Firma: ${name || 'Nicht angegeben'}
       E-Mail: ${email || 'Nicht angegeben'}
@@ -82,7 +82,7 @@ export async function POST(request: Request) {
         from: `"${name || 'Web Form'}" <${SMTP_USER}>`,
         replyTo: email || undefined,
         to: receivers,
-        subject: `[VPTrokkenbau] ${typeLabel} von ${name || 'Kontaktformular'}`,
+        subject: `[VpTrockenbau] ${typeLabel} von ${name || 'Kontaktformular'}`,
         text: textContent,
         html: htmlContent,
       });

@@ -2,68 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { PencilRuler, Layers, PaintRoller, AudioWaveform, ArrowRight, Mail, Phone, Upload } from 'lucide-react';
+import { PencilRuler, Layers, PaintRoller, AudioWaveform, ArrowRight, CheckCircle2, Star, ShieldCheck, Clock, Award, Hammer, MapPin } from 'lucide-react';
 import { motion } from 'motion/react';
-import { useState } from 'react';
-import { SuccessPopup } from '@/components/ui/SuccessPopup';
+import { HomeContactForm } from '@/components/ui/HomeContactForm';
 
 export default function Home() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    service: 'Gewerblicher Innenausbau',
-  });
-  const [isLoading, setIsLoading] = useState(false);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email) {
-      alert('Bitte füllen Sie Name und E-Mail aus.');
-      return;
-    }
-    setIsLoading(true);
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          service: formData.service,
-          message: 'Projekt-Anfrage mit Dokument-Upload (simuliert) über das Startseiten-Ausschreibungsformular.',
-          formType: 'contact'
-        }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setIsPopupOpen(true);
-        setFormData({
-          name: '',
-          email: '',
-          service: 'Gewerblicher Innenausbau',
-        });
-      } else {
-        alert('Fehler beim Senden: ' + (data.error || 'Bitte versuchen Sie es später noch einmal.'));
-      }
-    } catch (err) {
-      console.error(err);
-      alert('Verbindungsfehler beim Senden.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return (
     <div className="flex flex-col gap-12 max-w-[1280px] mx-auto px-4 md:px-8">
       {/* Hero */}
@@ -74,16 +17,18 @@ export default function Home() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="flex flex-col gap-8 z-10 p-4"
         >
+          <span className="text-sm font-bold uppercase text-[#fd761a] tracking-widest bg-[#eae7e9] border border-[#091426] px-3 py-1 self-start shadow-[2px_2px_0px_0px_#091426]">
+            Ihr Trockenbau-Spezialist in Dresden
+          </span>
           <h1 className="text-5xl md:text-6xl font-extrabold text-[#091426] border-l-8 border-[#fd761a] pl-6 leading-tight tracking-tight uppercase">
-            Präzision im Trockenbau & Innenausbau
+            Präzision im Trockenbau & Innenausbau Dresden
           </h1>
           <p className="text-lg text-[#45474c] max-w-xl">
-            Meisterhafte Spachtelarbeiten (Q1-Q4) und Fugenverspachtelung für gewerbliche und private High-End-Projekte. Absolute Termintreue und strukturelle Integrität.
+            Ihr zertifizierter Fachpartner für erstklassige Spachtelarbeiten (Q1-Q4), Fugenverspachtelung, baulichen Brandschutz und Akustikbau im Großraum Dresden und ganz Sachsen.
           </p>
-          <div className="mt-4">
+          <div className="mt-4 flex flex-col sm:flex-row gap-4">
             <Link href="/kontakt" className="bg-[#1e293b] text-white font-bold uppercase px-6 sm:px-8 py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:bg-[#fd761a] hover:text-white transition-all inline-flex items-center gap-2 group active:translate-y-1 active:shadow-[2px_2px_0px_0px_#091426] text-xs sm:text-sm md:text-base text-center justify-center w-full sm:w-auto">
-              <span className="hidden sm:inline">Ausschreibung einreichen (Dresden & Umgebung)</span>
-              <span className="sm:hidden">Ausschreibung einreichen</span>
+              <span>Ausschreibung einreichen</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform shrink-0" />
             </Link>
           </div>
@@ -94,9 +39,9 @@ export default function Home() {
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
           className="relative h-[400px] lg:h-[600px] border-2 border-[#091426] shadow-[4px_4px_0px_0px_#091426] bg-[#eae7e9] overflow-hidden group"
         >
-          <Image src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" alt="Construction interior" fill sizes="(max-width: 1024px) 100vw, 50vw" priority className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+          <Image src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" alt="Exklusive Trockenbau- und Spachtelarbeiten in Dresden" fill sizes="(max-width: 1024px) 100vw, 50vw" priority className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
           <div className="absolute bottom-0 left-0 bg-[#fd761a] text-[#091426] font-bold uppercase px-4 py-2 border-t-2 border-r-2 border-[#091426]">
-            Qualitätsstufe Q4
+            Qualitätsstufe Q4 Dresden
           </div>
         </motion.div>
       </section>
@@ -182,77 +127,152 @@ export default function Home() {
           <div className="lg:col-span-5 bg-[#1e293b] text-white p-8 md:p-12 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] flex flex-col justify-center">
             <h2 className="text-3xl font-bold text-[#fd761a] mb-6 uppercase tracking-tight">Über Uns</h2>
             <p className="text-lg mb-6 leading-relaxed">
-              VPTrokkenbau steht für kompromisslose Qualität im regionalen Trockenbau im Großraum Dresden. Mit jahrelanger Erfahrung in der Umsetzung komplexer Bauvorhaben verbinden wir sächsisches Handwerk mit modernster Systemtechnik.
+              VpTrockenbau steht für kompromisslose Qualität im regionalen Trockenbau im Großraum Dresden. Mit jahrelanger Erfahrung in der Umsetzung komplexer Bauvorhaben verbinden wir sächsisches Handwerk mit modernster Systemtechnik.
             </p>
             <p className="text-[#bcc7de]">
               Unser Team aus spezialisierten Fachkräften garantiert eine Ausführung, die architektonische Visionen in dauerhafte, präzise Realität verwandelt.
             </p>
           </div>
           <div className="lg:col-span-7 h-[400px] lg:h-auto border border-[#091426] shadow-[4px_4px_0px_0px_#091426] relative">
-            <Image src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" alt="Construction plans" fill sizes="(max-width: 1024px) 100vw, 60vw" loading="lazy" className="object-cover grayscale" />
+            <Image src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" alt="Exzellente Trockenbaupläne und Baustellen-Organisation in Dresden" fill sizes="(max-width: 1024px) 100vw, 60vw" loading="lazy" className="object-cover grayscale" />
           </div>
+        </div>
+      </section>
+
+      {/* Warum VpTrockenbau */}
+      <section className="pt-16" id="vorteile">
+        <div className="flex flex-col gap-4 mb-8">
+          <h2 className="text-3xl font-bold text-[#091426] uppercase border-b-2 border-[#091426] pb-2 self-start tracking-tight">Warum VpTrockenbau?</h2>
+          <p className="text-base text-[#45474c]">Qualität, Richtlinienkonformität und absolute Zuverlässigkeit.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            {
+              icon: Award,
+              title: 'Zertifizierte Qualität',
+              desc: 'Wir führen Spachtelarbeiten in allen Qualitätsstufen aus – von der Grundspachtelung (Q1) bis zur streiflichtfreien Premium-Fläche (Q4).'
+            },
+            {
+              icon: ShieldCheck,
+              title: 'Geprüfter Brandschutz',
+              desc: 'Zertifizierte bauliche Brandschutzmaßnahmen für Decken, Wände und Trägerbekleidungen exakt nach aktuellen DIN-Normen.'
+            },
+            {
+              icon: Clock,
+              title: 'Absolute Termintreue',
+              desc: 'Pünktliche Fertigstellung aller Gewerke durch effiziente Projektplanung und erfahrene Vorarbeiter vor Ort in Dresden.'
+            },
+            {
+              icon: Hammer,
+              title: 'Meisterliches Handwerk',
+              desc: 'Kombination aus sächsischem Handwerksstolz, langjähriger Erfahrung im Gewerbebau und modernster Trockenbau-Systemtechnik.'
+            }
+          ].map((item, i) => (
+            <div key={i} className="bg-white border border-[#091426] p-6 shadow-[4px_4px_0px_0px_#091426] flex flex-col gap-4 hover:bg-[#f5f3f4] transition-colors group">
+              <div className="w-12 h-12 bg-[#091426] flex items-center justify-center border border-[#091426] group-hover:bg-[#fd761a] transition-colors">
+                <item.icon className="text-white w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-[#091426] uppercase">{item.title}</h3>
+              <p className="text-[#45474c] text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Einzugsgebiet */}
+      <section className="pt-16" id="einzugsgebiet">
+        <div className="bg-[#1e293b] text-white p-8 md:p-12 border border-[#091426] shadow-[4px_4px_0px_0px_#091426]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-5 space-y-6">
+              <div className="inline-block bg-[#fd761a] text-white px-3 py-1 text-xs font-bold uppercase tracking-wider border border-[#091426]">Regionaler Partner</div>
+              <h2 className="text-3xl md:text-4xl font-extrabold uppercase tracking-tight text-white leading-none">
+                Unser Einzugsgebiet<br/>in Sachsen
+              </h2>
+              <p className="text-slate-300">
+                Als lokaler Trockenbau-Fachbetrieb sind wir in ganz Dresden und im sächsischen Umland schnell für Sie vor Ort. Wir übernehmen Projekte im privaten und gewerblichen Bereich.
+              </p>
+              <div className="flex items-center gap-2 text-[#fd761a] font-bold text-sm uppercase tracking-wider">
+                <MapPin className="w-5 h-5" />
+                <span>Einsatzort Dresden & Umkreis</span>
+              </div>
+            </div>
+            <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {[
+                { title: 'Dresden Altstadt', zip: '01067' },
+                { title: 'Dresden Neustadt', zip: '01097' },
+                { title: 'Dresden Blasewitz', zip: '01309' },
+                { title: 'Dresden Plauen', zip: '01187' },
+                { title: 'Radebeul', zip: '01445' },
+                { title: 'Freital', zip: '01705' },
+                { title: 'Pirna', zip: '01796' },
+                { title: 'Meißen', zip: '01662' },
+                { title: 'Radeberg', zip: '01454' },
+                { title: 'Coswig', zip: '01640' },
+                { title: 'Heidenau', zip: '01809' },
+                { title: 'Radeburg', zip: '01471' }
+              ].map((loc, i) => (
+                <div key={i} className="bg-[#091426] border border-slate-800 p-4 flex flex-col gap-1 hover:border-[#fd761a] transition-colors">
+                  <span className="text-white font-bold text-sm sm:text-base leading-tight">{loc.title}</span>
+                  <span className="text-slate-500 text-xs font-mono">PLZ: {loc.zip}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Kundenbewertungen */}
+      <section className="pt-16" id="bewertungen">
+        <div className="flex flex-col gap-4 mb-8">
+          <h2 className="text-3xl font-bold text-[#091426] uppercase border-b-2 border-[#091426] pb-2 self-start tracking-tight">Kundenstimmen</h2>
+          <p className="text-base text-[#45474c]">Das sagen Architekten, Bauherren und Partner in Dresden über uns.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              name: 'Dr. Michael Becker',
+              role: 'Zahnarztpraxis Blasewitz',
+              text: 'Wir haben die Spachtelarbeiten (Q4) für unsere neue Praxis von VpTrockenbau ausführen lassen. Das Ergebnis bei kritischem Streiflicht is absolut makellos! Sehr professionelle und saubere Arbeitsweise.',
+              project: 'Praxisumbau Dresden'
+            },
+            {
+              name: 'Dipl.-Ing. Andreas Krause',
+              role: 'Projektleiter Bauprojekt Ost GmbH',
+              text: 'Beim gewerblichen Ausbau unseres Bürokomplexes in der Dresdner Altstadt hat VpTrockenbau den baulichen Brandschutz und Akustikbau übernommen. Zuverlässig, DIN-konform und absolut termintreu.',
+              project: 'Gewerbebau Altstadt'
+            },
+            {
+              name: 'Sabine Weber',
+              role: 'Eigentümerin',
+              text: 'Großartiger Dachgeschossausbau in unserem Einfamilienhaus in Radebeul. Von der Beratung über die Wärmedämmung bis zur malerfertigen Beplankung der Dachschrägen lief alles perfekt ab.',
+              project: 'Dachausbau Radebeul'
+            }
+          ].map((review, i) => (
+            <div key={i} className="bg-white border border-[#091426] p-6 shadow-[4px_4px_0px_0px_#091426] flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex gap-1 text-[#fd761a]">
+                  {[...Array(5)].map((_, idx) => (
+                    <Star key={idx} className="w-5 h-5 fill-current" />
+                  ))}
+                </div>
+                <p className="text-[#45474c] text-sm italic leading-relaxed">
+                  "{review.text}"
+                </p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-[#eae7e9] flex flex-col">
+                <span className="font-bold text-[#091426] uppercase text-sm">{review.name}</span>
+                <span className="text-xs text-slate-500">{review.role}</span>
+                <span className="text-xs text-[#fd761a] font-semibold mt-1 uppercase tracking-wider">{review.project}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* Form / Contact */}
       <section className="pt-16 pb-16" id="kontakt">
-        <div className="bg-[#f5f3f4] border-2 border-[#091426] shadow-[4px_4px_0px_0px_#091426] p-8 md:p-12">
-          <div className="flex flex-col md:flex-row gap-8">
-            <div className="md:w-1/3 flex flex-col gap-4">
-              <h2 className="text-3xl font-bold text-[#091426] uppercase tracking-tight">Kontakt & Ausschreibung</h2>
-              <p className="text-[#45474c]">Senden Sie uns Ihre Projektunterlagen für eine präzise Kalkulation. Wir bearbeiten Anfragen für Gewerbe- und Großprojekte in Dresden und Umland mit höchster Priorität.</p>
-              <div className="mt-auto flex flex-col gap-4 pt-8">
-                <div className="flex items-start gap-3 text-[#091426] font-bold text-sm uppercase">
-                  <Mail className="w-5 h-5 text-[#fd761a] mt-0.5" />
-                  <div className="flex flex-col gap-1">
-                    <a href="mailto:info@vptrokenbau.de" className="hover:text-[#fd761a] transition-colors">info@vptrokenbau.de</a>
-                    <a href="mailto:perevalovvasilii@gmail.com" className="text-xs text-[#45474c] lowercase font-semibold hover:text-[#fd761a] transition-colors">perevalovvasilii@gmail.com</a>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 text-[#091426] font-bold text-sm uppercase">
-                  <Phone className="w-5 h-5 text-[#fd761a]" />
-                  <a href="tel:+4915161559335" className="hover:text-[#fd761a] transition-colors">+49 (0) 151 61559335</a>
-                </div>
-              </div>
-            </div>
-            <div className="md:w-2/3 bg-white border border-[#091426] p-8">
-              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="flex flex-col gap-2">
-                    <label className="font-bold text-sm text-[#091426] uppercase">Name / Firma *</label>
-                    <input name="name" value={formData.name} onChange={handleChange} required className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-0 outline-none" type="text" />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <label className="font-bold text-sm text-[#091426] uppercase">E-Mail *</label>
-                    <input name="email" value={formData.email} onChange={handleChange} required className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-0 outline-none" type="email" />
-                  </div>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="font-bold text-sm text-[#091426] uppercase">Projektart</label>
-                  <select name="service" value={formData.service} onChange={handleChange} className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-0 outline-none appearance-none rounded-none">
-                    <option>Gewerblicher Innenausbau</option>
-                    <option>Wohnungsbau (Großprojekt)</option>
-                    <option>Spezial-Akustikbau</option>
-                    <option>Sonstiges</option>
-                  </select>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="font-bold text-sm text-[#091426] uppercase">Upload (Pläne / LV)</label>
-                  <div className="border-2 border-dashed border-[#091426] bg-[#f5f3f4] hover:bg-[#eae7e9] transition-colors p-8 text-center cursor-pointer flex flex-col items-center gap-2">
-                    <Upload className="w-8 h-8 text-[#091426]" />
-                    <span className="text-[#45474c] text-sm mt-2">Dateien hier ablegen oder klicken zum Auswählen</span>
-                  </div>
-                </div>
-                <button type="submit" disabled={isLoading} className="bg-[#1e293b] text-white font-bold uppercase py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] transition-all hover:bg-[#fd761a] active:translate-y-1 mt-4 disabled:opacity-50">
-                  {isLoading ? 'Senden...' : 'Anfrage Senden'}
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
+        <HomeContactForm />
       </section>
-
-      <SuccessPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
     </div>
   );
 }

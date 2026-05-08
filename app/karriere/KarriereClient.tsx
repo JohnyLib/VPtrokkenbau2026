@@ -72,7 +72,7 @@ export function KarriereClient() {
 
       {/* Benefits */}
       <section className="w-full">
-        <h2 className="text-3xl font-bold text-[#091426] mb-8 uppercase border-b-2 border-[#091426] pb-2 inline-block">Warum VPTrokkenbau?</h2>
+        <h2 className="text-3xl font-bold text-[#091426] mb-8 uppercase border-b-2 border-[#091426] pb-2 inline-block">Warum VpTrockenbau?</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="bg-white border border-[#091426] p-6 shadow-[4px_4px_0px_0px_#091426] flex flex-col hover:bg-[#f5f3f4] transition-colors">
              <HardHat className="w-10 h-10 text-[#fd761a] mb-4" />
@@ -123,11 +123,42 @@ export function KarriereClient() {
       {/* Form */}
       <section ref={formRef} className="bg-[#eae7e9] border border-[#091426] p-8 md:p-12 shadow-[4px_4px_0px_0px_#091426] text-center mb-8 w-full">
          <h2 className="text-3xl font-bold text-[#091426] mb-4 uppercase tracking-tight">Kein langes Anschreiben nötig</h2>
-         <p className="text-lg text-[#45474c] mb-6 max-w-2xl mx-auto">Hinterlassen Sie einfach Ihre Kontaktdaten und wir rufen Sie zurück. Unkompliziert und direkt.</p>
-         <form onSubmit={handleSubmit} className="max-w-md mx-auto flex flex-col gap-4">
-           <input ref={nameInputRef} type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder="Ihr Name *" className="w-full bg-white border border-[#091426] p-3 focus:border-[#fd761a] focus:outline-none" />
-           <input type="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Telefonnummer *" className="w-full bg-white border border-[#091426] p-3 focus:border-[#fd761a] focus:outline-none" />
-           <button type="submit" disabled={isLoading} className="w-full bg-[#fd761a] text-white font-bold px-6 py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] uppercase mt-2 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#091426] transition-all disabled:opacity-50">
+         <p className="text-lg text-[#45474c] mb-8 max-w-2xl mx-auto">Hinterlassen Sie einfach Ihre Kontaktdaten und wir rufen Sie zurück. Unkompliziert und direkt.</p>
+         <form onSubmit={handleSubmit} className="max-w-md mx-auto flex flex-col gap-5 text-left">
+           <div className="flex flex-col gap-1.5">
+             <label htmlFor="karriere-name" className="font-bold text-sm text-[#091426] uppercase">Ihr Name *</label>
+             <input
+               ref={nameInputRef}
+               id="karriere-name"
+               type="text"
+               required
+               value={name}
+               onChange={(e) => setName(e.target.value)}
+               autoComplete="name"
+               placeholder="z.B. Max Mustermann"
+               className="w-full bg-white border border-[#091426] p-3 focus:border-[#fd761a] focus:ring-2 focus:ring-[#fd761a]/20 outline-none transition-all"
+             />
+           </div>
+           
+           <div className="flex flex-col gap-1.5">
+             <label htmlFor="karriere-phone" className="font-bold text-sm text-[#091426] uppercase">Telefonnummer *</label>
+             <input
+               id="karriere-phone"
+               type="tel"
+               required
+               value={phone}
+               onChange={(e) => setPhone(e.target.value)}
+               autoComplete="tel"
+               placeholder="z.B. +49 170 1234567"
+               className="w-full bg-white border border-[#091426] p-3 focus:border-[#fd761a] focus:ring-2 focus:ring-[#fd761a]/20 outline-none transition-all"
+             />
+           </div>
+
+           <button
+             type="submit"
+             disabled={isLoading}
+             className="w-full bg-[#fd761a] text-white font-bold px-6 py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] uppercase mt-2 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#091426] active:translate-y-0 active:shadow-[4px_4px_0px_0px_#091426] transition-all disabled:opacity-50 min-h-[58px] text-center"
+           >
              {isLoading ? 'Wird gesendet...' : 'Rückruf Anfordern'}
            </button>
          </form>

@@ -17,21 +17,21 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: 'VPTrokkenbau | Trockenbau & Innenausbau Dresden',
-    template: '%s | VPTrokkenbau Dresden',
+    default: 'VpTrockenbau | Trockenbau & Innenausbau Dresden',
+    template: '%s | VpTrockenbau Dresden',
   },
   description: 'Ihr Spezialist für gewerbliche Spachtelarbeiten, Brandschutz, Akustikbau und Dachausbau in Dresden. Höchste Qualitätsstufen bis Q4.',
   keywords: ['Trockenbau Dresden', 'Innenausbau Dresden', 'Spachtelarbeiten', 'Brandschutz', 'Akustikbau', 'Decken', 'Wände', 'Handwerker Sachsen', 'Fugenverspachtelung', 'Q4 Spachtelung', 'Objektbau'],
-  authors: [{ name: 'VPTrokkenbau' }],
-  creator: 'VPTrokkenbau',
-  publisher: 'VPTrokkenbau',
+  authors: [{ name: 'VpTrockenbau' }],
+  creator: 'VpTrockenbau',
+  publisher: 'VpTrockenbau',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   alternates: {
-    canonical: 'https://vptrokkenbau.de',
+    canonical: 'https://vptrokenbau.de',
   },
   icons: {
     icon: '/Ico.ico',
@@ -42,16 +42,16 @@ export const metadata: Metadata = {
     google: 'google-site-verification-token',
   },
   openGraph: {
-    title: 'VPTrokkenbau | Präzision im Trockenbau Dresden',
+    title: 'VpTrockenbau | Präzision im Trockenbau Dresden',
     description: 'Hochwertiger Trockenbau in Dresden für Architekten, Bauherren und das Gewerbe.',
-    url: 'https://vptrokkenbau.de',
-    siteName: 'VPTrokkenbau',
+    url: 'https://vptrokenbau.de',
+    siteName: 'VpTrockenbau',
     images: [
       {
-        url: 'https://vptrokkenbau.de/og-image.png',
+        url: 'https://vptrokenbau.de/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'VPTrokkenbau - Trockenbau & Innenausbau Dresden',
+        alt: 'VpTrockenbau - Trockenbau & Innenausbau Dresden',
       },
     ],
     type: 'website',
@@ -59,9 +59,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'VPTrokkenbau | Trockenbau & Innenausbau Dresden',
+    title: 'VpTrockenbau | Trockenbau & Innenausbau Dresden',
     description: 'Ihr Spezialist für gewerbliche Spachtelarbeiten, Brandschutz und Akustikbau in Dresden.',
-    images: ['https://vptrokkenbau.de/og-image.png'],
+    images: ['https://vptrokenbau.de/og-image.png'],
   },
   robots: {
     index: true,
@@ -78,32 +78,52 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: 'VPTrokkenbau GmbH',
-  image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
-  description: 'Ihr Spezialist für gewerbliche Spachtelarbeiten, Brandschutz, Akustikbau und Dachausbau in Dresden.',
-  address: {
+  '@type': 'DrywallContractor',
+  'name': 'VpTrockenbau',
+  'alternateName': 'VpTrockenbau Dresden',
+  'image': 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
+  'description': 'Ihr Spezialist für Trockenbau, gewerbliche Spachtelarbeiten (Q1-Q4), zertifizierten Brandschutz, Akustikbau und Dachausbau in Dresden und ganz Sachsen.',
+  'address': {
     '@type': 'PostalAddress',
-    streetAddress: 'Baustraße 123',
-    addressLocality: 'Dresden',
-    postalCode: '01067',
-    addressCountry: 'DE'
+    'streetAddress': 'Baustraße 123',
+    'addressLocality': 'Dresden',
+    'postalCode': '01067',
+    'addressCountry': 'DE'
   },
-  geo: {
+  'geo': {
     '@type': 'GeoCoordinates',
-    latitude: 51.0504,
-    longitude: 13.7373
+    'latitude': 51.0504,
+    'longitude': 13.7373
   },
-  url: 'https://vptrokkenbau.de',
-  telephone: '+4915161559335',
-  email: 'info@vptrokenbau.de',
-  openingHoursSpecification: [
+  'url': 'https://vptrokenbau.de',
+  'telephone': '+4915161559335',
+  'email': 'info@vptrokenbau.de',
+  'priceRange': '$$',
+  'openingHoursSpecification': [
     {
       '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: '07:00',
-      closes: '18:00'
+      'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      'opens': '07:00',
+      'closes': '18:00'
     }
+  ],
+  'areaServed': [
+    { '@type': 'AdministrativeArea', 'name': 'Dresden' },
+    { '@type': 'AdministrativeArea', 'name': 'Radebeul' },
+    { '@type': 'AdministrativeArea', 'name': 'Freital' },
+    { '@type': 'AdministrativeArea', 'name': 'Pirna' },
+    { '@type': 'AdministrativeArea', 'name': 'Meißen' },
+    { '@type': 'AdministrativeArea', 'name': 'Radeberg' },
+    { '@type': 'AdministrativeArea', 'name': 'Sachsen' }
+  ],
+  'knowsAbout': [
+    'Trockenbau',
+    'Spachtelarbeiten',
+    'Q4 Spachtelung',
+    'Brandschutz',
+    'Akustikbau',
+    'Dachgeschossausbau',
+    'Fugenverspachtelung'
   ]
 };
 

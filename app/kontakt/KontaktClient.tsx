@@ -120,45 +120,52 @@ export function KontaktClient() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex flex-col gap-2">
                 <label className="font-bold text-sm text-[#091426] uppercase" htmlFor="name">Name / Firma *</label>
-                <input id="name" required value={formData.name} onChange={handleChange} className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-0 outline-none" type="text" />
+                <input id="name" required value={formData.name} onChange={handleChange} autoComplete="name" className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-2 focus:ring-[#fd761a]/20 outline-none transition-all" type="text" />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="font-bold text-sm text-[#091426] uppercase" htmlFor="email">E-Mail *</label>
-                <input id="email" required value={formData.email} onChange={handleChange} className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-0 outline-none" type="email" />
+                <input id="email" required value={formData.email} onChange={handleChange} autoComplete="email" className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-2 focus:ring-[#fd761a]/20 outline-none transition-all" type="email" />
               </div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex flex-col gap-2">
                 <label className="font-bold text-sm text-[#091426] uppercase" htmlFor="phone">Telefon</label>
-                <input id="phone" value={formData.phone} onChange={handleChange} className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-0 outline-none" type="tel" />
+                <input id="phone" value={formData.phone} onChange={handleChange} autoComplete="tel" className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-2 focus:ring-[#fd761a]/20 outline-none transition-all" type="tel" />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="font-bold text-sm text-[#091426] uppercase" htmlFor="service">Gewerk</label>
-                <select id="service" value={formData.service} onChange={handleChange} className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-0 outline-none appearance-none rounded-none">
-                  <option>Trockenbau</option>
-                  <option>Spachtelarbeiten (Q1-Q4)</option>
-                  <option>Brandschutz</option>
-                  <option>Akustikbau</option>
-                  <option>Dachausbau</option>
-                  <option>Sonstiges</option>
-                </select>
+                <div className="relative">
+                  <select id="service" value={formData.service} onChange={handleChange} className="w-full border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-2 focus:ring-[#fd761a]/20 outline-none appearance-none rounded-none transition-all">
+                    <option>Trockenbau</option>
+                    <option>Spachtelarbeiten (Q1-Q4)</option>
+                    <option>Brandschutz</option>
+                    <option>Akustikbau</option>
+                    <option>Dachausbau</option>
+                    <option>Sonstiges</option>
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#091426]">
+                    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div className="flex flex-col gap-2">
               <label className="font-bold text-sm text-[#091426] uppercase" htmlFor="message">Ihre Nachricht *</label>
-              <textarea id="message" required value={formData.message} onChange={handleChange} className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-0 outline-none min-h-[150px] resize-y"></textarea>
+              <textarea id="message" required value={formData.message} onChange={handleChange} className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-2 focus:ring-[#fd761a]/20 outline-none min-h-[150px] resize-y transition-all"></textarea>
             </div>
 
             <div className="flex items-start gap-3 mt-2">
               <input type="checkbox" id="privacy" required className="mt-1 w-4 h-4 accent-[#fd761a]" />
-              <label htmlFor="privacy" className="text-sm text-[#45474c] cursor-pointer">
+              <label htmlFor="privacy" className="text-sm text-[#45474c] cursor-pointer selection:bg-[#fd761a]/25">
                 Ich stimme zu, dass meine Angaben zur Kontaktaufnahme gespeichert und verarbeitet werden dürfen. *
               </label>
             </div>
 
-            <button type="submit" disabled={isLoading} className="bg-[#1e293b] text-white font-bold uppercase py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:bg-[#fd761a] active:translate-y-1 transition-all mt-4 w-full md:w-auto md:px-12 self-start disabled:opacity-50">
+            <button type="submit" disabled={isLoading} className="bg-[#1e293b] text-white font-bold uppercase py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:bg-[#fd761a] active:translate-y-1 transition-all mt-4 w-full md:w-auto md:px-12 self-start disabled:opacity-50 min-h-[58px]">
               {isLoading ? 'Senden...' : 'Nachricht Senden'}
             </button>
           </form>
