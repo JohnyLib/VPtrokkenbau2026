@@ -127,7 +127,7 @@ const jsonLd = {
   ]
 };
 
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de" className={`scroll-smooth ${inter.variable}`} suppressHydrationWarning>
       <head>
