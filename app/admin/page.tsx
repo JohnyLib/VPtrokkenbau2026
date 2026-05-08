@@ -26,7 +26,15 @@ import {
   Inbox,
   ArrowUp,
   ArrowDown,
-  Search
+  Search,
+  CheckCircle,
+  HelpCircle,
+  Briefcase,
+  ChevronRight,
+  User,
+  Layout,
+  MessageSquare,
+  FileText
 } from 'lucide-react';
 
 interface PortfolioProject {
@@ -95,7 +103,7 @@ export default function AdminDashboard() {
   // Image URL input field state
   const [imageInput, setImageInput] = useState('');
 
-  // Fetch portfolio and submissions
+  // Fetch portfolio and submissions on load
   useEffect(() => {
     fetchProjects();
     fetchSubmissions();
@@ -138,6 +146,7 @@ export default function AdminDashboard() {
   };
 
   const handleLogout = async () => {
+    if (!confirm('Möchten Sie sich wirklich abmelden?')) return;
     try {
       const res = await fetch('/api/admin/logout', { method: 'POST' });
       if (res.ok) {
@@ -172,11 +181,11 @@ export default function AdminDashboard() {
           images: [...prev.images, data.url]
         }));
       } else {
-        alert('Fehler beim Upload: ' + (data.error || 'Prüfen Sie Ihr Supabase Dashboard auf Storage Richtlinien.'));
+        alert('Fehler beim Upload: ' + (data.error || 'Bitte prüfen Sie die Supabase-Einstellungen.'));
       }
     } catch (err) {
       console.error('Upload error:', err);
-      alert('Upload-Verbindungsfehler.');
+      alert('Verbindungsfehler beim Hochladen.');
     } finally {
       setUploadingImage(false);
     }
@@ -227,7 +236,7 @@ export default function AdminDashboard() {
   const handleProjectSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.title || !formData.category || !formData.q || !formData.area || !formData.duration) {
-      alert('Bitte füllen Sie alle Pflichtfelder aus.');
+      alert('Bitte füllen Sie alle Pflichtfelder aus (Titel, Kategorie, Qualitätsstufe, Fläche, Dauer).');
       return;
     }
 
@@ -250,9 +259,9 @@ export default function AdminDashboard() {
       if (res.ok && data.success) {
         clearForm();
         fetchProjects();
-        alert(isEditing ? 'Projekt erfolgreich aktualisiert!' : 'Projekt erfolgreich hinzugefügt!');
+        alert(isEditing ? '🎉 Projekt erfolgreich aktualisiert!' : '🎉 Neues Projekt erfolgreich veröffentlicht!');
       } else {
-        alert('Fehler beim Speichern: ' + (data.error || 'Prüfen Sie Ihre Serverkonfiguration.'));
+        alert('Fehler beim Speichern: ' + (data.error || 'Serverfehler.'));
       }
     } catch (err) {
       console.error('Error saving project:', err);
@@ -308,7 +317,6 @@ export default function AdminDashboard() {
       });
 
       if (res.ok) {
-        // Refresh project list to reflect changes immediately
         fetchProjects();
       }
     } catch (err) {
@@ -318,7 +326,7 @@ export default function AdminDashboard() {
 
   // Delete project
   const deleteProject = async (id: string, name: string) => {
-    if (!confirm(`Möchten Sie das Projekt "${name}" wirklich unwiderruflich löschen?`)) return;
+    if (!confirm(`⚠️ Möchten Sie das Projekt "${name}" wirklich für immer löschen? Diese Aktion kann nicht rückgängig gemacht werden.`)) return;
 
     try {
       const res = await fetch(`/api/portfolio?id=${id}`, {
@@ -330,11 +338,11 @@ export default function AdminDashboard() {
         fetchProjects();
         alert('Projekt erfolgreich gelöscht!');
       } else {
-        alert('Fehler beim Löschen: ' + (data.error || 'Bitte prüfen Sie Ihre Zugriffsrechte.'));
+        alert('Fehler beim Löschen: ' + (data.error || 'Zugriff verweigert.'));
       }
     } catch (err) {
       console.error('Error deleting project:', err);
-      alert('Verbindungsfehler beim Löschen.');
+      alert('Fehler beim Löschen.');
     }
   };
 
@@ -367,7 +375,7 @@ export default function AdminDashboard() {
 
   // Delete submission
   const deleteSubmission = async (id: string) => {
-    if (!confirm('Möchten Sie diese Nachricht wirklich löschen?')) return;
+    if (!confirm('⚠️ Möchten Sie diese Kundenanfrage wirklich dauerhaft aus der Datenbank löschen?')) return;
 
     try {
       const res = await fetch(`/api/submissions?id=${id}`, {
@@ -378,6 +386,7 @@ export default function AdminDashboard() {
       if (res.ok && data.success) {
         setSubmissions(prev => prev.filter(sub => sub.id !== id));
         setSelectedSubmission(null);
+        alert('Nachricht erfolgreich gelöscht.');
       } else {
         alert('Löschen fehlgeschlagen: ' + (data.error || 'Keine Berechtigung.'));
       }
@@ -402,340 +411,418 @@ export default function AdminDashboard() {
   const unreadCount = submissions.filter(sub => sub.status === 'new').length;
 
   return (
-    <div className="w-full max-w-[1280px] mx-auto px-4 md:px-8 py-8 flex flex-col gap-8 min-h-screen">
-      {/* Top Banner */}
-      <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white border-4 border-[#091426] shadow-[6px_6px_0px_0px_#091426] p-6 md:p-8 relative">
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-[#fd761a] border-2 border-[#091426] shadow-[2px_2px_0px_0px_#091426] flex items-center justify-center text-white font-bold text-xl uppercase">
-            VP
+    <div className="w-full bg-[#f8fafc] min-h-screen text-slate-800 font-sans">
+      
+      {/* Upper Navigation Header bar */}
+      <header className="sticky top-0 z-40 bg-[#091426] text-white border-b border-slate-800 shadow-lg">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-[#fd761a] rounded-xl flex items-center justify-center font-black text-white text-lg shadow-md tracking-wider">
+              VP
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-xl font-bold uppercase tracking-tight">
+                  VP<span className="text-[#fd761a]">Trockenbau</span>
+                </h1>
+                <span className="bg-slate-800 text-[10px] font-black uppercase text-slate-300 px-2.5 py-0.5 rounded-full border border-slate-700">
+                  Manager 2026
+                </span>
+              </div>
+              <p className="text-[11px] text-slate-400 font-medium flex items-center gap-1.5 mt-0.5">
+                <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                Angemeldet als Administrator
+              </p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-2xl md:text-3xl font-black text-[#091426] uppercase tracking-tight">
-              VP<span className="text-[#fd761a]">Trockenbau</span> Dashboard
-            </h1>
-            <p className="text-xs font-bold text-[#45474c] uppercase tracking-widest flex items-center gap-2">
-              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse inline-block" />
-              Sicher verbunden mit Supabase
-            </p>
-          </div>
-        </div>
 
-        <div className="flex flex-wrap gap-3">
-          <button 
-            onClick={() => { fetchProjects(); fetchSubmissions(); }}
-            className="p-3 border-2 border-[#091426] bg-[#fbf8fa] hover:bg-[#eae7e9] shadow-[2px_2px_0px_0px_#091426] active:translate-y-0.5 active:shadow-none transition-all cursor-pointer flex items-center justify-center"
-            title="Daten neu laden"
-          >
-            <RefreshCw className="w-5 h-5 text-[#091426]" />
-          </button>
-          
-          <button 
-            onClick={handleLogout}
-            className="px-5 py-3 border-2 border-[#091426] bg-[#1e293b] hover:bg-[#fd761a] text-white font-bold uppercase shadow-[4px_4px_0px_0px_#091426] hover:-translate-y-0.5 active:translate-y-1 active:shadow-none transition-all cursor-pointer flex items-center gap-2 text-sm"
-          >
-            <LogOut className="w-4 h-4" /> Abmelden
-          </button>
+          <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
+            <a 
+              href="https://vptrokenbau.de" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-xs text-slate-200 font-bold uppercase tracking-wider rounded-xl border border-slate-700 transition-all flex items-center gap-1.5"
+            >
+              <Eye className="w-4 h-4" /> Webseite ansehen
+            </a>
+
+            <button 
+              onClick={() => { fetchProjects(); fetchSubmissions(); }}
+              className="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl border border-slate-700 transition-all"
+              title="Daten neu laden"
+            >
+              <RefreshCw className="w-4 h-4" />
+            </button>
+
+            <button 
+              onClick={handleLogout}
+              className="px-4 py-2 bg-red-600/10 hover:bg-red-600 border border-red-500/20 hover:border-red-500 text-red-400 hover:text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all flex items-center gap-1.5 cursor-pointer"
+            >
+              <LogOut className="w-4 h-4" /> Abmelden
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* RLS/Service Role Warning Banner */}
-      {serviceRoleWarning && (
-        <div className="bg-[#fff9db] border-4 border-[#e0a800] text-[#091426] p-6 shadow-[6px_6px_0px_0px_#091426] flex flex-col md:flex-row items-start gap-4">
-          <AlertTriangle className="w-8 h-8 text-[#fd761a] shrink-0" />
-          <div className="flex-1">
-            <h3 className="font-black text-lg uppercase tracking-tight mb-1">Dienst-Rolle (Service Role Key) fehlt</h3>
-            <p className="text-sm leading-relaxed text-[#45474c] font-medium">
-              Es wurde kein <strong className="text-[#091426]">SUPABASE_SERVICE_ROLE_KEY</strong> in Ihrer <code className="bg-white/80 px-1 py-0.5 border border-[#eae7e9]">.env.local</code>-Datei konfiguriert oder das Laden schlug fehl. 
-              Ohne diesen Schlüssel wird der Zugriff durch Row-Level-Security (RLS) verwehrt. 
-              Sie können das Dashboard im schreibgeschützten Modus betrachten, können jedoch keine Daten speichern oder Formulare einsehen.
-            </p>
-            <div className="mt-3 text-xs font-bold uppercase text-[#091426]">
-              👉 Holen Sie sich Ihren Schlüssel aus dem Supabase Dashboard unter: <strong>Project Settings &gt; API &gt; service_role (secret)</strong>.
+      <main className="max-w-[1400px] mx-auto px-4 sm:px-8 py-8 flex flex-col gap-8">
+        
+        {/* RLS / Service Role Warning Banner */}
+        {serviceRoleWarning && (
+          <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 shadow-sm flex gap-4">
+            <AlertTriangle className="w-6 h-6 text-amber-500 shrink-0 mt-0.5" />
+            <div>
+              <h3 className="font-bold text-slate-900 text-sm uppercase tracking-wider">Eingeschränkter Schreibschutz-Modus</h3>
+              <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                Der administrative Verbindungsschlüssel (<code className="bg-amber-100/50 px-1 py-0.5 rounded text-amber-800 font-mono text-[10px]">SUPABASE_SERVICE_ROLE_KEY</code>) fehlt in Ihren Server-Variablen. Sie können Daten einsehen, Änderungen können jedoch temporär nicht in die Datenbank zurückgeschrieben werden.
+              </p>
             </div>
           </div>
+        )}
+
+        {/* Quick Premium Stats Overview Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-full translate-x-8 -translate-y-8 opacity-40 group-hover:scale-110 transition-transform duration-300" />
+            <div className="flex justify-between items-start mb-2">
+              <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">Veröffentlichte Projekte</span>
+              <div className="w-7 h-7 bg-amber-50 rounded-lg flex items-center justify-center text-[#fd761a]">
+                <FolderOpen className="w-4 h-4" />
+              </div>
+            </div>
+            <span className="text-3xl font-black text-[#091426] block leading-none">{projects.length}</span>
+            <span className="text-xs font-medium text-slate-500 mt-1 block">Einträge im Online-Portfolio</span>
+          </div>
+
+          <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-red-50 rounded-full translate-x-8 -translate-y-8 opacity-40 group-hover:scale-110 transition-transform duration-300" />
+            <div className="flex justify-between items-start mb-2">
+              <span className="text-[10px] font-black uppercase tracking-wider text-red-500">Neue Kundenanfragen</span>
+              <div className="w-7 h-7 bg-red-50 rounded-lg flex items-center justify-center text-red-500">
+                <Mail className="w-4 h-4 animate-pulse" />
+              </div>
+            </div>
+            <span className="text-3xl font-black text-red-600 block leading-none">{unreadCount}</span>
+            <span className="text-xs font-medium text-slate-500 mt-1 block">Ungelesene Posteingänge</span>
+          </div>
+
+          <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-50 rounded-full translate-x-8 -translate-y-8 opacity-40 group-hover:scale-110 transition-transform duration-300" />
+            <div className="flex justify-between items-start mb-2">
+              <span className="text-[10px] font-black uppercase tracking-wider text-emerald-600">Erledigte Anfragen</span>
+              <div className="w-7 h-7 bg-emerald-50 rounded-lg flex items-center justify-center text-emerald-600">
+                <CheckCircle className="w-4 h-4" />
+              </div>
+            </div>
+            <span className="text-3xl font-black text-emerald-600 block leading-none">{submissions.length - unreadCount}</span>
+            <span className="text-xs font-medium text-slate-500 mt-1 block">Gelesene und archivierte Kontakte</span>
+          </div>
         </div>
-      )}
 
-      {/* Premium Statistics Overview Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <div className="bg-[#fffbeb] border-4 border-[#091426] shadow-[4px_4px_0px_0px_#091426] p-6 relative overflow-hidden group hover:shadow-[6px_6px_0px_0px_#fd761a] transition-all">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-[#fef3c7] rounded-full translate-x-8 -translate-y-8 opacity-50 group-hover:scale-110 transition-transform duration-300" />
-          <span className="text-[10px] font-black uppercase tracking-widest text-[#45474c] block mb-1">Referenzen</span>
-          <span className="text-4xl font-black text-[#091426] block leading-none">{projects.length}</span>
-          <span className="text-[11px] font-bold text-[#45474c] mt-2 block">Veröffentlichte Projekte</span>
+        {/* Tab Selection Area */}
+        <div className="bg-white border border-slate-100 rounded-2xl p-2.5 shadow-sm flex gap-2">
+          <button
+            onClick={() => setActiveTab('portfolio')}
+            className={`flex-1 sm:flex-initial px-6 py-3.5 font-bold uppercase text-xs tracking-wider rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2 ${activeTab === 'portfolio' ? 'bg-[#fd761a] text-white shadow-sm' : 'bg-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'}`}
+          >
+            <Briefcase className="w-4 h-4" /> Referenz-Projekte
+          </button>
+          <button
+            onClick={() => setActiveTab('submissions')}
+            className={`flex-1 sm:flex-initial px-6 py-3.5 font-bold uppercase text-xs tracking-wider rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2 relative ${activeTab === 'submissions' ? 'bg-[#fd761a] text-white shadow-sm' : 'bg-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'}`}
+          >
+            <MessageSquare className="w-4 h-4" /> Kunden-Eingänge
+            {unreadCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white w-5 h-5 rounded-full text-[10px] font-black flex items-center justify-center border-2 border-white shadow">
+                {unreadCount}
+              </span>
+            )}
+          </button>
         </div>
 
-        <div className="bg-[#fef2f2] border-4 border-[#091426] shadow-[4px_4px_0px_0px_#091426] p-6 relative overflow-hidden group hover:shadow-[6px_6px_0px_0px_#dc2626] transition-all">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-[#fee2e2] rounded-full translate-x-8 -translate-y-8 opacity-50 group-hover:scale-110 transition-transform duration-300" />
-          <span className="text-[10px] font-black uppercase tracking-widest text-red-700 block mb-1">Neue Eingänge</span>
-          <span className="text-4xl font-black text-[#091426] block leading-none">{unreadCount}</span>
-          <span className="text-[11px] font-bold text-red-700 mt-2 block">Ungelesene Kundenanfragen</span>
-        </div>
-
-        <div className="bg-[#f0fdf4] border-4 border-[#091426] shadow-[4px_4px_0px_0px_#091426] p-6 relative overflow-hidden group hover:shadow-[6px_6px_0px_0px_#16a34a] transition-all">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-[#dcfce7] rounded-full translate-x-8 -translate-y-8 opacity-50 group-hover:scale-110 transition-transform duration-300" />
-          <span className="text-[10px] font-black uppercase tracking-widest text-emerald-800 block mb-1">Erledigt</span>
-          <span className="text-4xl font-black text-[#091426] block leading-none">{submissions.length - unreadCount}</span>
-          <span className="text-[11px] font-bold text-emerald-800 mt-2 block">Gelesene und archivierte Kontakte</span>
-        </div>
-      </div>
-
-      {/* Sub-Header Tabs */}
-      <div className="flex gap-4 border-b-4 border-[#091426]">
-        <button
-          onClick={() => setActiveTab('portfolio')}
-          className={`px-6 py-4 font-black uppercase text-sm md:text-base tracking-wider border-2 border-b-0 border-[#091426] cursor-pointer flex items-center gap-2 transition-all -mb-[4px] relative z-10 ${activeTab === 'portfolio' ? 'bg-[#fd761a] text-white border-b-white py-5 shadow-[4px_-2px_0px_0px_#091426]' : 'bg-white text-[#091426] hover:bg-[#eae7e9]'}`}
-        >
-          <FolderOpen className="w-5 h-5" /> Portfolio-Projekte
-        </button>
-        <button
-          onClick={() => setActiveTab('submissions')}
-          className={`px-6 py-4 font-black uppercase text-sm md:text-base tracking-wider border-2 border-b-0 border-[#091426] cursor-pointer flex items-center gap-2 transition-all -mb-[4px] relative z-10 ${activeTab === 'submissions' ? 'bg-[#fd761a] text-white border-b-white py-5 shadow-[4px_-2px_0px_0px_#091426]' : 'bg-white text-[#091426] hover:bg-[#eae7e9]'}`}
-        >
-          <Mail className="w-5 h-5" /> Formular-Eingänge
-          {unreadCount > 0 && (
-            <span className="bg-[#091426] text-white px-2 py-0.5 rounded-full text-xs font-bold border border-white">
-              {unreadCount}
-            </span>
-          )}
-        </button>
-      </div>
-
-      {/* Tab Area: Portfolio Manager */}
-      {activeTab === 'portfolio' && (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Panel: Form Project */}
-          <div className="lg:col-span-5 bg-white border-4 border-[#091426] shadow-[6px_6px_0px_0px_#091426] p-6 relative">
-            <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#fd761a]" />
-            <h2 className="text-xl font-black text-[#091426] uppercase tracking-tight mb-6 pb-2 border-b-2 border-[#091426] flex items-center gap-2">
-              {editingProjectId ? <Sparkles className="w-5 h-5 text-[#fd761a] animate-bounce" /> : <PlusCircle className="w-5 h-5 text-[#fd761a]" />}
-              {editingProjectId ? 'Projekt bearbeiten' : 'Neues Projekt anlegen'}
-            </h2>
-
-            <form onSubmit={handleProjectSubmit} className="flex flex-col gap-5">
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-[#091426] uppercase" htmlFor="title">Titel des Projekts *</label>
-                <input id="title" type="text" required value={formData.title} onChange={handleFormChange} className="border-2 border-[#091426] bg-[#fbf8fa] p-2.5 outline-none font-medium focus:bg-white focus:ring-2 focus:ring-[#fd761a]/20 focus:border-[#fd761a]" placeholder="z.B. Bürogebäude Albertplatz" />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-[#091426] uppercase" htmlFor="category">Kategorie *</label>
-                  <select id="category" value={formData.category} onChange={handleFormChange} className="border-2 border-[#091426] bg-[#fbf8fa] p-2.5 outline-none font-medium focus:bg-white rounded-none">
-                    <option value="Gewerbe">Gewerbe</option>
-                    <option value="Privat">Privat</option>
-                    <option value="Industrie">Industrie</option>
-                    <option value="Gesundheit">Gesundheit</option>
-                    <option value="Gastgewerbe">Gastgewerbe</option>
-                  </select>
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-[#091426] uppercase" htmlFor="q">Qualitätsstufe *</label>
-                  <select id="q" value={formData.q} onChange={handleFormChange} className="border-2 border-[#091426] bg-[#fbf8fa] p-2.5 outline-none font-medium focus:bg-white rounded-none">
-                    <option value="Q1">Q1</option>
-                    <option value="Q2">Q2</option>
-                    <option value="Q2 (Akustik)">Q2 (Akustik)</option>
-                    <option value="Q3">Q3</option>
-                    <option value="Q3 (Hygiene)">Q3 (Hygiene)</option>
-                    <option value="Q4">Q4</option>
-                    <option value="Q4 (Höchste)">Q4 (Höchste)</option>
-                    <option value="Q4 (Design)">Q4 (Design)</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-[#091426] uppercase" htmlFor="area">Fläche *</label>
-                  <input id="area" type="text" required value={formData.area} onChange={handleFormChange} className="border-2 border-[#091426] bg-[#fbf8fa] p-2.5 outline-none font-medium focus:bg-white focus:border-[#fd761a]" placeholder="z.B. 1.200 m²" />
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-[#091426] uppercase" htmlFor="duration">Dauer *</label>
-                  <input id="duration" type="text" required value={formData.duration} onChange={handleFormChange} className="border-2 border-[#091426] bg-[#fbf8fa] p-2.5 outline-none font-medium focus:bg-white focus:border-[#fd761a]" placeholder="z.B. 4 Monate" />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-[#091426] uppercase" htmlFor="client">Auftraggeber</label>
-                  <input id="client" type="text" value={formData.client} onChange={handleFormChange} className="border-2 border-[#091426] bg-[#fbf8fa] p-2.5 outline-none font-medium focus:bg-white" placeholder="z.B. Bau AG Dresden" />
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-[#091426] uppercase" htmlFor="location">Standort</label>
-                  <input id="location" type="text" value={formData.location} onChange={handleFormChange} className="border-2 border-[#091426] bg-[#fbf8fa] p-2.5 outline-none font-medium focus:bg-white" placeholder="z.B. Dresden Neustadt" />
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-[#091426] uppercase" htmlFor="testimonial">Kundenmeinung (Testimonial)</label>
-                <textarea id="testimonial" value={formData.testimonial} onChange={handleFormChange} className="border-2 border-[#091426] bg-[#fbf8fa] p-2.5 outline-none font-medium focus:bg-white min-h-[80px]" placeholder="Optionale Empfehlung oder Kundenbewertung..." />
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-[#091426] uppercase" htmlFor="order_index">Sortierindex (Reihenfolge)</label>
-                <input id="order_index" type="number" value={formData.order_index} onChange={handleFormChange} className="border-2 border-[#091426] bg-[#fbf8fa] p-2.5 outline-none font-medium focus:bg-white w-24" />
-              </div>
-
-              {/* Images Manager */}
-              <div className="border-t-2 border-dashed border-[#eae7e9] pt-4 mt-1 flex flex-col gap-4">
-                <label className="text-xs font-bold text-[#091426] uppercase">Projekt-Bilder ({formData.images.length})</label>
-                
-                {/* Images list thumbnail list */}
-                {formData.images.length > 0 && (
-                  <div className="flex flex-wrap gap-2.5 p-2 bg-[#f5f3f4] border border-[#091426]">
-                    {formData.images.map((img, idx) => (
-                      <div key={idx} className="relative w-16 h-12 border border-[#091426] bg-white group">
-                        <Image src={img} alt={`Thumb ${idx}`} fill sizes="64px" className="object-cover" />
-                        <button type="button" onClick={() => removeImage(idx)} className="absolute -top-1.5 -right-1.5 bg-red-600 text-white rounded-full p-0.5 border border-[#091426] shadow-sm hover:scale-110 active:scale-90 transition-all cursor-pointer">
-                          <X className="w-3 h-3" />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
+        {/* TAB 1: PORTFOLIO MANAGER */}
+        {activeTab === 'portfolio' && (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            {/* Left Box: Step-by-Step Form Project */}
+            <div className="lg:col-span-5 bg-white border border-slate-100 rounded-2xl shadow-sm p-6 relative">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                <h2 className="text-base font-bold text-slate-900 uppercase tracking-wider flex items-center gap-2">
+                  {editingProjectId ? <Edit2 className="w-4 h-4 text-[#fd761a]" /> : <Plus className="w-4 h-4 text-[#fd761a]" />}
+                  {editingProjectId ? 'Projekt bearbeiten' : 'Neues Projekt hinzufügen'}
+                </h2>
+                {editingProjectId && (
+                  <span className="bg-amber-50 text-amber-600 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md border border-amber-200">
+                    Modus: Bearbeiten
+                  </span>
                 )}
+              </div>
 
-                {/* Upload Section */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {/* File Upload Area */}
-                  <div className="relative border-2 border-dashed border-[#091426] hover:bg-[#fbf8fa] cursor-pointer flex flex-col items-center justify-center p-3 text-center min-h-[90px] transition-colors">
-                    <input type="file" accept="image/*" onChange={handleFileUpload} disabled={uploadingImage} className="absolute inset-0 opacity-0 cursor-pointer w-full h-full" />
-                    {uploadingImage ? (
-                      <div className="flex flex-col items-center gap-1">
-                        <RefreshCw className="w-5 h-5 text-[#fd761a] animate-spin" />
-                        <span className="text-[10px] font-bold uppercase">Lade hoch...</span>
+              <form onSubmit={handleProjectSubmit} className="flex flex-col gap-6">
+                
+                {/* Visual Step 1: Core details */}
+                <div className="bg-[#f8fafc] border border-slate-100 rounded-xl p-4 space-y-4">
+                  <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5 mb-1">
+                    <span className="w-4 h-4 bg-slate-200 text-slate-600 rounded-full flex items-center justify-center text-[9px] font-black">1</span>
+                    Basis-Informationen
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-xs font-bold text-slate-700" htmlFor="title">Projekttitel (z.B. Schulbau oder Bürokomplex) *</label>
+                    <input id="title" type="text" required value={formData.title} onChange={handleFormChange} className="w-full bg-white border border-slate-200 focus:border-[#fd761a] focus:ring-1 focus:ring-[#fd761a] rounded-xl p-2.5 text-xs font-semibold outline-none transition-all placeholder:text-slate-400" placeholder="z.B. Modernes Bürocenter Dresden" />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3.5">
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-xs font-bold text-slate-700" htmlFor="category">Bereich *</label>
+                      <select id="category" value={formData.category} onChange={handleFormChange} className="w-full bg-white border border-slate-200 focus:border-[#fd761a] rounded-xl p-2.5 text-xs font-bold outline-none cursor-pointer">
+                        <option value="Gewerbe">🏢 Gewerbe</option>
+                        <option value="Privat">🏠 Privat</option>
+                        <option value="Industrie">🏭 Industrie</option>
+                        <option value="Gesundheit">🏥 Gesundheit</option>
+                        <option value="Gastgewerbe">🏨 Gastgewerbe</option>
+                      </select>
+                    </div>
+
+                    <div className="flex flex-col gap-1.5 relative group">
+                      <label className="text-xs font-bold text-slate-700 flex items-center gap-1" htmlFor="q">
+                        Qualitätsstufe * 
+                        <span title="Q1-Q4 Hilfe">
+                          <HelpCircle className="w-3.5 h-3.5 text-slate-400 cursor-pointer" />
+                        </span>
+                      </label>
+                      <select id="q" value={formData.q} onChange={handleFormChange} className="w-full bg-white border border-slate-200 focus:border-[#fd761a] rounded-xl p-2.5 text-xs font-bold outline-none cursor-pointer">
+                        <option value="Q1">Q1 (Einfach)</option>
+                        <option value="Q2">Q2 (Standard)</option>
+                        <option value="Q3">Q3 (Erhöht)</option>
+                        <option value="Q4">Q4 (Höchste / Premium)</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="text-[10px] text-slate-400 leading-normal italic pl-5">
+                    💡 **Q4** ist die höchste, makellose Qualitätsstufe für streiflichtfreie, edle Spachteloberflächen.
+                  </div>
+                </div>
+
+                {/* Visual Step 2: Technical info */}
+                <div className="bg-[#f8fafc] border border-slate-100 rounded-xl p-4 space-y-4">
+                  <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5 mb-1">
+                    <span className="w-4 h-4 bg-slate-200 text-slate-600 rounded-full flex items-center justify-center text-[9px] font-black">2</span>
+                    Technische Details
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3.5">
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-xs font-bold text-slate-700" htmlFor="area">Projekt-Fläche *</label>
+                      <input id="area" type="text" required value={formData.area} onChange={handleFormChange} className="w-full bg-white border border-slate-200 focus:border-[#fd761a] rounded-xl p-2.5 text-xs font-semibold outline-none" placeholder="z.B. 450 m²" />
+                    </div>
+
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-xs font-bold text-slate-700" htmlFor="duration">Arbeitszeit / Dauer *</label>
+                      <input id="duration" type="text" required value={formData.duration} onChange={handleFormChange} className="w-full bg-white border border-slate-200 focus:border-[#fd761a] rounded-xl p-2.5 text-xs font-semibold outline-none" placeholder="z.B. 3 Wochen" />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3.5">
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-xs font-bold text-slate-700" htmlFor="client">Auftraggeber (Kunde)</label>
+                      <input id="client" type="text" value={formData.client} onChange={handleFormChange} className="w-full bg-white border border-slate-200 rounded-xl p-2.5 text-xs font-semibold outline-none" placeholder="z.B. Wohnungsbau GmbH" />
+                    </div>
+
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-xs font-bold text-slate-700" htmlFor="location">Einsatzort (Standort)</label>
+                      <input id="location" type="text" value={formData.location} onChange={handleFormChange} className="w-full bg-white border border-slate-200 rounded-xl p-2.5 text-xs font-semibold outline-none" placeholder="z.B. Dresden Neustadt" />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3.5">
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-xs font-bold text-slate-700" htmlFor="order_index">Reihenfolge (Index)</label>
+                      <input id="order_index" type="number" value={formData.order_index} onChange={handleFormChange} className="w-24 bg-white border border-slate-200 rounded-xl p-2.5 text-xs font-bold outline-none" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Visual Step 3: Media and Testimonial */}
+                <div className="bg-[#f8fafc] border border-slate-100 rounded-xl p-4 space-y-4">
+                  <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5 mb-1">
+                    <span className="w-4 h-4 bg-slate-200 text-slate-600 rounded-full flex items-center justify-center text-[9px] font-black">3</span>
+                    Bilder & Feedback
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-xs font-bold text-slate-700" htmlFor="testimonial">Kundenbewertung / Zitat (optional)</label>
+                    <textarea id="testimonial" value={formData.testimonial} onChange={handleFormChange} className="w-full bg-white border border-slate-200 rounded-xl p-2.5 text-xs font-semibold outline-none min-h-[70px]" placeholder="z.B. 'Hervorragende Qualität und pünktliche Fertigstellung...'" />
+                  </div>
+
+                  {/* Thumbnail list display */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-bold text-slate-700">Hochgeladene Bilder ({formData.images.length})</label>
+                    {formData.images.length > 0 ? (
+                      <div className="flex flex-wrap gap-2.5 p-2 bg-white border border-slate-100 rounded-xl">
+                        {formData.images.map((img, idx) => (
+                          <div key={idx} className="relative w-16 h-12 border border-slate-200 rounded-lg overflow-hidden shrink-0 group">
+                            <Image src={img} alt={`Thumb ${idx}`} fill className="object-cover" />
+                            <button type="button" onClick={() => removeImage(idx)} className="absolute inset-0 bg-red-600/90 text-white opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all cursor-pointer">
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        ))}
                       </div>
                     ) : (
-                      <div className="flex flex-col items-center gap-1.5 text-[#091426] hover:text-[#fd761a]">
-                        <FileUp className="w-5 h-5 text-[#091426]" />
-                        <span className="text-[10px] font-black uppercase tracking-wider">Bild hochladen</span>
-                      </div>
+                      <span className="text-[11px] text-slate-400 italic">Noch keine Bilder hinzugefügt.</span>
                     )}
                   </div>
 
-                  {/* Direct Image URL input */}
-                  <div className="flex flex-col gap-1.5 justify-between">
-                    <input type="text" placeholder="https://..." value={imageInput} onChange={(e) => setImageInput(e.target.value)} className="border border-[#091426] bg-[#fbf8fa] p-1.5 text-xs outline-none focus:bg-white" />
-                    <button type="button" onClick={addImageUrl} className="w-full py-2 bg-[#eae7e9] hover:bg-[#091426] hover:text-white border border-[#091426] text-xs font-bold uppercase transition-colors cursor-pointer">
-                      URL hinzufügen
-                    </button>
+                  {/* Modern Dropzone Box File Upload */}
+                  <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+                    <div className="sm:col-span-6 relative border-2 border-dashed border-slate-200 hover:border-[#fd761a] bg-white rounded-xl flex flex-col items-center justify-center p-4 text-center cursor-pointer min-h-[90px] transition-all">
+                      <input type="file" accept="image/*" onChange={handleFileUpload} disabled={uploadingImage} className="absolute inset-0 opacity-0 cursor-pointer w-full h-full" />
+                      {uploadingImage ? (
+                        <div className="flex flex-col items-center gap-1.5">
+                          <RefreshCw className="w-5 h-5 text-[#fd761a] animate-spin" />
+                          <span className="text-[10px] font-bold text-slate-500 uppercase">Lade hoch...</span>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col items-center gap-1 text-slate-500 hover:text-[#fd761a]">
+                          <FileUp className="w-5 h-5 text-slate-400" />
+                          <span className="text-[10px] font-bold uppercase tracking-wider">Bild vom PC</span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="sm:col-span-6 flex flex-col gap-2">
+                      <span className="text-[10px] font-bold uppercase text-slate-400">Oder über URL hinzufügen:</span>
+                      <input type="text" placeholder="https://..." value={imageInput} onChange={(e) => setImageInput(e.target.value)} className="w-full bg-white border border-slate-200 rounded-lg p-2 text-[10px] outline-none" />
+                      <button type="button" onClick={addImageUrl} className="w-full py-1.5 bg-slate-100 hover:bg-slate-200 text-[10px] font-black uppercase text-slate-700 tracking-wider rounded-lg transition-colors cursor-pointer">
+                        Hinzufügen
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Form Actions */}
-              <div className="flex gap-3 border-t-2 border-[#091426] pt-5 mt-2">
-                <button type="submit" disabled={submittingProject} className="flex-1 py-4 bg-[#fd761a] hover:bg-[#091426] text-white font-black uppercase text-xs tracking-wider border-2 border-[#091426] shadow-[3px_3px_0px_0px_#091426] active:translate-y-0.5 active:shadow-none transition-all cursor-pointer text-center min-h-[50px] flex items-center justify-center gap-2">
-                  {submittingProject && <RefreshCw className="w-4 h-4 animate-spin" />}
-                  {editingProjectId ? 'Änderungen speichern' : 'Projekt veröffentlichen'}
-                </button>
-                {editingProjectId && (
-                  <button type="button" onClick={clearForm} className="px-4 bg-white hover:bg-[#eae7e9] text-[#091426] font-black uppercase text-xs tracking-wider border-2 border-[#091426] shadow-[3px_3px_0px_0px_#091426] active:translate-y-0.5 active:shadow-none transition-all cursor-pointer">
-                    Abbrechen
+                {/* Form submit action buttons */}
+                <div className="flex gap-3 border-t border-slate-100 pt-5">
+                  <button type="submit" disabled={submittingProject} className="flex-1 py-3 bg-[#fd761a] hover:bg-[#091426] text-white font-bold uppercase text-xs tracking-wider rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2 shadow shadow-orange-500/10 hover:shadow-lg">
+                    {submittingProject ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
+                    {editingProjectId ? 'Projekt aktualisieren' : 'Projekt veröffentlichen'}
                   </button>
-                )}
-              </div>
-            </form>
-          </div>
+                  {editingProjectId && (
+                    <button type="button" onClick={clearForm} className="px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold uppercase text-xs tracking-wider rounded-xl transition-all">
+                      Abbrechen
+                    </button>
+                  )}
+                </div>
+              </form>
+            </div>
 
-          {/* Right Panel: Projects List Grid with Reordering */}
-          <div className="lg:col-span-7 bg-white border-4 border-[#091426] shadow-[6px_6px_0px_0px_#091426] p-6">
-            <h2 className="text-xl font-black text-[#091426] uppercase tracking-tight mb-6 pb-2 border-b-2 border-[#091426]">
-              Aktuelle Referenzen ({projects.length})
+            {/* Right Box: Clean, Beautiful References List Grid with tactile ordering */}
+            <div className="lg:col-span-7 bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
+              <h2 className="text-base font-bold text-slate-900 uppercase tracking-wider border-b border-slate-100 pb-4 mb-6">
+                Veröffentlichte Referenzen ({projects.length})
+              </h2>
+
+              {loadingProjects ? (
+                <div className="flex flex-col items-center justify-center p-16 gap-3 text-slate-400">
+                  <RefreshCw className="w-8 h-8 text-[#fd761a] animate-spin" />
+                  <p className="font-bold uppercase text-[10px] tracking-widest">Lade Portfolio-Projekte...</p>
+                </div>
+              ) : projects.length === 0 ? (
+                <div className="border-2 border-dashed border-slate-100 rounded-2xl p-16 text-center text-slate-400 flex flex-col items-center gap-3">
+                  <FolderOpen className="w-10 h-10 text-slate-200" />
+                  <div>Bisher wurden noch keine Referenzen angelegt. Nutzen Sie das Formular links!</div>
+                </div>
+              ) : (
+                <div className="flex flex-col gap-4 max-h-[780px] overflow-y-auto pr-1">
+                  {projects.map((p) => {
+                    const hasValidImages = p.images && p.images.length > 0;
+                    const thumb = hasValidImages ? p.images[0] : null;
+                    
+                    return (
+                      <div key={p.id} className="border border-slate-100 p-4 bg-[#f8fafc] rounded-xl flex gap-4 hover:border-slate-200 hover:bg-[#f1f5f9] transition-all group">
+                        
+                        {/* Tactile ordering controller triggers */}
+                        <div className="flex flex-col justify-center gap-1 shrink-0">
+                          <button 
+                            onClick={() => reorderProject(p, 'up')}
+                            className="p-1.5 bg-white hover:bg-[#fd761a] hover:text-white border border-slate-200 rounded-lg transition-all cursor-pointer text-slate-500"
+                            title="Nach oben verschieben"
+                          >
+                            <ArrowUp className="w-3.5 h-3.5" />
+                          </button>
+                          <button 
+                            onClick={() => reorderProject(p, 'down')}
+                            className="p-1.5 bg-white hover:bg-[#fd761a] hover:text-white border border-slate-200 rounded-lg transition-all cursor-pointer text-slate-500"
+                            title="Nach unten verschieben"
+                          >
+                            <ArrowDown className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+
+                        {/* Project cover preview thumbnail */}
+                        <div className="w-24 h-16 relative bg-slate-200 rounded-lg overflow-hidden shrink-0 border border-slate-200">
+                          {thumb ? (
+                            <Image src={thumb} alt={p.title} fill className="object-cover" sizes="96px" />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-[10px] font-bold text-slate-400 uppercase">Kein Bild</div>
+                          )}
+                        </div>
+                        
+                        <div className="flex-1 min-w-0 flex justify-between items-center gap-4">
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                              <h3 className="font-bold text-sm text-[#091426] truncate">{p.title}</h3>
+                              <span className="text-[9px] font-black uppercase bg-amber-50 text-[#fd761a] px-1.5 py-0.5 rounded border border-amber-200 shrink-0">
+                                {p.category}
+                              </span>
+                              <span className="text-[9px] font-black uppercase bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded border border-slate-200 shrink-0">
+                                {p.q}
+                              </span>
+                            </div>
+                            <p className="text-xs text-slate-500 font-medium truncate">
+                              📍 {p.location || 'Ohne Standort'} | 📐 {p.area} | ⏱️ {p.duration}
+                            </p>
+                            <span className="text-[9px] text-slate-400 font-bold block mt-1 uppercase">
+                              Sortierreihenfolge auf Webseite: <strong className="text-slate-600">{p.order_index}</strong>
+                            </span>
+                          </div>
+
+                          <div className="flex gap-2 shrink-0">
+                            <button onClick={() => startEditProject(p)} className="p-2 bg-white hover:bg-amber-500 border border-slate-200 hover:border-amber-500 text-slate-600 hover:text-white transition-all cursor-pointer rounded-lg shadow-sm" title="Bearbeiten">
+                              <Edit2 className="w-4 h-4" />
+                            </button>
+                            <button onClick={() => deleteProject(p.id, p.title)} className="p-2 bg-white hover:bg-red-600 border border-slate-200 hover:border-red-600 text-red-500 hover:text-white transition-all cursor-pointer rounded-lg shadow-sm" title="Löschen">
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* TAB 2: FORMS SUBMISSION INBOX */}
+        {activeTab === 'submissions' && (
+          <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
+            <h2 className="text-base font-bold text-slate-900 uppercase tracking-wider border-b border-slate-100 pb-4 mb-6">
+              Kunden-Eingänge (E-Mails & Anfragen)
             </h2>
 
-            {loadingProjects ? (
-              <div className="flex flex-col items-center justify-center p-12 gap-3 text-[#45474c]">
-                <RefreshCw className="w-8 h-8 text-[#fd761a] animate-spin" />
-                <p className="font-bold uppercase text-xs">Lade Projekte...</p>
-              </div>
-            ) : projects.length === 0 ? (
-              <div className="border-2 border-dashed border-[#091426] p-12 text-center text-[#45474c]">
-                Keine Projekte im System gefunden.
-              </div>
-            ) : (
-              <div className="flex flex-col gap-4 max-h-[750px] overflow-y-auto pr-1">
-                {projects.map((p) => {
-                  const hasValidImages = p.images && p.images.length > 0;
-                  const thumb = hasValidImages ? p.images[0] : null;
-                  
-                  return (
-                    <div key={p.id || p.title} className="border-2 border-[#091426] p-4 bg-[#fbf8fa] shadow-[3px_3px_0px_0px_#091426] flex gap-4 hover:shadow-[4px_4px_0px_0px_#fd761a] hover:-translate-y-0.5 transition-all">
-                      
-                      {/* Left: Move up/down controllers */}
-                      <div className="flex flex-col justify-center gap-1 shrink-0">
-                        <button 
-                          onClick={() => reorderProject(p, 'up')}
-                          className="p-1 border border-[#091426] bg-white hover:bg-[#fd761a] hover:text-white transition-all cursor-pointer flex items-center justify-center rounded-sm"
-                          title="Nach oben verschieben"
-                        >
-                          <ArrowUp className="w-3.5 h-3.5" />
-                        </button>
-                        <button 
-                          onClick={() => reorderProject(p, 'down')}
-                          className="p-1 border border-[#091426] bg-white hover:bg-[#fd761a] hover:text-white transition-all cursor-pointer flex items-center justify-center rounded-sm"
-                          title="Nach unten verschieben"
-                        >
-                          <ArrowDown className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-
-                      {/* Project Thumbnail Image */}
-                      <div className="w-24 h-18 relative bg-[#eae7e9] border border-[#091426] overflow-hidden shrink-0">
-                        {thumb ? (
-                          <Image src={thumb} alt={p.title} fill className="object-cover" sizes="96px" />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center text-[10px] font-bold text-[#45474c] uppercase">Kein Bild</div>
-                        )}
-                      </div>
-                      
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-2 mb-1">
-                          <h3 className="font-black text-sm uppercase truncate text-[#091426]">{p.title}</h3>
-                          <span className="text-[10px] font-extrabold uppercase bg-[#fd761a] text-white px-1.5 py-0.5 border border-[#091426]">
-                            {p.category}
-                          </span>
-                        </div>
-                        <p className="text-xs font-semibold text-[#45474c] mb-2 truncate">
-                          {p.location || 'Ohne Standort'} | {p.q} | {p.area} | Reihenfolge: <strong>{p.order_index}</strong>
-                        </p>
-                        
-                        <div className="flex gap-2 justify-end">
-                          <button onClick={() => startEditProject(p)} className="p-1.5 border border-[#091426] bg-white hover:bg-teal-50 text-[#091426] hover:text-[#fd761a] transition-all cursor-pointer rounded-sm" title="Bearbeiten">
-                            <Edit2 className="w-4 h-4" />
-                          </button>
-                          <button onClick={() => deleteProject(p.id, p.title)} className="p-1.5 border border-[#091426] bg-white hover:bg-red-50 text-red-600 hover:text-red-800 transition-all cursor-pointer rounded-sm" title="Löschen">
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* Tab Area: Submissions Inbox */}
-      {activeTab === 'submissions' && (
-        <div className="bg-white border-4 border-[#091426] shadow-[6px_6px_0px_0px_#091426] p-6 min-h-[500px]">
-          {/* Filtering & Search Control Bar */}
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 bg-[#fbf8fa] border-2 border-[#091426] p-5 mb-6">
-            <div className="flex flex-wrap gap-5 items-center flex-1">
+            {/* Advanced Filters & Real-time Inbox search bar */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 bg-[#f8fafc] border border-slate-100 rounded-xl p-5 mb-8">
               
-              {/* Status Filter */}
-              <div className="flex flex-col gap-1.5">
-                <span className="text-[10px] font-black uppercase text-[#45474c] tracking-wider">Status Filter:</span>
+              {/* Category selector filter */}
+              <div className="lg:col-span-4 flex flex-col gap-1.5">
+                <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">Nachrichten-Status:</span>
                 <div className="flex flex-wrap gap-1">
                   {(['all', 'new', 'read', 'archived'] as const).map((status) => (
                     <button
                       key={status}
                       onClick={() => setSubmissionFilter(status)}
-                      className={`px-3 py-1.5 text-xs font-bold uppercase border-2 transition-all cursor-pointer ${submissionFilter === status ? 'bg-[#091426] text-white border-[#091426]' : 'bg-white text-[#091426] border-[#091426]/30 hover:border-[#091426]'}`}
+                      className={`px-3.5 py-2 text-xs font-bold uppercase rounded-lg transition-all border cursor-pointer ${submissionFilter === status ? 'bg-[#091426] text-white border-[#091426] shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-800'}`}
                     >
                       {status === 'all' ? 'Alle' : (status === 'new' ? 'Neu 🔴' : (status === 'read' ? 'Gelesen' : 'Archiviert'))}
                     </button>
@@ -743,224 +830,241 @@ export default function AdminDashboard() {
                 </div>
               </div>
 
-              <div className="hidden lg:block w-[1px] h-10 bg-[#eae7e9]" />
-
-              {/* Form type Filter */}
-              <div className="flex flex-col gap-1.5">
-                <span className="text-[10px] font-black uppercase text-[#45474c] tracking-wider">Formulartyp Filter:</span>
+              {/* Form type selector filter */}
+              <div className="lg:col-span-4 flex flex-col gap-1.5">
+                <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">Formular-Typ:</span>
                 <div className="flex flex-wrap gap-1">
                   {(['all', 'contact', 'callback', 'career'] as const).map((type) => (
                     <button
                       key={type}
                       onClick={() => setSubmissionTypeFilter(type)}
-                      className={`px-3 py-1.5 text-xs font-bold uppercase border-2 transition-all cursor-pointer ${submissionTypeFilter === type ? 'bg-[#091426] text-white border-[#091426]' : 'bg-white text-[#091426] border-[#091426]/30 hover:border-[#091426]'}`}
+                      className={`px-3.5 py-2 text-xs font-bold uppercase rounded-lg transition-all border cursor-pointer ${submissionTypeFilter === type ? 'bg-[#091426] text-white border-[#091426] shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-800'}`}
                     >
                       {type === 'all' ? 'Alle' : (type === 'contact' ? 'Kontakt' : (type === 'callback' ? 'Rückruf' : 'Karriere'))}
                     </button>
                   ))}
                 </div>
               </div>
-            </div>
 
-            {/* Live Search & Refresh */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-end gap-3 w-full lg:w-auto">
-              <div className="flex flex-col gap-1.5 flex-1 sm:w-64">
-                <span className="text-[10px] font-black uppercase text-[#45474c] tracking-wider">Inhalten Suchen:</span>
+              {/* Text search input */}
+              <div className="lg:col-span-4 flex flex-col gap-1.5">
+                <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">Inhalt filtern:</span>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#091426]">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                     <Search className="w-4 h-4" />
                   </div>
                   <input
                     type="text"
-                    placeholder="Name, E-Mail, Text..."
+                    placeholder="Name, Gewerk, E-Mail suchen..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-9 pr-3 py-1.5 bg-white border-2 border-[#091426] outline-none text-xs font-bold tracking-tight focus:border-[#fd761a]"
+                    className="w-full bg-white border border-slate-200 focus:border-[#fd761a] rounded-xl pl-10 pr-10 py-2 text-xs font-semibold outline-none transition-all"
                   />
                   {searchQuery && (
                     <button 
                       onClick={() => setSearchQuery('')}
-                      className="absolute inset-y-0 right-0 pr-2.5 flex items-center text-[#45474c] hover:text-red-500 transition-colors"
+                      className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-red-500"
                     >
-                      <X className="w-3.5 h-3.5" />
+                      <X className="w-4 h-4" />
                     </button>
                   )}
                 </div>
               </div>
+            </div>
 
-              <button 
-                onClick={fetchSubmissions}
-                className="px-4 py-2.5 bg-white hover:bg-[#eae7e9] border-2 border-[#091426] text-xs font-black uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-center gap-2 shadow-[2px_2px_0px_0px_#091426] active:translate-y-0.5 active:shadow-none"
-              >
-                <RefreshCw className="w-3.5 h-3.5" /> Aktualisieren
-              </button>
-            </div>
-          </div>
+            {/* Inbox ticket grid list */}
+            {loadingSubmissions ? (
+              <div className="flex flex-col items-center justify-center p-16 gap-3 text-slate-400">
+                <RefreshCw className="w-8 h-8 text-[#fd761a] animate-spin" />
+                <p className="font-bold uppercase text-[10px] tracking-widest">Lade Nachrichten...</p>
+              </div>
+            ) : filteredSubmissions.length === 0 ? (
+              <div className="border-2 border-dashed border-slate-100 rounded-2xl p-16 text-center text-slate-400 flex flex-col items-center gap-3">
+                <Inbox className="w-10 h-10 text-slate-200" />
+                <div>Keine Nachrichten mit diesen Filterkriterien vorhanden.</div>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredSubmissions.map((sub) => {
+                  const subDate = sub.created_at ? new Date(sub.created_at).toLocaleString('de-DE', { dateStyle: 'medium', timeStyle: 'short' }) : 'Unbekannt';
+                  const isNew = sub.status === 'new';
+                  const isArchived = sub.status === 'archived';
+                  
+                  return (
+                    <div 
+                      key={sub.id} 
+                      onClick={() => setSelectedSubmission(sub)}
+                      className={`border border-slate-100 p-5 rounded-2xl flex flex-col justify-between cursor-pointer transition-all bg-white hover:border-[#fd761a]/30 hover:shadow-md relative ${isNew ? 'ring-1 ring-[#fd761a]/20 border-l-4 border-l-[#fd761a]' : ''}`}
+                    >
+                      <div>
+                        {/* Upper info badges */}
+                        <div className="flex items-center justify-between gap-2 mb-3.5">
+                          <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
+                            {sub.form_type === 'career' ? '💼 Karriere' : (sub.form_type === 'callback' ? '📞 Rückruf' : '✉️ Kontakt')}
+                          </span>
+                          
+                          <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded border ${isNew ? 'bg-red-50 text-red-600 border-red-100 animate-pulse' : (isArchived ? 'bg-slate-100 text-slate-500 border-slate-200' : 'bg-emerald-50 text-emerald-600 border-emerald-100')}`}>
+                            {isNew ? 'Neu 🔴' : (isArchived ? 'Archiv' : 'Gelesen')}
+                          </span>
+                        </div>
 
-          {/* Submissions list container */}
-          {loadingSubmissions ? (
-            <div className="flex flex-col items-center justify-center p-16 gap-3 text-[#45474c]">
-              <RefreshCw className="w-8 h-8 text-[#fd761a] animate-spin" />
-              <p className="font-bold uppercase text-xs">Lade Nachrichten...</p>
-            </div>
-          ) : filteredSubmissions.length === 0 ? (
-            <div className="border-2 border-dashed border-[#091426] p-16 text-center text-[#45474c] flex flex-col items-center gap-3">
-              <Inbox className="w-10 h-10 text-[#c5c6cd]" />
-              <div>Keine Nachrichten mit den ausgewählten Kriterien gefunden.</div>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredSubmissions.map((sub) => {
-                const subDate = sub.created_at ? new Date(sub.created_at).toLocaleString('de-DE', { dateStyle: 'medium', timeStyle: 'short' }) : 'Unbekannt';
-                const isNew = sub.status === 'new';
-                const isArchived = sub.status === 'archived';
-                
-                return (
-                  <div 
-                    key={sub.id} 
-                    onClick={() => setSelectedSubmission(sub)}
-                    className={`border-2 border-[#091426] p-5 flex flex-col justify-between bg-[#fbf8fa] shadow-[3px_3px_0px_0px_#091426] hover:shadow-[4px_4px_0px_0px_#fd761a] hover:-translate-y-0.5 transition-all cursor-pointer relative ${isNew ? 'bg-amber-50/40 border-l-4 border-l-amber-500' : ''}`}
-                  >
-                    <div>
-                      {/* Top labels */}
-                      <div className="flex items-center justify-between gap-2 mb-3">
-                        <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#45474c] bg-[#eae7e9] px-2 py-0.5 border border-[#091426]/10">
-                          {sub.form_type === 'career' ? '💼 Karriere' : (sub.form_type === 'callback' ? '📞 Rückruf' : '✉️ Kontakt')}
-                        </span>
-                        
-                        <span className={`text-[10px] font-bold uppercase px-1.5 py-0.5 border ${isNew ? 'bg-red-50 text-red-600 border-red-200' : (isArchived ? 'bg-[#eae7e9] text-[#1e293b] border-[#091426]/20' : 'bg-white text-emerald-600 border-emerald-200')}`}>
-                          {isNew ? 'Neu 🔴' : (isArchived ? 'Archiviert' : 'Gelesen')}
-                        </span>
+                        {/* Sender info */}
+                        <h3 className="font-bold text-base text-slate-900 truncate mb-0.5">{sub.name}</h3>
+                        <p className="text-xs font-semibold text-slate-400 truncate mb-4">{sub.email}</p>
+
+                        {/* Content text snippet preview */}
+                        {sub.message && (
+                          <p className="text-xs font-medium text-slate-600 line-clamp-3 bg-slate-50 p-3 rounded-xl border border-slate-100 leading-relaxed mb-4">
+                            {sub.message}
+                          </p>
+                        )}
                       </div>
 
-                      {/* Header details */}
-                      <h3 className="font-black text-base text-[#091426] uppercase truncate mb-1">{sub.name}</h3>
-                      <p className="text-xs font-semibold text-[#45474c] truncate mb-4">{sub.email}</p>
-
-                      {/* Message snippet */}
-                      {sub.message && (
-                        <p className="text-xs font-medium text-[#45474c] line-clamp-3 bg-white p-2.5 border border-[#eae7e9] leading-relaxed mb-4">
-                          {sub.message}
-                        </p>
-                      )}
+                      {/* Info footer line inside ticket */}
+                      <div className="flex items-center justify-between text-[11px] font-bold text-slate-400 mt-auto border-t border-slate-50 pt-3.5">
+                        <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-slate-300" /> {subDate}</span>
+                        <span className="text-[#fd761a] hover:underline flex items-center gap-1 text-[10px] uppercase">
+                          Öffnen <ChevronRight className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
                     </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
+      </main>
 
-                    <div className="flex items-center justify-between text-[11px] font-bold text-[#45474c] mt-auto border-t border-[#eae7e9] pt-3">
-                      <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {subDate}</span>
-                      <span className="text-[#fd761a] hover:underline flex items-center gap-1 text-[10px] uppercase">
-                        Anzeigen <ExternalLink className="w-3 h-3" />
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Expanded Submission Detail Popup Modal */}
+      {/* Expanded Sliding Details Tray Modal for Submissions */}
       {selectedSubmission && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#091426]/90 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#091426]/70 backdrop-blur-sm"
           onClick={() => setSelectedSubmission(null)}
         >
           <div 
-            className="bg-white border-4 border-[#091426] shadow-[8px_8px_0px_0px_#fd761a] w-full max-w-2xl p-6 md:p-8 relative"
+            className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl p-6 md:p-8 relative border border-slate-100 animate-in fade-in zoom-in duration-200"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close */}
+            {/* Close modal button */}
             <button 
               onClick={() => setSelectedSubmission(null)} 
-              className="absolute top-4 right-4 bg-white/90 p-1.5 border-2 border-[#091426] text-[#091426] hover:bg-[#fd761a] hover:text-white transition-all shadow-[2px_2px_0px_0px_#091426] cursor-pointer"
+              className="absolute top-4 right-4 p-2 bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-slate-800 rounded-full transition-all cursor-pointer border border-slate-100"
             >
               <X className="w-5 h-5" />
             </button>
 
-            {/* Sub details */}
-            <div className="flex items-center gap-3.5 mb-5">
-              <span className="text-xs font-black uppercase tracking-widest bg-[#fd761a] text-white px-3 py-1 border-2 border-[#091426] shadow-[2px_2px_0px_0px_#091426]">
-                {selectedSubmission.form_type === 'career' ? 'Karriere-Bewerbung' : (selectedSubmission.form_type === 'callback' ? 'Rückrufanforderung' : 'Kontaktanfrage')}
+            {/* Modal Sub title categories */}
+            <div className="flex items-center gap-3 mb-5 flex-wrap">
+              <span className="text-[10px] font-black uppercase tracking-widest bg-amber-50 text-[#fd761a] px-3 py-1 rounded-lg border border-amber-200">
+                {selectedSubmission.form_type === 'career' ? 'Karriere-Bewerbung' : (selectedSubmission.form_type === 'callback' ? 'Rückrufanforderung' : 'Direkte Kontaktanfrage')}
               </span>
-              <span className="text-xs font-bold text-[#45474c]">
+              <span className="text-xs font-bold text-slate-400 flex items-center gap-1">
+                <Clock className="w-3.5 h-3.5" />
                 {selectedSubmission.created_at ? new Date(selectedSubmission.created_at).toLocaleString('de-DE', { dateStyle: 'full', timeStyle: 'short' }) : 'Unbekannt'}
               </span>
             </div>
 
-            <h2 className="text-2xl md:text-3xl font-black text-[#091426] uppercase mb-6 pb-2 border-b-2 border-[#091426]">
+            {/* Customer name */}
+            <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight mb-6 border-b border-slate-100 pb-4">
               {selectedSubmission.name}
             </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 text-sm font-semibold border-b border-[#eae7e9] pb-6">
-              <div className="flex flex-col gap-1">
-                <span className="text-[10px] uppercase font-bold text-[#45474c]">E-Mail-Adresse:</span>
-                <a href={`mailto:${selectedSubmission.email}`} className="text-[#fd761a] hover:underline flex items-center gap-1 bg-[#fbf8fa] p-2 border border-[#eae7e9] truncate">
-                  <Mail className="w-4 h-4 shrink-0" /> {selectedSubmission.email}
+            {/* Detailed properties fields */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              <div className="flex flex-col gap-1.5 bg-[#f8fafc] border border-slate-100 p-3 rounded-xl">
+                <span className="text-[9px] uppercase font-black text-slate-400 tracking-wider">E-Mail-Adresse:</span>
+                <a href={`mailto:${selectedSubmission.email}`} className="text-slate-800 hover:text-[#fd761a] font-bold text-sm flex items-center gap-2 truncate">
+                  <Mail className="w-4 h-4 text-slate-400 shrink-0" /> {selectedSubmission.email}
                 </a>
               </div>
               
-              <div className="flex flex-col gap-1">
-                <span className="text-[10px] uppercase font-bold text-[#45474c]">Telefonnummer:</span>
+              <div className="flex flex-col gap-1.5 bg-[#f8fafc] border border-slate-100 p-3 rounded-xl">
+                <span className="text-[9px] uppercase font-black text-slate-400 tracking-wider">Telefonnummer:</span>
                 {selectedSubmission.phone ? (
-                  <a href={`tel:${selectedSubmission.phone}`} className="text-[#fd761a] hover:underline flex items-center gap-1 bg-[#fbf8fa] p-2 border border-[#eae7e9] truncate">
-                    <Phone className="w-4 h-4 shrink-0" /> {selectedSubmission.phone}
+                  <a href={`tel:${selectedSubmission.phone}`} className="text-slate-800 hover:text-[#fd761a] font-bold text-sm flex items-center gap-2 truncate">
+                    <Phone className="w-4 h-4 text-slate-400 shrink-0" /> {selectedSubmission.phone}
                   </a>
                 ) : (
-                  <span className="text-[#45474c] italic bg-[#fbf8fa] p-2 border border-[#eae7e9]">Nicht angegeben</span>
+                  <span className="text-slate-400 italic text-xs">Keine Angabe</span>
                 )}
               </div>
 
               {selectedSubmission.service && (
-                <div className="flex flex-col gap-1 sm:col-span-2">
-                  <span className="text-[10px] uppercase font-bold text-[#45474c]">Gewerk / Gewünschte Leistung:</span>
-                  <span className="bg-[#fbf8fa] p-2 border border-[#eae7e9] text-[#091426] font-extrabold uppercase text-xs">
+                <div className="flex flex-col gap-1.5 bg-[#f8fafc] border border-slate-100 p-3 rounded-xl sm:col-span-2">
+                  <span className="text-[9px] uppercase font-black text-slate-400 tracking-wider">Anfrage Gewerk / Gewünschte Leistung:</span>
+                  <span className="text-[#091426] font-bold text-xs uppercase flex items-center gap-2">
                     🛠️ {selectedSubmission.service}
                   </span>
                 </div>
               )}
             </div>
 
+            {/* Message payload content block */}
             <div className="mb-8">
-              <span className="text-[10px] uppercase font-bold text-[#45474c] block mb-2">Nachricht:</span>
-              <p className="bg-[#f5f3f4] border-2 border-[#091426] p-4 text-sm font-medium leading-relaxed whitespace-pre-wrap text-[#1b1b1d] max-h-[220px] overflow-y-auto">
-                {selectedSubmission.message || 'Keine Nachricht übermittelt.'}
+              <span className="text-[10px] uppercase font-black text-slate-400 block mb-2 tracking-wider">Übermittelte Nachricht:</span>
+              <p className="bg-[#f8fafc] border border-slate-100 p-4 rounded-2xl text-xs sm:text-sm font-semibold leading-relaxed whitespace-pre-wrap text-slate-700 max-h-[200px] overflow-y-auto">
+                {selectedSubmission.message || 'Keine Textnachricht übermittelt.'}
               </p>
             </div>
 
-            {/* Quick action triggers */}
-            <div className="flex flex-wrap gap-3 border-t-2 border-[#091426] pt-6 justify-between items-center">
+            {/* Ticket actions panel */}
+            <div className="flex flex-wrap gap-3 border-t border-slate-100 pt-6 justify-between items-center">
+              
+              {/* Communication direct actions */}
+              <div className="flex flex-wrap gap-2">
+                <a 
+                  href={`mailto:${selectedSubmission.email}?subject=Ihre Anfrage bei VpTrockenbau`} 
+                  className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold uppercase rounded-lg transition-colors flex items-center gap-1.5"
+                >
+                  <Mail className="w-4 h-4" /> E-Mail schreiben
+                </a>
+                
+                {selectedSubmission.phone && (
+                  <a 
+                    href={`tel:${selectedSubmission.phone}`} 
+                    className="px-4 py-2 bg-[#fd761a] hover:bg-[#091426] text-white text-xs font-bold uppercase rounded-lg transition-all flex items-center gap-1.5"
+                  >
+                    <Phone className="w-4 h-4" /> Anrufen
+                  </a>
+                )}
+              </div>
+
+              {/* State updates actions */}
               <div className="flex flex-wrap gap-2">
                 {selectedSubmission.status === 'new' && (
                   <button 
                     onClick={() => updateSubmissionStatus(selectedSubmission.id, 'read')}
-                    className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase border-2 border-[#091426] shadow-[2px_2px_0px_0px_#091426] active:translate-y-0.5 active:shadow-none cursor-pointer transition-all flex items-center gap-1"
+                    className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase rounded-lg transition-colors flex items-center gap-1 cursor-pointer"
                   >
                     <Check className="w-4 h-4" /> Als gelesen markieren
                   </button>
                 )}
+                
                 {selectedSubmission.status !== 'archived' ? (
                   <button 
                     onClick={() => updateSubmissionStatus(selectedSubmission.id, 'archived')}
-                    className="px-4 py-2 bg-[#eae7e9] hover:bg-[#091426] hover:text-white text-[#091426] text-xs font-bold uppercase border-2 border-[#091426] shadow-[2px_2px_0px_0px_#091426] active:translate-y-0.5 active:shadow-none cursor-pointer transition-all flex items-center gap-1"
+                    className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold uppercase rounded-lg transition-colors flex items-center gap-1 cursor-pointer"
                   >
                     <Archive className="w-4 h-4" /> Archivieren
                   </button>
                 ) : (
                   <button 
                     onClick={() => updateSubmissionStatus(selectedSubmission.id, 'new')}
-                    className="px-4 py-2 bg-[#eae7e9] hover:bg-[#fd761a] hover:text-white text-[#091426] text-xs font-bold uppercase border-2 border-[#091426] shadow-[2px_2px_0px_0px_#091426] active:translate-y-0.5 active:shadow-none cursor-pointer transition-all flex items-center gap-1"
+                    className="px-4 py-2 bg-slate-100 hover:bg-[#fd761a] hover:text-white text-slate-600 text-xs font-bold uppercase rounded-lg transition-all flex items-center gap-1 cursor-pointer"
                   >
-                    <Check className="w-4 h-4" /> Als ungelesen markieren
+                    <Check className="w-4 h-4" /> Reaktivieren
                   </button>
                 )}
+
+                <button 
+                  onClick={() => deleteSubmission(selectedSubmission.id)}
+                  className="px-4 py-2 bg-red-50 hover:bg-red-600 text-red-500 hover:text-white border border-red-100 hover:border-red-600 text-xs font-bold uppercase rounded-lg transition-all flex items-center gap-1 cursor-pointer"
+                >
+                  <Trash2 className="w-4 h-4" /> Löschen
+                </button>
               </div>
 
-              <button 
-                onClick={() => deleteSubmission(selectedSubmission.id)}
-                className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase border-2 border-[#091426] shadow-[2px_2px_0px_0px_#091426] active:translate-y-0.5 active:shadow-none cursor-pointer transition-all flex items-center gap-1.5"
-              >
-                <Trash2 className="w-4 h-4" /> Löschen
-              </button>
             </div>
           </div>
         </div>
@@ -968,4 +1072,5 @@ export default function AdminDashboard() {
     </div>
   );
 }
+
 export const dynamic = 'force-dynamic';
