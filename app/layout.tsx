@@ -85,9 +85,9 @@ const jsonLd = {
   'description': 'Ihr Spezialist für Trockenbau, gewerbliche Spachtelarbeiten (Q1-Q4), zertifizierten Brandschutz, Akustikbau und Dachausbau in Dresden und ganz Sachsen.',
   'address': {
     '@type': 'PostalAddress',
-    'streetAddress': 'Baustraße 123',
+    'streetAddress': 'Königsbrücker Landstraße 54',
     'addressLocality': 'Dresden',
-    'postalCode': '01067',
+    'postalCode': '01109',
     'addressCountry': 'DE'
   },
   'geo': {

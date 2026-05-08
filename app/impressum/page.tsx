@@ -44,8 +44,8 @@ export default function Impressum() {
             <p className="flex items-start gap-2">
               <MapPin className="w-4 h-4 text-[#fd761a] mt-0.5 shrink-0" />
               <span>
-                Baustraße 123<br />
-                01067 Dresden<br />
+                Königsbrücker Landstraße 54<br />
+                01109 Dresden<br />
                 Deutschland
               </span>
             </p>
@@ -105,7 +105,7 @@ export default function Impressum() {
           <p>
             Gemäß § 18 Abs. 2 MStV (Medienstaatsvertrag):<br />
             <strong>Vasilii Perevalov</strong><br />
-            Baustraße 123, 01067 Dresden
+            Königsbrücker Landstraße 54, 01109 Dresden
           </p>
         </div>
 

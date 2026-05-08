@@ -53,7 +53,7 @@ export function Footer() {
           </h3>
           <div className="flex flex-col gap-2">
             <p className="font-bold text-white uppercase text-xs tracking-wider">Anschrift:</p>
-            <p className="text-slate-400">Baustraße 123, 01067 Dresden</p>
+            <p className="text-slate-400">Königsbrücker Landstraße 54, 01109 Dresden</p>
           </div>
           <div className="flex flex-col gap-2">
             <p className="font-bold text-white uppercase text-xs tracking-wider">Erreichbarkeit:</p>

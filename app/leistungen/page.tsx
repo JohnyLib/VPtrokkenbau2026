@@ -42,9 +42,9 @@ export default function Leistungen() {
             'name': 'VpTrockenbau',
             'address': {
               '@type': 'PostalAddress',
-              'streetAddress': 'Baustraße 123',
+              'streetAddress': 'Königsbrücker Landstraße 54',
               'addressLocality': 'Dresden',
-              'postalCode': '01067',
+              'postalCode': '01109',
               'addressCountry': 'DE'
             }
           }

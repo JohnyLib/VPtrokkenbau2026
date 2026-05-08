@@ -83,7 +83,7 @@ export function KontaktClient() {
               <MapPin className="w-6 h-6 text-[#fd761a] shrink-0" />
               <div>
                 <strong className="block text-[#091426] uppercase text-sm">Adresse</strong>
-                <span className="text-[#45474c]">Baustraße 123<br />01067 Dresden<br />Deutschland</span>
+                <span className="text-[#45474c]">Königsbrücker Landstraße 54<br />01109 Dresden<br />Deutschland</span>
               </div>
             </div>
 

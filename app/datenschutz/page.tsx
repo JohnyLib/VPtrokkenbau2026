@@ -56,8 +56,8 @@ export default function Datenschutz() {
         </p>
         <div className="bg-[#f5f3f4] border border-[#091426] p-4 text-[#091426] font-mono text-xs space-y-1.5">
           <p className="font-bold uppercase">VpTrockenbau GmbH</p>
-          <p>Baustraße 123</p>
-          <p>01067 Dresden</p>
+          <p>Königsbrücker Landstraße 54</p>
+          <p>01109 Dresden</p>
           <p>Geschäftsführer: Vasilii Perevalov</p>
           <p>E-Mail: info@vptrokenbau.de</p>
           <p>Telefon: +49 (0) 151 61559335</p>
