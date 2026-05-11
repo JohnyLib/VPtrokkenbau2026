@@ -74,7 +74,7 @@ export function HomeContactForm() {
               <div className="flex items-start gap-3 text-[#091426] font-bold text-sm uppercase">
                 <Mail className="w-5 h-5 text-[#fd761a] mt-0.5" />
                 <div className="flex flex-col gap-1">
-                  <a href="mailto:info@vptrokenbau.de" className="hover:text-[#fd761a] transition-colors">info@vptrokenbau.de</a>
+                  <a href="mailto:info@vptrockenbau.de" className="hover:text-[#fd761a] transition-colors">info@vptrockenbau.de</a>
                   <a href="mailto:perevalovvasilii@gmail.com" className="text-xs text-[#45474c] lowercase font-semibold hover:text-[#fd761a] transition-colors">perevalovvasilii@gmail.com</a>
                 </div>
               </div>

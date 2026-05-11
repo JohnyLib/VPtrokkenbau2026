@@ -4,14 +4,14 @@ import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Häufig gestellte Fragen (FAQ) | VpTrockenbau Dresden',
-  description: 'Antworten zu Trockenbau, Q1-Q4 Spachtelarbeiten, Brandschutz und Projektplanung im Raum Dresden von Ihrem Experten.',
+  description: 'Antworten zu Trockenbau, Q1-Q4 Spachtelarbeiten, Gipskartonmontage und Projektplanung im Raum Dresden von Ihrem Experten.',
   alternates: {
-    canonical: 'https://vptrokenbau.de/faq',
+    canonical: 'https://vptrockenbau.de/faq',
   },
   openGraph: {
     title: 'FAQ Trockenbau | VpTrockenbau',
     description: 'Fragen und Antworten zu unseren Leistungen rund um Trockenbau und Innenausbau.',
-    url: 'https://vptrokenbau.de/faq',
+    url: 'https://vptrockenbau.de/faq',
   },
 };
 
@@ -25,8 +25,8 @@ export default function FAQ() {
           a: "Die Qualitätsstufen definieren die Güte der gespachtelten Oberfläche. Q1 ist die Grundverspachtelung, ausreichend für Fliesen. Q2 ist der Standard für raufaserartige Tapeten nach DIN. Q3 bietet eine feinere Oberfläche für matte Anstriche, während Q4 eine vollflächige Sonderverspachtelung ist, die höchste Ansprüche an Ebenheit für glänzende oder anspruchsvolle Tapeten/Malerarbeiten erfüllt."
         },
         {
-          q: "Bieten Sie auch Brandschutzlösungen an?",
-          a: "Ja, wir sind zertifiziert für die Ausführung von baulichen Brandschutzmaßnahmen nach aktuellen DIN-Normen. Dazu gehören Brandschutzdecken, -wände sowie die brandschutztechnische Bekleidung von Stahlträgern und Leitungsanlagen."
+          q: "Welche Arten von Gipskartonplatten und Systemen verwenden Sie?",
+          a: "Wir arbeiten ausschließlich mit zertifizierten Markenherstellern (wie Knauf, Rigips oder Siniat) zusammen. Je nach Einsatzbereich nutzen wir Standard-Bauplatten für Trennwände, imprägnierte (grüne) Feuchtraumplatten für Badezimmer, schallschützende Akustikplatten oder hochbelastbare Hartgipsplatten."
         },
         {
           q: "Was zeichnet guten Akustikbau aus?",

@@ -20,8 +20,8 @@ export const metadata: Metadata = {
     default: 'VpTrockenbau | Trockenbau & Innenausbau Dresden',
     template: '%s | VpTrockenbau Dresden',
   },
-  description: 'Ihr Spezialist für gewerbliche Spachtelarbeiten, Brandschutz, Akustikbau und Dachausbau in Dresden. Höchste Qualitätsstufen bis Q4.',
-  keywords: ['Trockenbau Dresden', 'Innenausbau Dresden', 'Spachtelarbeiten', 'Brandschutz', 'Akustikbau', 'Decken', 'Wände', 'Handwerker Sachsen', 'Fugenverspachtelung', 'Q4 Spachtelung', 'Objektbau'],
+  description: 'Ihr Spezialist für gewerbliche Spachtelarbeiten, Gipskartonmontage, Akustikbau und Dachausbau in Dresden. Höchste Qualitätsstufen bis Q4.',
+  keywords: ['Trockenbau Dresden', 'Innenausbau Dresden', 'Spachtelarbeiten', 'Gipskartonmontage', 'Akustikbau', 'Decken', 'Wände', 'Handwerker Sachsen', 'Fugenverspachtelung', 'Q4 Spachtelung', 'Objektbau'],
   authors: [{ name: 'VpTrockenbau' }],
   creator: 'VpTrockenbau',
   publisher: 'VpTrockenbau',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: 'https://vptrokenbau.de',
+    canonical: 'https://vptrockenbau.de',
   },
   icons: {
     icon: '/Ico.ico',
@@ -44,11 +44,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'VpTrockenbau | Präzision im Trockenbau Dresden',
     description: 'Hochwertiger Trockenbau in Dresden für Architekten, Bauherren und das Gewerbe.',
-    url: 'https://vptrokenbau.de',
+    url: 'https://vptrockenbau.de',
     siteName: 'VpTrockenbau',
     images: [
       {
-        url: 'https://vptrokenbau.de/og-image.png',
+        url: 'https://vptrockenbau.de/og-image.png',
         width: 1200,
         height: 630,
         alt: 'VpTrockenbau - Trockenbau & Innenausbau Dresden',
@@ -60,8 +60,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'VpTrockenbau | Trockenbau & Innenausbau Dresden',
-    description: 'Ihr Spezialist für gewerbliche Spachtelarbeiten, Brandschutz und Akustikbau in Dresden.',
-    images: ['https://vptrokenbau.de/og-image.png'],
+    description: 'Ihr Spezialist für gewerbliche Spachtelarbeiten, Gipskartonmontage und Akustikbau in Dresden.',
+    images: ['https://vptrockenbau.de/og-image.png'],
   },
   robots: {
     index: true,
@@ -82,7 +82,7 @@ const jsonLd = {
   'name': 'VpTrockenbau',
   'alternateName': 'VpTrockenbau Dresden',
   'image': 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
-  'description': 'Ihr Spezialist für Trockenbau, gewerbliche Spachtelarbeiten (Q1-Q4), zertifizierten Brandschutz, Akustikbau und Dachausbau in Dresden und ganz Sachsen.',
+  'description': 'Ihr Spezialist für Trockenbau, gewerbliche Spachtelarbeiten (Q1-Q4), präzise Gipskartonmontage, Akustikbau und Dachausbau in Dresden und ganz Sachsen.',
   'address': {
     '@type': 'PostalAddress',
     'streetAddress': 'Königsbrücker Landstraße 54',
@@ -95,9 +95,9 @@ const jsonLd = {
     'latitude': 51.0504,
     'longitude': 13.7373
   },
-  'url': 'https://vptrokenbau.de',
+  'url': 'https://vptrockenbau.de',
   'telephone': '+4915161559335',
-  'email': 'info@vptrokenbau.de',
+  'email': 'info@vptrockenbau.de',
   'priceRange': '$$',
   'openingHoursSpecification': [
     {
@@ -120,7 +120,7 @@ const jsonLd = {
     'Trockenbau',
     'Spachtelarbeiten',
     'Q4 Spachtelung',
-    'Brandschutz',
+    'Gipskartonmontage',
     'Akustikbau',
     'Dachgeschossausbau',
     'Fugenverspachtelung'

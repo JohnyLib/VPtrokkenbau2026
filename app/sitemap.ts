@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://vptrokenbau.de';
+  const baseUrl = 'https://vptrockenbau.de';
   
   const staticPages = [
     {

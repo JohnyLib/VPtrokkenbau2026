@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Impressum | VpTrockenbau Dresden',
   description: 'Anbieterkennzeichnung und rechtliche Hinweise der VpTrockenbau für unseren Trockenbau-Fachbetrieb in Dresden.',
   alternates: {
-    canonical: 'https://vptrokenbau.de/impressum',
+    canonical: 'https://vptrockenbau.de/impressum',
   },
   robots: {
     index: false,
@@ -70,7 +70,7 @@ export default function Impressum() {
             <p className="flex items-start gap-2">
               <Mail className="w-4 h-4 text-[#fd761a] mt-0.5 shrink-0" />
               <span className="flex flex-col">
-                <a href="mailto:info@vptrokenbau.de" className="hover:text-[#fd761a] font-semibold transition-colors">info@vptrokenbau.de</a>
+                <a href="mailto:info@vptrockenbau.de" className="hover:text-[#fd761a] font-semibold transition-colors">info@vptrockenbau.de</a>
                 <a href="mailto:perevalovvasilii@gmail.com" className="text-xs text-[#8c8e96] hover:text-[#fd761a] transition-colors mt-1">perevalovvasilii@gmail.com</a>
               </span>
             </p>

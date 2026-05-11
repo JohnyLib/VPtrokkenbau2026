@@ -11,7 +11,7 @@ export function Footer() {
             Vp<span className="text-[#fd761a]">Trockenbau</span>
           </div>
           <p className="text-sm text-slate-400 leading-relaxed">
-            Ihr professioneller Fachbetrieb für Trockenbau, präzise Spachtelarbeiten (Q1-Q4), Brandschutz und Akustikbau im Großraum Dresden und ganz Sachsen.
+            Ihr professioneller Fachbetrieb für Trockenbau, präzise Spachtelarbeiten (Q1-Q4), Gipskartonmontage und Akustikbau im Großraum Dresden und ganz Sachsen.
           </p>
           <div className="text-xs text-slate-400 uppercase tracking-wider mt-2">
             Zertifizierte Meisterqualität
@@ -27,7 +27,7 @@ export function Footer() {
             <Link href="/leistungen" className="hover:text-[#fd761a] transition-colors">Trockenbau & Trennwände</Link>
             <Link href="/leistungen" className="hover:text-[#fd761a] transition-colors">Spachtelarbeiten Q1-Q4</Link>
             <Link href="/leistungen" className="hover:text-[#fd761a] transition-colors">Fugenverspachtelung</Link>
-            <Link href="/leistungen" className="hover:text-[#fd761a] transition-colors">Baulicher Brandschutz</Link>
+            <Link href="/leistungen" className="hover:text-[#fd761a] transition-colors">Gipskartonmontage</Link>
             <Link href="/leistungen" className="hover:text-[#fd761a] transition-colors">Akustikdecken & Schallschutz</Link>
           </nav>
         </div>
@@ -58,7 +58,7 @@ export function Footer() {
           <div className="flex flex-col gap-2">
             <p className="font-bold text-white uppercase text-xs tracking-wider">Erreichbarkeit:</p>
             <a href="tel:+4915161559335" className="hover:text-[#fd761a] transition-colors">Tel: +49 (0) 151 61559335</a>
-            <a href="mailto:info@vptrokenbau.de" className="hover:text-[#fd761a] transition-colors">info@vptrokenbau.de</a>
+            <a href="mailto:info@vptrockenbau.de" className="hover:text-[#fd761a] transition-colors">info@vptrockenbau.de</a>
           </div>
           <div className="flex flex-col gap-2">
             <p className="font-bold text-white uppercase text-xs tracking-wider">Geschäftszeiten:</p>

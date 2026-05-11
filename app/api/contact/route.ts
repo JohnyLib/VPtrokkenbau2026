@@ -71,7 +71,7 @@ export async function POST(request: Request) {
         </div>
         
         <div style="margin-top: 30px; font-size: 11px; color: #999999; text-align: center; border-top: 1px solid #eae7e9; padding-top: 15px;">
-          Diese E-Mail wurde automatisch vom Web-Kontaktformular auf vptrokenbau.de generiert.
+          Diese E-Mail wurde automatisch vom Web-Kontaktformular auf vptrockenbau.de generiert.
         </div>
       </div>
     `;
@@ -91,7 +91,7 @@ export async function POST(request: Request) {
     // Send the email if SMTP configuration is present
     const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, CONTACT_RECEIVER_EMAIL } = process.env;
 
-    const receivers = CONTACT_RECEIVER_EMAIL || 'info@vptrokenbau.de, perevalovvasilii@gmail.com';
+    const receivers = CONTACT_RECEIVER_EMAIL || 'info@vptrockenbau.de, perevalovvasilii@gmail.com';
 
     if (SMTP_HOST && SMTP_PORT && SMTP_USER && SMTP_PASS) {
       const transporter = nodemailer.createTransport({

@@ -4,14 +4,14 @@ import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Kontakt & Anfrage | VpTrockenbau Dresden',
-  description: 'Kontaktieren Sie Ihren Spezialisten für Trockenbau, Spachtelarbeiten und Brandschutz in Dresden. Fordern Sie jetzt ein unverbindliches Angebot an. E-Mail: info@vptrokenbau.de, perevalovvasilii@gmail.com, Tel: +4915161559335',
+  description: 'Kontaktieren Sie Ihren Spezialisten für Trockenbau, Spachtelarbeiten und Gipskartonmontage in Dresden. Fordern Sie jetzt ein unverbindliches Angebot an. E-Mail: info@vptrockenbau.de, perevalovvasilii@gmail.com, Tel: +4915161559335',
   alternates: {
-    canonical: 'https://vptrokenbau.de/kontakt',
+    canonical: 'https://vptrockenbau.de/kontakt',
   },
   openGraph: {
     title: 'Kontakt aufnehmen | VpTrockenbau',
     description: 'Fordern Sie ein kostenloses Angebot für Ihr Trockenbau-Projekt in Dresden an.',
-    url: 'https://vptrokenbau.de/kontakt',
+    url: 'https://vptrockenbau.de/kontakt',
   },
 };
 
@@ -24,7 +24,7 @@ export default function Kontakt() {
       'name': 'VpTrockenbau',
       'image': 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
       'telephone': '+4915161559335',
-      'email': ['info@vptrokenbau.de', 'perevalovvasilii@gmail.com'],
+      'email': ['info@vptrockenbau.de', 'perevalovvasilii@gmail.com'],
       'address': {
         '@type': 'PostalAddress',
         'streetAddress': 'Königsbrücker Landstraße 54',

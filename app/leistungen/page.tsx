@@ -1,19 +1,19 @@
 import Image from 'next/image';
-import { PaintRoller, Flame, Volume2, Home } from 'lucide-react';
+import { PaintRoller, Hammer, Volume2, Home } from 'lucide-react';
 import type { Metadata } from 'next';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Trockenbau Leistungen & Spachtelarbeiten | VpTrockenbau Dresden',
-  description: 'Unsere Expertise umfasst hochwertigen Trockenbau, Spachtelarbeiten (Q1-Q4), zertifizierten Brandschutz, Fugenverspachtelung und Akustikbau für Dresden und Region.',
-  keywords: ['Trockenbau Leistungen', 'Spachtelarbeiten Q4', 'Brandschutz Decken', 'Akustikbau Fachbetrieb', 'Dresden Bau', 'VpTrockenbau Leistungen'],
+  description: 'Unsere Expertise umfasst hochwertigen Trockenbau, Spachtelarbeiten (Q1-Q4), professionelle Gipskartonmontage, Fugenverspachtelung und Akustikbau für Dresden und Region.',
+  keywords: ['Trockenbau Leistungen', 'Spachtelarbeiten Q4', 'Gipskartonmontage', 'Akustikbau Fachbetrieb', 'Dresden Bau', 'VpTrockenbau Leistungen'],
   alternates: {
-    canonical: 'https://vptrokenbau.de/leistungen',
+    canonical: 'https://vptrockenbau.de/leistungen',
   },
   openGraph: {
     title: 'Unsere Leistungen im Trockenbau | VpTrockenbau',
-    description: 'Expertise in Trockenbau, Spachtelarbeiten Q1-Q4, zertifizierter Brandschutz und Akustikbau.',
-    url: 'https://vptrokenbau.de/leistungen',
+    description: 'Expertise in Trockenbau, Spachtelarbeiten Q1-Q4, Gipskartonmontage und Akustikbau.',
+    url: 'https://vptrockenbau.de/leistungen',
     images: [
       {
         url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
@@ -55,8 +55,8 @@ export default function Leistungen() {
         'position': 2,
         'item': {
           '@type': 'Service',
-          'name': 'Brandschutz',
-          'description': 'Zertifizierte bauliche Brandschutzmaßnahmen für maximale Sicherheit. Wir verarbeiten spezialisierte Brandschutzplatten und Systemlösungen gemäß DIN-Normen für Decken, Wände und Trägerverkleidungen.',
+          'name': 'Gipskartonmontage',
+          'description': 'Professionelle Montage von Gipskartonplatten auf Metallständerwerken. Wir errichten Trennwände, Deckenbekleidungen und raumbildende Sonderkonstruktionen malerfertig.',
           'provider': {
             '@type': 'LocalBusiness',
             'name': 'VpTrockenbau'
@@ -103,10 +103,10 @@ export default function Leistungen() {
         <div className="md:col-span-6 space-y-6">
           <div className="inline-block bg-[#eae7e9] px-3 py-1 border border-[#091426] font-bold text-xs uppercase shadow-[2px_2px_0px_0px_#091426]">Fachexpertise</div>
           <h1 className="text-5xl font-extrabold text-[#091426] uppercase tracking-tight leading-none">Technische<br/>Trockenbau<br/>Leistungen</h1>
-          <p className="text-lg text-[#45474c] max-w-lg">Präzision in jedem Detail. Wir bieten spezialisierte Trockenbaulösungen für komplexe gewerbliche und industrielle Bauvorhaben. Von Q4-Spachtelarbeiten bis hin zu zertifiziertem Brandschutz.</p>
+          <p className="text-lg text-[#45474c] max-w-lg">Präzision in jedem Detail. Wir bieten spezialisierte Trockenbaulösungen für komplexe gewerbliche und industrielle Bauvorhaben. Von Q4-Spachtelarbeiten bis hin zu fachgerechter Gipskartonmontage.</p>
         </div>
         <div className="md:col-span-6 relative h-[400px]">
-          <Image src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" fill sizes="(max-width: 768px) 100vw, 50vw" priority alt="Technical" className="object-cover border border-[#091426] shadow-[4px_4px_0px_0px_#091426] grayscale" />
+          <Image src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" fill sizes="(max-width: 768px) 100vw, 50vw" priority alt="Technical" className="object-cover border border-[#091426] shadow-[4px_4px_0px_0px_#091426] grayscale" />
         </div>
       </section>
 
@@ -133,16 +133,16 @@ export default function Leistungen() {
               </table>
             </div>
 
-            {/* Brandschutz */}
+            {/* Gipskartonmontage */}
             <div className="bg-white border border-[#091426] shadow-[4px_4px_0px_0px_#091426] p-8 flex flex-col group hover:bg-[#f5f3f4] transition-colors">
               <div className="flex justify-between items-start mb-6">
-                <h3 className="text-2xl font-bold text-[#091426] uppercase">Brandschutz</h3>
-                <Flame className="w-8 h-8 text-[#fd761a] group-hover:scale-110 transition-transform" />
+                <h3 className="text-2xl font-bold text-[#091426] uppercase">Gipskartonmontage</h3>
+                <Hammer className="w-8 h-8 text-[#fd761a] group-hover:scale-110 transition-transform" />
               </div>
-              <p className="text-[#45474c] mb-6 flex-grow">Zertifizierte bauliche Brandschutzmaßnahmen für maximale Sicherheit. Wir verarbeiten spezialisierte Brandschutzplatten und Systemlösungen gemäß DIN-Normen für Decken, Wände und Trägerverkleidungen.</p>
+              <p className="text-[#45474c] mb-6 flex-grow">Professionelle und passgenaue Montage von Gipsplatten für Wände, Decken und raumbildende Konstruktionen. Wir errichten stabile Metallständerwerke, verlegen hochwertige Platten und bereiten alles malerfertig vor.</p>
               <div className="relative h-40 border border-[#091426] overflow-hidden">
-                <Image src="https://images.unsplash.com/photo-1502672260266-1c1c24240f38?auto=format&fit=crop&w=600&q=80" fill sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" alt="Brandschutz" className="object-cover grayscale group-hover:grayscale-0 transition-all" />
-                <div className="absolute inset-0 bg-red-900/40 mix-blend-multiply"></div>
+                <Image src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" fill sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" alt="Gipskartonmontage" className="object-cover grayscale group-hover:grayscale-0 transition-all" />
+                <div className="absolute inset-0 bg-[#091426]/10 mix-blend-multiply"></div>
               </div>
             </div>
 
@@ -168,7 +168,7 @@ export default function Leistungen() {
               </div>
               <p className="text-[#45474c] mb-6 flex-grow">Effiziente Transformation ungenutzter Dachgeschosse in hochwertigen Wohn- oder Gewerberaum. Inklusive fachgerechter Dämmung, Dampfsperren und präziser Beplankung komplexer Dachschrägen.</p>
               <div className="relative h-40 border border-[#091426] overflow-hidden">
-                <Image src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" fill sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" alt="Dachausbau" className="object-cover grayscale group-hover:grayscale-0 transition-all" />
+                <Image src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" fill sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" alt="Dachausbau" className="object-cover grayscale group-hover:grayscale-0 transition-all" />
               </div>
             </div>
          </div>
@@ -195,7 +195,7 @@ export default function Leistungen() {
                     <label className="block text-sm font-bold text-[#091426] uppercase mb-1">Gewerke</label>
                     <select className="w-full bg-white border border-[#091426] p-3 focus:outline-none focus:border-[#fd761a] focus:border-2 rounded-none">
                         <option>Spachtelarbeiten (Q1-Q4)</option>
-                        <option>Brandschutz</option>
+                        <option>Gipskartonmontage</option>
                         <option>Akustikbau</option>
                         <option>Dachausbau</option>
                     </select>

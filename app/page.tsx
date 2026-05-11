@@ -24,7 +24,7 @@ export default function Home() {
             Präzision im Trockenbau & Innenausbau Dresden
           </h1>
           <p className="text-lg text-[#45474c] max-w-xl">
-            Ihr zertifizierter Fachpartner für erstklassige Spachtelarbeiten (Q1-Q4), Fugenverspachtelung, baulichen Brandschutz und Akustikbau im Großraum Dresden und ganz Sachsen.
+            Ihr zertifizierter Fachpartner für erstklassige Spachtelarbeiten (Q1-Q4), professionelle Gipskartonmontage, Fugenverspachtelung und Akustikbau im Großraum Dresden und ganz Sachsen.
           </p>
           <div className="mt-4 flex flex-col sm:flex-row gap-4">
             <Link href="/kontakt" className="bg-[#1e293b] text-white font-bold uppercase px-6 sm:px-8 py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:bg-[#fd761a] hover:text-white transition-all inline-flex items-center gap-2 group active:translate-y-1 active:shadow-[2px_2px_0px_0px_#091426] text-xs sm:text-sm md:text-base text-center justify-center w-full sm:w-auto">
@@ -39,7 +39,7 @@ export default function Home() {
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
           className="relative h-[400px] lg:h-[600px] border-2 border-[#091426] shadow-[4px_4px_0px_0px_#091426] bg-[#eae7e9] overflow-hidden group"
         >
-          <Image src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" alt="Exklusive Trockenbau- und Spachtelarbeiten in Dresden" fill sizes="(max-width: 1024px) 100vw, 50vw" priority className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+          <Image src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Exklusive Trockenbau- und Spachtelarbeiten in Dresden" fill sizes="(max-width: 1024px) 100vw, 50vw" priority className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
           <div className="absolute bottom-0 left-0 bg-[#fd761a] text-[#091426] font-bold uppercase px-4 py-2 border-t-2 border-r-2 border-[#091426]">
             Qualitätsstufe Q4 Dresden
           </div>
@@ -86,17 +86,17 @@ export default function Home() {
             {
               title: "Modern Office Complex Dresden",
               category: "Gewerbe",
-              img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80"
+              img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80"
             },
             {
               title: "Exklusive Villa Radebeul",
               category: "Privat",
-              img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80"
+              img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80"
             },
             {
               title: "Einkaufszentrum Altmarkt",
               category: "Gewerbe",
-              img: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=600&q=80"
+              img: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=80"
             }
           ].map((p, i) => (
             <motion.div 
@@ -134,7 +134,7 @@ export default function Home() {
             </p>
           </div>
           <div className="lg:col-span-7 h-[400px] lg:h-auto border border-[#091426] shadow-[4px_4px_0px_0px_#091426] relative">
-            <Image src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" alt="Exzellente Trockenbaupläne und Baustellen-Organisation in Dresden" fill sizes="(max-width: 1024px) 100vw, 60vw" loading="lazy" className="object-cover grayscale" />
+            <Image src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80" alt="Exzellente Trockenbaupläne und Baustellen-Organisation in Dresden" fill sizes="(max-width: 1024px) 100vw, 60vw" loading="lazy" className="object-cover grayscale" />
           </div>
         </div>
       </section>
@@ -154,8 +154,8 @@ export default function Home() {
             },
             {
               icon: ShieldCheck,
-              title: 'Geprüfter Brandschutz',
-              desc: 'Zertifizierte bauliche Brandschutzmaßnahmen für Decken, Wände und Trägerbekleidungen exakt nach aktuellen DIN-Normen.'
+              title: 'Gipskartonmontage',
+              desc: 'Präziser Verlegung hochwertiger Gipskartonplatten auf stabilen Ständerwerken, ideal für Trennwände, Decken und Wandverkleidungen.'
             },
             {
               icon: Clock,
@@ -230,22 +230,22 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             {
-              name: 'Dr. Michael Becker',
-              role: 'Zahnarztpraxis Blasewitz',
-              text: 'Wir haben die Spachtelarbeiten (Q4) für unsere neue Praxis von VpTrockenbau ausführen lassen. Das Ergebnis bei kritischem Streiflicht is absolut makellos! Sehr professionelle und saubere Arbeitsweise.',
-              project: 'Praxisumbau Dresden'
+              name: 'Victor Antonov',
+              role: 'CEO - Victan LTD',
+              text: 'VpTrockenbau hat bei unserem Wohnbauprojekt die kompletten Gipskarton- und Spachtelarbeiten (Q3) ausgeführt. Über 80 Wohneinheiten wurden in perfekter handwerklicher Qualität und absolut fristgerecht beplankt und verspachtelt. Ein hervorragender Partner für Generalunternehmer!',
+              project: 'Wohnpark Dresden'
             },
             {
-              name: 'Dipl.-Ing. Andreas Krause',
-              role: 'Projektleiter Bauprojekt Ost GmbH',
-              text: 'Beim gewerblichen Ausbau unseres Bürokomplexes in der Dresdner Altstadt hat VpTrockenbau den baulichen Brandschutz und Akustikbau übernommen. Zuverlässig, DIN-konform und absolut termintreu.',
-              project: 'Gewerbebau Altstadt'
+              name: 'Dipl.-Ing. Marcus Lehmann',
+              role: 'Bauleiter - SachsenBau GmbH',
+              text: 'Beim gewerblichen Ausbau unseres Bürokomplexes hat VpTrockenbau den gesamten Innenausbau inklusive der Akustikdecken übernommen. Die passgenaue Montage der Ständerwerke und die präzise Fugenverspachtelung haben uns vollauf überzeugt.',
+              project: 'Bürokomplex Neustadt'
             },
             {
-              name: 'Sabine Weber',
-              role: 'Eigentümerin',
-              text: 'Großartiger Dachgeschossausbau in unserem Einfamilienhaus in Radebeul. Von der Beratung über die Wärmedämmung bis zur malerfertigen Beplankung der Dachschrägen lief alles perfekt ab.',
-              project: 'Dachausbau Radebeul'
+              name: 'Elena Richter',
+              role: 'Projektsteuerung - Elbland Wohnbau GmbH',
+              text: 'Hervorragende Zusammenarbeit bei der anspruchsvollen Altbausanierung in Blasewitz. Die kniffligen Spachtelarbeiten (Q4) an schiefen Wänden und Holzbalkendecken wurden makellos gelöst. Die Malervorbereitung war perfekt.',
+              project: 'Altbausanierung Blasewitz'
             }
           ].map((review, i) => (
             <div key={i} className="bg-white border border-[#091426] p-6 shadow-[4px_4px_0px_0px_#091426] flex flex-col justify-between">

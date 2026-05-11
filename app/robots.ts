@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/admin/'],
     },
-    sitemap: 'https://vptrokenbau.de/sitemap.xml',
+    sitemap: 'https://vptrockenbau.de/sitemap.xml',
   };
 }

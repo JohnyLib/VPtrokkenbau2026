@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Datenschutzerklärung | VpTrockenbau Dresden',
   description: 'Datenschutzerklärung und rechtliche Informationen zum Schutz Ihrer persönlichen Daten bei VpTrockenbau.',
   alternates: {
-    canonical: 'https://vptrokenbau.de/datenschutz',
+    canonical: 'https://vptrockenbau.de/datenschutz',
   },
   robots: {
     index: false,
@@ -59,7 +59,7 @@ export default function Datenschutz() {
           <p>Königsbrücker Landstraße 54</p>
           <p>01109 Dresden</p>
           <p>Geschäftsführer: Vasilii Perevalov</p>
-          <p>E-Mail: info@vptrokenbau.de</p>
+          <p>E-Mail: info@vptrockenbau.de</p>
           <p>Telefon: +49 (0) 151 61559335</p>
         </div>
         <p className="text-xs italic">
@@ -136,7 +136,7 @@ export default function Datenschutz() {
           </div>
         </div>
         <p className="pt-2">
-          Möchten Sie eines dieser Rechte ausüben oder haben Sie Fragen zum Thema Datenschutz, wenden Sie sich bitte einfach per E-Mail an <a href="mailto:info@vptrokenbau.de" className="text-[#fd761a] hover:underline font-bold">info@vptrokenbau.de</a>.
+          Möchten Sie eines dieser Rechte ausüben oder haben Sie Fragen zum Thema Datenschutz, wenden Sie sich bitte einfach per E-Mail an <a href="mailto:info@vptrockenbau.de" className="text-[#fd761a] hover:underline font-bold">info@vptrockenbau.de</a>.
         </p>
         <p>
           Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Datenschutz-Aufsichtsbehörde zu (Sächsischer Datenschutzbeauftragter).

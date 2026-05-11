@@ -99,7 +99,7 @@ export function KontaktClient() {
               <Mail className="w-6 h-6 text-[#fd761a] shrink-0" />
               <div className="flex flex-col gap-1">
                 <strong className="block text-[#091426] uppercase text-sm">E-Mail</strong>
-                <a href="mailto:info@vptrokenbau.de" className="text-[#45474c] hover:text-[#fd761a] transition-colors">info@vptrokenbau.de</a>
+                <a href="mailto:info@vptrockenbau.de" className="text-[#45474c] hover:text-[#fd761a] transition-colors">info@vptrockenbau.de</a>
                 <a href="mailto:perevalovvasilii@gmail.com" className="text-xs text-[#45474c] font-semibold hover:text-[#fd761a] transition-colors lowercase">perevalovvasilii@gmail.com</a>
               </div>
             </div>
@@ -139,7 +139,7 @@ export function KontaktClient() {
                   <select id="service" value={formData.service} onChange={handleChange} className="w-full border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-2 focus:ring-[#fd761a]/20 outline-none appearance-none rounded-none transition-all">
                     <option>Trockenbau</option>
                     <option>Spachtelarbeiten (Q1-Q4)</option>
-                    <option>Brandschutz</option>
+                    <option>Gipskartonmontage</option>
                     <option>Akustikbau</option>
                     <option>Dachausbau</option>
                     <option>Sonstiges</option>

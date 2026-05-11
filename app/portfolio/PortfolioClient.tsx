@@ -248,11 +248,11 @@ function ProjectModal({ p, onClose }: { p: any, onClose: () => void }) {
 }
 
 const steps = [
-  { num: '01', title: 'Beratung & Aufmaß', desc: 'Vor-Ort-Begehung in Dresden/Umland, Erfassung der räumlichen Gegebenheiten und technische Beratung zu Materialien und Brandschutzvorgaben.' },
+  { num: '01', title: 'Beratung & Aufmaß', desc: 'Vor-Ort-Begehung in Dresden/Umland, Erfassung der räumlichen Gegebenheiten und technische Beratung zu Materialien und Beplankungsvorgaben.' },
   { num: '02', title: 'Kalkulation & Angebot', desc: 'Erstellung eines detaillierten, transparenten Leistungsverzeichnisses mit verbindlichen Preisen und Terminplänen.' },
   { num: '03', title: 'Logistik & Einrichtung', desc: 'Just-in-Time Materiallieferung und professionelle Baustelleneinrichtung zur Gewährleistung eines reibungslosen Ablaufs.' },
   { num: '04', title: 'Ausführung', desc: 'Fachgerechte Montage der Ständerwerke, Beplankung und Spachtelarbeiten (Q1-Q4) durch unsere zertifizierten Teams.', highlight: true },
-  { num: '05', title: 'Abnahme & Doku', desc: 'Gemeinsame Qualitätskontrolle, Übergabe der brandschutztechnischen Dokumentationen und besenreine Hinterlassung.' }
+  { num: '05', title: 'Abnahme & Doku', desc: 'Gemeinsame Qualitätskontrolle, Übergabe der technischen Dokumentationen und Gewährleistungsunterlagen sowie besenreine Hinterlassung.' }
 ];
 
 export function PortfolioClient() {
@@ -315,7 +315,7 @@ export function PortfolioClient() {
           </div>
         </div>
         <div className="flex-1 w-full min-h-[350px] border-2 border-[#091426] overflow-hidden relative shadow-[4px_4px_0px_0px_#091426]">
-          <Image src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80" fill sizes="(max-width: 1024px) 100vw, 50vw" priority alt="Hero Referenzen" className="object-cover grayscale opacity-90 hover:grayscale-0 transition-all duration-700" />
+          <Image src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80" fill sizes="(max-width: 1024px) 100vw, 50vw" priority alt="Hero Referenzen" className="object-cover grayscale opacity-90 hover:grayscale-0 transition-all duration-700" />
         </div>
       </motion.section>
 

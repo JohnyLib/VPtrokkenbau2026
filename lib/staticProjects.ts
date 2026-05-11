@@ -24,9 +24,8 @@ export const staticProjects: PortfolioProject[] = [
     location: "Dresden Neustadt",
     testimonial: "Höchste Präzision bei den komplexen Spachtelarbeiten, genau wie von den Architekten vorgegeben. Das Team von VpTrockenbau hat unsere Erwartungen bei diesem Revitalisierungsprojekt übertroffen.",
     images: [
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80"
     ]
   },
   {
@@ -39,9 +38,8 @@ export const staticProjects: PortfolioProject[] = [
     location: "Radebeul, Oberlößnitz",
     testimonial: "Absolute Spitzenklasse. Die nahtlosen Übergänge und die Qualität der Oberflächen sind ein Traum. Zuverlässig, sauber und perfekt in der Ausführung.",
     images: [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1600607687980-ce46efb21919?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1600566753086-00f18efc2069?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80"
     ]
   },
   {
@@ -54,8 +52,8 @@ export const staticProjects: PortfolioProject[] = [
     location: "Radebeul Industriegebiet",
     testimonial: "Die anspruchsvollen akustischen Vorgaben in den Produktionshallen wurden exzellent umgesetzt. Beeindruckendes Arbeitstempo ohne Kompromisse bei der Sicherheit.",
     images: [
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1565514020179-026b92b84eb6?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80"
     ]
   },
   {
@@ -68,8 +66,8 @@ export const staticProjects: PortfolioProject[] = [
     location: "Dresden Altstadt",
     testimonial: "Ein verlässlicher Partner bei unserem bisher größten Umbauprojekt. Die Flexibilität bei Nachtarbeiten und die Koordination mit anderen Gewerken waren vorbildlich.",
     images: [
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1555529771-835f59fc5efe?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80"
     ]
   },
   {
@@ -82,8 +80,8 @@ export const staticProjects: PortfolioProject[] = [
     location: "Dresden Prohlis",
     testimonial: "Strenge Hygieneanforderungen und spezielle Strahlenschutzwände wurden gemäß den Klinikanforderungen makellos installiert.",
     images: [
-      "https://images.unsplash.com/photo-1519494080410-f9aa76cb4283?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80"
     ]
   },
   {
@@ -96,8 +94,8 @@ export const staticProjects: PortfolioProject[] = [
     location: "Dresden Loschwitz",
     testimonial: "Dank der meisterhaften Deckenkonstruktionen und runden Wandelemente erstrahlt unsere Lobby in perfektem Licht. Ein fantastisches Ergebnis.",
     images: [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80"
     ]
   }
 ];

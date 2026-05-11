@@ -66,7 +66,7 @@ export function KarriereClient() {
           <button onClick={handleApplyClick} className="inline-flex bg-[#091426] text-white font-bold px-8 py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] uppercase hover:bg-[#fd761a] transition-all hover:-translate-y-1">Offene Stellen ansehen</button>
         </div>
         <div className="flex-1 w-full relative h-[300px] md:h-[400px] border border-[#091426] bg-[#eae7e9]">
-           <Image src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80" fill sizes="(max-width: 768px) 100vw, 50vw" priority alt="Team" className="object-cover grayscale" />
+           <Image src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" fill sizes="(max-width: 768px) 100vw, 50vw" priority alt="Team" className="object-cover grayscale" />
         </div>
       </section>
 
