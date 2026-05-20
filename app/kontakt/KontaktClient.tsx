@@ -80,7 +80,7 @@ export function KontaktClient() {
             <h3 className="text-xl font-bold text-[#091426] uppercase border-b-2 border-[#091426] pb-2">Standort Dresden</h3>
             
             <div className="flex gap-4 items-start">
-              <MapPin className="w-6 h-6 text-[#fd761a] shrink-0" />
+              <MapPin className="w-6 h-6 text-[#2563eb] shrink-0" />
               <div>
                 <strong className="block text-[#091426] uppercase text-sm">Adresse</strong>
                 <span className="text-[#45474c]">Königsbrücker Landstraße 54<br />01109 Dresden<br />Deutschland</span>
@@ -88,24 +88,24 @@ export function KontaktClient() {
             </div>
 
             <div className="flex gap-4 items-start">
-              <Phone className="w-6 h-6 text-[#fd761a] shrink-0" />
+              <Phone className="w-6 h-6 text-[#2563eb] shrink-0" />
               <div>
                 <strong className="block text-[#091426] uppercase text-sm">Telefon</strong>
-                <a href="tel:+4915161559335" className="text-[#45474c] hover:text-[#fd761a] transition-colors">+49 (0) 151 61559335</a>
+                <a href="tel:+4915161559335" className="text-[#45474c] hover:text-[#2563eb] transition-colors">+49 (0) 151 61559335</a>
               </div>
             </div>
 
             <div className="flex gap-4 items-start">
-              <Mail className="w-6 h-6 text-[#fd761a] shrink-0" />
+              <Mail className="w-6 h-6 text-[#2563eb] shrink-0" />
               <div className="flex flex-col gap-1">
                 <strong className="block text-[#091426] uppercase text-sm">E-Mail</strong>
-                <a href="mailto:info@vptrockenbau.de" className="text-[#45474c] hover:text-[#fd761a] transition-colors">info@vptrockenbau.de</a>
-                <a href="mailto:perevalovvasilii@gmail.com" className="text-xs text-[#45474c] font-semibold hover:text-[#fd761a] transition-colors lowercase">perevalovvasilii@gmail.com</a>
+                <a href="mailto:info@vptrockenbau.de" className="text-[#45474c] hover:text-[#2563eb] transition-colors">info@vptrockenbau.de</a>
+                <a href="mailto:perevalovvasilii@gmail.com" className="text-xs text-[#45474c] font-semibold hover:text-[#2563eb] transition-colors lowercase">perevalovvasilii@gmail.com</a>
               </div>
             </div>
 
             <div className="flex gap-4 items-start">
-              <Clock className="w-6 h-6 text-[#fd761a] shrink-0" />
+              <Clock className="w-6 h-6 text-[#2563eb] shrink-0" />
               <div>
                 <strong className="block text-[#091426] uppercase text-sm">Öffnungszeiten</strong>
                 <span className="text-[#45474c]">Mo. - Fr.: 07:00 - 18:00 Uhr</span>
@@ -120,23 +120,23 @@ export function KontaktClient() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex flex-col gap-2">
                 <label className="font-bold text-sm text-[#091426] uppercase" htmlFor="name">Name / Firma *</label>
-                <input id="name" required value={formData.name} onChange={handleChange} autoComplete="name" className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-2 focus:ring-[#fd761a]/20 outline-none transition-all" type="text" />
+                <input id="name" required value={formData.name} onChange={handleChange} autoComplete="name" className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/20 outline-none transition-all" type="text" />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="font-bold text-sm text-[#091426] uppercase" htmlFor="email">E-Mail *</label>
-                <input id="email" required value={formData.email} onChange={handleChange} autoComplete="email" className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-2 focus:ring-[#fd761a]/20 outline-none transition-all" type="email" />
+                <input id="email" required value={formData.email} onChange={handleChange} autoComplete="email" className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/20 outline-none transition-all" type="email" />
               </div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex flex-col gap-2">
                 <label className="font-bold text-sm text-[#091426] uppercase" htmlFor="phone">Telefon</label>
-                <input id="phone" value={formData.phone} onChange={handleChange} autoComplete="tel" className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-2 focus:ring-[#fd761a]/20 outline-none transition-all" type="tel" />
+                <input id="phone" value={formData.phone} onChange={handleChange} autoComplete="tel" className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/20 outline-none transition-all" type="tel" />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="font-bold text-sm text-[#091426] uppercase" htmlFor="service">Gewerk</label>
                 <div className="relative">
-                  <select id="service" value={formData.service} onChange={handleChange} className="w-full border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-2 focus:ring-[#fd761a]/20 outline-none appearance-none rounded-none transition-all">
+                  <select id="service" value={formData.service} onChange={handleChange} className="w-full border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/20 outline-none appearance-none rounded-none transition-all">
                     <option>Trockenbau</option>
                     <option>Spachtelarbeiten (Q1-Q4)</option>
                     <option>Gipskartonmontage</option>
@@ -155,17 +155,17 @@ export function KontaktClient() {
 
             <div className="flex flex-col gap-2">
               <label className="font-bold text-sm text-[#091426] uppercase" htmlFor="message">Ihre Nachricht *</label>
-              <textarea id="message" required value={formData.message} onChange={handleChange} className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-2 focus:ring-[#fd761a]/20 outline-none min-h-[150px] resize-y transition-all"></textarea>
+              <textarea id="message" required value={formData.message} onChange={handleChange} className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/20 outline-none min-h-[150px] resize-y transition-all"></textarea>
             </div>
 
             <div className="flex items-start gap-3 mt-2">
-              <input type="checkbox" id="privacy" required className="mt-1 w-4 h-4 accent-[#fd761a]" />
-              <label htmlFor="privacy" className="text-sm text-[#45474c] cursor-pointer selection:bg-[#fd761a]/25">
+              <input type="checkbox" id="privacy" required className="mt-1 w-4 h-4 accent-[#2563eb]" />
+              <label htmlFor="privacy" className="text-sm text-[#45474c] cursor-pointer selection:bg-[#2563eb]/25">
                 Ich stimme zu, dass meine Angaben zur Kontaktaufnahme gespeichert und verarbeitet werden dürfen. *
               </label>
             </div>
 
-            <button type="submit" disabled={isLoading} className="bg-[#1e293b] text-white font-bold uppercase py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:bg-[#fd761a] active:translate-y-1 transition-all mt-4 w-full md:w-auto md:px-12 self-start disabled:opacity-50 min-h-[58px]">
+            <button type="submit" disabled={isLoading} className="bg-[#1e293b] text-white font-bold uppercase py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:bg-[#2563eb] active:translate-y-1 transition-all mt-4 w-full md:w-auto md:px-12 self-start disabled:opacity-50 min-h-[58px]">
               {isLoading ? 'Senden...' : 'Nachricht Senden'}
             </button>
           </form>

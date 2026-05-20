@@ -18,7 +18,7 @@ export default function Datenschutz() {
   return (
     <div className="w-full max-w-[960px] mx-auto px-4 md:px-8 py-12 flex flex-col gap-8">
       {/* Back Button */}
-      <Link href="/" className="self-start text-[#091426] font-bold uppercase text-xs tracking-wider flex items-center gap-2 group hover:text-[#fd761a] transition-colors border border-[#091426] px-4 py-2 bg-white shadow-[2px_2px_0px_0px_#091426] hover:shadow-[4px_4px_0px_0px_#091426] hover:-translate-y-0.5 active:translate-y-0 transition-all">
+      <Link href="/" className="self-start text-[#091426] font-bold uppercase text-xs tracking-wider flex items-center gap-2 group hover:text-[#2563eb] transition-colors border border-[#091426] px-4 py-2 bg-white shadow-[2px_2px_0px_0px_#091426] hover:shadow-[4px_4px_0px_0px_#091426] hover:-translate-y-0.5 active:translate-y-0 transition-all">
         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
         Zurück zur Startseite
       </Link>
@@ -34,7 +34,7 @@ export default function Datenschutz() {
       {/* Intro section */}
       <div className="bg-white border border-[#091426] p-8 shadow-[4px_4px_0px_0px_#091426] text-sm text-[#45474c] leading-relaxed space-y-4">
         <div className="flex items-center gap-2 border-b border-[#eae7e9] pb-3 mb-2">
-          <ShieldCheck className="w-5 h-5 text-[#fd761a]" />
+          <ShieldCheck className="w-5 h-5 text-[#2563eb]" />
           <h2 className="text-lg font-bold text-[#091426] uppercase">1. Datenschutz auf einen Blick</h2>
         </div>
         <p>
@@ -48,14 +48,14 @@ export default function Datenschutz() {
       {/* Verantwortliche Stelle */}
       <div className="bg-white border border-[#091426] p-8 shadow-[4px_4px_0px_0px_#091426] text-sm text-[#45474c] leading-relaxed space-y-4">
         <div className="flex items-center gap-2 border-b border-[#eae7e9] pb-3 mb-2">
-          <Database className="w-5 h-5 text-[#fd761a]" />
+          <Database className="w-5 h-5 text-[#2563eb]" />
           <h2 className="text-lg font-bold text-[#091426] uppercase">2. Verantwortliche Stelle</h2>
         </div>
         <p>
           Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
         </p>
         <div className="bg-[#f5f3f4] border border-[#091426] p-4 text-[#091426] font-mono text-xs space-y-1.5">
-          <p className="font-bold uppercase">VpTrockenbau GmbH</p>
+          <p className="font-bold uppercase">VpTrockenbau</p>
           <p>Königsbrücker Landstraße 54</p>
           <p>01109 Dresden</p>
           <p>Geschäftsführer: Vasilii Perevalov</p>
@@ -70,7 +70,7 @@ export default function Datenschutz() {
       {/* Hosting & Server Logs */}
       <div className="bg-white border border-[#091426] p-8 shadow-[4px_4px_0px_0px_#091426] text-sm text-[#45474c] leading-relaxed space-y-4">
         <div className="flex items-center gap-2 border-b border-[#eae7e9] pb-3 mb-2">
-          <Server className="w-5 h-5 text-[#fd761a]" />
+          <Server className="w-5 h-5 text-[#2563eb]" />
           <h2 className="text-lg font-bold text-[#091426] uppercase">3. Hosting und Server-Logfiles</h2>
         </div>
         <p>
@@ -94,7 +94,7 @@ export default function Datenschutz() {
       {/* Form Data & Nodemailer */}
       <div className="bg-white border border-[#091426] p-8 shadow-[4px_4px_0px_0px_#091426] text-sm text-[#45474c] leading-relaxed space-y-4">
         <div className="flex items-center gap-2 border-b border-[#eae7e9] pb-3 mb-2">
-          <FileText className="w-5 h-5 text-[#fd761a]" />
+          <FileText className="w-5 h-5 text-[#2563eb]" />
           <h2 className="text-lg font-bold text-[#091426] uppercase">4. Datenerfassung über Formulare</h2>
         </div>
         <p>
@@ -111,7 +111,7 @@ export default function Datenschutz() {
       {/* Rights of the Data Subject */}
       <div className="bg-white border border-[#091426] p-8 shadow-[4px_4px_0px_0px_#091426] text-sm text-[#45474c] leading-relaxed space-y-4">
         <div className="flex items-center gap-2 border-b border-[#eae7e9] pb-3 mb-2">
-          <Key className="w-5 h-5 text-[#fd761a]" />
+          <Key className="w-5 h-5 text-[#2563eb]" />
           <h2 className="text-lg font-bold text-[#091426] uppercase">5. Ihre Rechte (Betroffenenrechte)</h2>
         </div>
         <p>
@@ -136,7 +136,7 @@ export default function Datenschutz() {
           </div>
         </div>
         <p className="pt-2">
-          Möchten Sie eines dieser Rechte ausüben oder haben Sie Fragen zum Thema Datenschutz, wenden Sie sich bitte einfach per E-Mail an <a href="mailto:info@vptrockenbau.de" className="text-[#fd761a] hover:underline font-bold">info@vptrockenbau.de</a>.
+          Möchten Sie eines dieser Rechte ausüben oder haben Sie Fragen zum Thema Datenschutz, wenden Sie sich bitte einfach per E-Mail an <a href="mailto:info@vptrockenbau.de" className="text-[#2563eb] hover:underline font-bold">info@vptrockenbau.de</a>.
         </p>
         <p>
           Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Datenschutz-Aufsichtsbehörde zu (Sächsischer Datenschutzbeauftragter).

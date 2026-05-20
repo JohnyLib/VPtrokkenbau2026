@@ -1,6 +1,6 @@
 # 🏗️ VPTrokkenbau — Premium Drywall & Interior Construction Dresden
 
-> A high-performance, search-optimized Next.js 15 web platform representing **VPTrokkenbau GmbH** — Dresden’s premier specialist contractor for high-end drywall, acoustic ceilings, certified fire protection, and museum-grade **Q4 plastering**.
+> A high-performance, search-optimized Next.js 15 web platform representing **VPTrokkenbau** — Dresden’s premier specialist contractor for high-end drywall, acoustic ceilings, certified fire protection, and museum-grade **Q4 plastering**.
 
 ---
 

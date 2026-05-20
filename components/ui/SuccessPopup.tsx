@@ -35,14 +35,14 @@ export function SuccessPopup({ isOpen, onClose, title = "Vielen Dank!", message 
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-[#091426] hover:text-[#fd761a] p-1 border border-transparent hover:border-[#091426] transition-colors"
+              className="absolute top-4 right-4 text-[#091426] hover:text-[#2563eb] p-1 border border-transparent hover:border-[#091426] transition-colors"
               aria-label="Schließen"
             >
               <X className="w-5 h-5" />
             </button>
 
             {/* Checkmark Icon Container */}
-            <div className="w-16 h-16 bg-[#fd761a]/10 border-2 border-[#fd761a] rounded-full flex items-center justify-center text-[#fd761a] shadow-[4px_4px_0px_0px_#091426]">
+            <div className="w-16 h-16 bg-[#2563eb]/10 border-2 border-[#2563eb] rounded-full flex items-center justify-center text-[#2563eb] shadow-[4px_4px_0px_0px_#091426]">
               <Check className="w-8 h-8 stroke-[3]" />
             </div>
 
@@ -55,7 +55,7 @@ export function SuccessPopup({ isOpen, onClose, title = "Vielen Dank!", message 
             {/* Action Button */}
             <button
               onClick={onClose}
-              className="w-full bg-[#091426] text-white font-black py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#fd761a] uppercase hover:bg-[#fd761a] hover:shadow-none hover:translate-y-1 transition-all mt-2"
+              className="w-full bg-[#091426] text-white font-black py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#2563eb] uppercase hover:bg-[#2563eb] hover:shadow-none hover:translate-y-1 transition-all mt-2"
             >
               Schließen
             </button>

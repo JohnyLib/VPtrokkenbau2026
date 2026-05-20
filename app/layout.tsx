@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     'Trockenbau Ausschreibung',
     'Trockenbau Innenausbau',
     'Firma Trockenbau',
-    'Trockenbau GmbH',
+    'Trockenbau Firma',
     'Ausschreibung Trockenbau',
     'Brandschutz Trockenbau',
     'Trockenbau Brandschutz',
@@ -168,17 +168,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="de" className={`scroll-smooth ${inter.variable}`} suppressHydrationWarning>
       <head>
         {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKJ957FF5W"></script>
-        <script dangerouslySetInnerHTML={{
-          __html: `
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-CKJ957FF5W"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-CKJ957FF5W');
-          `
-        }} />
+          `}
+        </Script>
       </head>
-      <body className="font-sans antialiased bg-[#fbf8fa] text-[#1b1b1d] selection:bg-[#fd761a] selection:text-white flex flex-col min-h-screen" suppressHydrationWarning>
+      <body className="font-sans antialiased bg-[#fbf8fa] text-[#1b1b1d] selection:bg-[#2563eb] selection:text-white flex flex-col min-h-screen" suppressHydrationWarning>
         <Script
           id="local-business-schema"
           type="application/ld+json"

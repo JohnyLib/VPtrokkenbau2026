@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { 
@@ -112,13 +112,7 @@ export default function AdminDashboard() {
   // Image URL input field state
   const [imageInput, setImageInput] = useState('');
 
-  // Fetch portfolio and submissions on load
-  useEffect(() => {
-    fetchProjects();
-    fetchSubmissions();
-  }, []);
-
-  const fetchProjects = async () => {
+  const fetchProjects = useCallback(async () => {
     setLoadingProjects(true);
     try {
       const res = await fetch('/api/portfolio');
@@ -131,9 +125,9 @@ export default function AdminDashboard() {
     } finally {
       setLoadingProjects(false);
     }
-  };
+  }, []);
 
-  const fetchSubmissions = async () => {
+  const fetchSubmissions = useCallback(async () => {
     setLoadingSubmissions(true);
     try {
       const res = await fetch('/api/submissions');
@@ -152,7 +146,18 @@ export default function AdminDashboard() {
     } finally {
       setLoadingSubmissions(false);
     }
-  };
+  }, [router]);
+
+  // Fetch portfolio and submissions on load
+  useEffect(() => {
+    // Defer data fetching to avoid synchronous setState calls within the effect body
+    const loadData = async () => {
+      await Promise.resolve();
+      fetchProjects();
+      fetchSubmissions();
+    };
+    loadData();
+  }, [fetchProjects, fetchSubmissions]);
 
   const handleLogout = async () => {
     if (!confirm('Möchten Sie sich wirklich abmelden?')) return;
@@ -438,8 +443,8 @@ export default function AdminDashboard() {
       {/* MOBILE HEADER BAR */}
       <div className="md:hidden w-full bg-[#091426] text-white px-4 py-3.5 flex items-center justify-between border-b border-slate-800 sticky top-0 z-50 shadow">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-[#fd761a] rounded-lg flex items-center justify-center font-black text-white text-sm">VP</div>
-          <span className="font-extrabold uppercase tracking-tight text-sm">VP<span className="text-[#fd761a]">Trockenbau</span></span>
+          <div className="w-8 h-8 bg-[#2563eb] rounded-lg flex items-center justify-center font-black text-white text-sm">VP</div>
+          <span className="font-extrabold uppercase tracking-tight text-sm">VP<span className="text-[#2563eb]">Trockenbau</span></span>
         </div>
         
         <button 
@@ -456,12 +461,12 @@ export default function AdminDashboard() {
         {/* Upper Brand Info */}
         <div className="p-6 border-b border-slate-800/60 hidden md:block">
           <div className="flex items-center gap-3.5 mb-2">
-            <div className="w-9 h-9 bg-[#fd761a] rounded-xl flex items-center justify-center font-black text-white text-base shadow shadow-orange-500/20">
+            <div className="w-9 h-9 bg-[#2563eb] rounded-xl flex items-center justify-center font-black text-white text-base shadow shadow-blue-500/20">
               VP
             </div>
             <div>
               <h1 className="text-md font-bold uppercase text-white tracking-tight leading-none">
-                VP<span className="text-[#fd761a]">Trockenbau</span>
+                VP<span className="text-[#2563eb]">Trockenbau</span>
               </h1>
               <span className="text-[10px] font-black uppercase text-slate-500 tracking-wider">
                 Management Panel
@@ -478,7 +483,7 @@ export default function AdminDashboard() {
         <nav className="p-4 flex-1 flex flex-col gap-1 mt-4">
           <button
             onClick={() => { setActiveTab('overview'); setMobileMenuOpen(false); }}
-            className={`w-full px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-3 cursor-pointer ${activeTab === 'overview' ? 'bg-[#fd761a] text-white shadow-md' : 'hover:bg-slate-800/50 text-slate-400 hover:text-slate-100'}`}
+            className={`w-full px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-3 cursor-pointer ${activeTab === 'overview' ? 'bg-[#2563eb] text-white shadow-md' : 'hover:bg-slate-800/50 text-slate-400 hover:text-slate-100'}`}
           >
             <Layout className="w-4.5 h-4.5 shrink-0" />
             <span>Dashboard-Übersicht</span>
@@ -486,7 +491,7 @@ export default function AdminDashboard() {
 
           <button
             onClick={() => { setActiveTab('portfolio'); setProjectCategoryFilter('all'); setMobileMenuOpen(false); }}
-            className={`w-full px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-3 cursor-pointer ${activeTab === 'portfolio' ? 'bg-[#fd761a] text-white shadow-md' : 'hover:bg-slate-800/50 text-slate-400 hover:text-slate-100'}`}
+            className={`w-full px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-3 cursor-pointer ${activeTab === 'portfolio' ? 'bg-[#2563eb] text-white shadow-md' : 'hover:bg-slate-800/50 text-slate-400 hover:text-slate-100'}`}
           >
             <Grid className="w-4.5 h-4.5 shrink-0" />
             <span>Referenzen-Katalog</span>
@@ -494,7 +499,7 @@ export default function AdminDashboard() {
 
           <button
             onClick={() => { clearForm(); setActiveTab('project-form'); setMobileMenuOpen(false); }}
-            className={`w-full px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-3 cursor-pointer ${activeTab === 'project-form' ? 'bg-[#fd761a] text-white shadow-md' : 'hover:bg-slate-800/50 text-slate-400 hover:text-slate-100'}`}
+            className={`w-full px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-3 cursor-pointer ${activeTab === 'project-form' ? 'bg-[#2563eb] text-white shadow-md' : 'hover:bg-slate-800/50 text-slate-400 hover:text-slate-100'}`}
           >
             <PlusCircle className="w-4.5 h-4.5 shrink-0" />
             <span>{editingProjectId ? 'Projekt bearbeiten' : 'Neues Projekt'}</span>
@@ -502,7 +507,7 @@ export default function AdminDashboard() {
 
           <button
             onClick={() => { setActiveTab('submissions'); setMobileMenuOpen(false); }}
-            className={`w-full px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between cursor-pointer ${activeTab === 'submissions' ? 'bg-[#fd761a] text-white shadow-md' : 'hover:bg-slate-800/50 text-slate-400 hover:text-slate-100'}`}
+            className={`w-full px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between cursor-pointer ${activeTab === 'submissions' ? 'bg-[#2563eb] text-white shadow-md' : 'hover:bg-slate-800/50 text-slate-400 hover:text-slate-100'}`}
           >
             <div className="flex items-center gap-3">
               <MessageSquare className="w-4.5 h-4.5 shrink-0" />
@@ -557,7 +562,7 @@ export default function AdminDashboard() {
               href="https://vptrockenbau.de" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="px-4 py-2 bg-slate-50 hover:bg-slate-100 text-[#fd761a] font-bold text-xs uppercase tracking-wider rounded-xl border border-slate-200 transition-all flex items-center gap-1.5"
+              className="px-4 py-2 bg-slate-50 hover:bg-slate-100 text-[#2563eb] font-bold text-xs uppercase tracking-wider rounded-xl border border-slate-200 transition-all flex items-center gap-1.5"
             >
               <Eye className="w-4 h-4" /> Live Webseite öffnen <ExternalLink className="w-3 h-3" />
             </a>
@@ -600,11 +605,11 @@ export default function AdminDashboard() {
                 </div>
                 <button 
                   onClick={() => setActiveTab('project-form')}
-                  className="px-5 py-2.5 bg-[#fd761a] hover:bg-[#091426] text-white font-bold text-xs uppercase rounded-xl tracking-wider shadow shadow-orange-500/10 transition-all flex items-center gap-1.5 cursor-pointer relative z-10"
+                  className="px-5 py-2.5 bg-[#2563eb] hover:bg-[#091426] text-white font-bold text-xs uppercase rounded-xl tracking-wider shadow shadow-blue-500/10 transition-all flex items-center gap-1.5 cursor-pointer relative z-10"
                 >
                   <Plus className="w-4.5 h-4.5" /> Neues Projekt anlegen
                 </button>
-                <div className="absolute right-0 bottom-0 top-0 w-1/3 bg-gradient-to-l from-orange-500/5 to-transparent pointer-events-none hidden sm:block" />
+                <div className="absolute right-0 bottom-0 top-0 w-1/3 bg-gradient-to-l from-blue-500/5 to-transparent pointer-events-none hidden sm:block" />
               </div>
 
               {/* High-Fidelity Overview Statistics Widgets Grid */}
@@ -623,7 +628,7 @@ export default function AdminDashboard() {
                   {/* Decorative sparkline graph */}
                   <div className="mt-4 h-8 w-full flex items-end gap-1">
                     {[3, 4, 2, 5, 4, 6, 8, 7, 9, 8, 10, projects.length].map((val, idx) => (
-                      <div key={idx} className="bg-[#fd761a]/15 group-hover:bg-[#fd761a]/30 rounded-t-sm flex-1 transition-colors" style={{ height: `${(val / 10) * 100}%` }} />
+                      <div key={idx} className="bg-[#2563eb]/15 group-hover:bg-[#2563eb]/30 rounded-t-sm flex-1 transition-colors" style={{ height: `${(val / 10) * 100}%` }} />
                     ))}
                   </div>
                 </div>
@@ -681,7 +686,7 @@ export default function AdminDashboard() {
                     </h4>
                     {loadingSubmissions ? (
                       <div className="flex justify-center py-10">
-                        <RefreshCw className="w-6 h-6 text-[#fd761a] animate-spin" />
+                        <RefreshCw className="w-6 h-6 text-[#2563eb] animate-spin" />
                       </div>
                     ) : submissions.filter(s => s.status === 'new').length === 0 ? (
                       <div className="py-8 text-center text-slate-400 text-xs italic flex flex-col items-center gap-2">
@@ -694,7 +699,7 @@ export default function AdminDashboard() {
                           <div 
                             key={sub.id} 
                             onClick={() => { setSelectedSubmission(sub); setActiveTab('submissions'); }}
-                            className="p-3.5 border border-slate-100 rounded-xl hover:border-[#fd761a]/30 hover:bg-slate-50 transition-all cursor-pointer flex justify-between items-center gap-3"
+                            className="p-3.5 border border-slate-100 rounded-xl hover:border-[#2563eb]/30 hover:bg-slate-50 transition-all cursor-pointer flex justify-between items-center gap-3"
                           >
                             <div className="min-w-0">
                               <div className="flex items-center gap-2 mb-1">
@@ -705,7 +710,7 @@ export default function AdminDashboard() {
                               </div>
                               <p className="text-[10px] text-slate-400 font-semibold truncate max-w-[250px]">{sub.email}</p>
                             </div>
-                            <span className="text-[10px] font-bold text-[#fd761a] flex items-center gap-1 shrink-0 uppercase">
+                            <span className="text-[10px] font-bold text-[#2563eb] flex items-center gap-1 shrink-0 uppercase">
                               Öffnen <ChevronRight className="w-3.5 h-3.5" />
                             </span>
                           </div>
@@ -730,9 +735,9 @@ export default function AdminDashboard() {
                     <div className="space-y-3">
                       <button 
                         onClick={() => setActiveTab('project-form')}
-                        className="w-full p-3 bg-slate-50 hover:bg-[#fd761a]/5 text-slate-700 hover:text-[#fd761a] rounded-xl border border-slate-100 hover:border-[#fd761a]/20 transition-all text-left text-xs font-bold flex items-center gap-3 cursor-pointer"
+                        className="w-full p-3 bg-slate-50 hover:bg-[#2563eb]/5 text-slate-700 hover:text-[#2563eb] rounded-xl border border-slate-100 hover:border-[#2563eb]/20 transition-all text-left text-xs font-bold flex items-center gap-3 cursor-pointer"
                       >
-                        <div className="w-8 h-8 rounded-lg bg-orange-50 text-[#fd761a] flex items-center justify-center">
+                        <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#2563eb] flex items-center justify-center">
                           <Plus className="w-4.5 h-4.5" />
                         </div>
                         <span>Neues Portfolio-Projekt anlegen</span>
@@ -740,9 +745,9 @@ export default function AdminDashboard() {
 
                       <button 
                         onClick={() => { setActiveTab('portfolio'); setProjectCategoryFilter('all'); }}
-                        className="w-full p-3 bg-slate-50 hover:bg-[#fd761a]/5 text-slate-700 hover:text-[#fd761a] rounded-xl border border-slate-100 hover:border-[#fd761a]/20 transition-all text-left text-xs font-bold flex items-center gap-3 cursor-pointer"
+                        className="w-full p-3 bg-slate-50 hover:bg-[#2563eb]/5 text-slate-700 hover:text-[#2563eb] rounded-xl border border-slate-100 hover:border-[#2563eb]/20 transition-all text-left text-xs font-bold flex items-center gap-3 cursor-pointer"
                       >
-                        <div className="w-8 h-8 rounded-lg bg-orange-50 text-[#fd761a] flex items-center justify-center">
+                        <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#2563eb] flex items-center justify-center">
                           <FolderOpen className="w-4.5 h-4.5" />
                         </div>
                         <span>Referenzen-Katalog sortieren & verwalten</span>
@@ -752,9 +757,9 @@ export default function AdminDashboard() {
                         href="https://vptrockenbau.de" 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="w-full p-3 bg-slate-50 hover:bg-[#fd761a]/5 text-slate-700 hover:text-[#fd761a] rounded-xl border border-slate-100 hover:border-[#fd761a]/20 transition-all text-left text-xs font-bold flex items-center gap-3 cursor-pointer"
+                        className="w-full p-3 bg-slate-50 hover:bg-[#2563eb]/5 text-slate-700 hover:text-[#2563eb] rounded-xl border border-slate-100 hover:border-[#2563eb]/20 transition-all text-left text-xs font-bold flex items-center gap-3 cursor-pointer"
                       >
-                        <div className="w-8 h-8 rounded-lg bg-orange-50 text-[#fd761a] flex items-center justify-center">
+                        <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#2563eb] flex items-center justify-center">
                           <ExternalLink className="w-4.5 h-4.5" />
                         </div>
                         <span>VP Trockenbau Hauptseite öffnen</span>
@@ -783,7 +788,7 @@ export default function AdminDashboard() {
                       <button
                         key={cat}
                         onClick={() => setProjectCategoryFilter(cat)}
-                        className={`px-3.5 py-1.5 text-xs font-extrabold uppercase rounded-lg border transition-all cursor-pointer ${projectCategoryFilter === cat ? 'bg-[#fd761a] text-white border-[#fd761a] shadow-sm shadow-orange-500/10' : 'bg-slate-50 text-slate-500 border-slate-200/60 hover:text-slate-800'}`}
+                        className={`px-3.5 py-1.5 text-xs font-extrabold uppercase rounded-lg border transition-all cursor-pointer ${projectCategoryFilter === cat ? 'bg-[#2563eb] text-white border-[#2563eb] shadow-sm shadow-blue-500/10' : 'bg-slate-50 text-slate-500 border-slate-200/60 hover:text-slate-800'}`}
                       >
                         {cat === 'all' ? 'Alle Referenzen' : cat}
                       </button>
@@ -801,7 +806,7 @@ export default function AdminDashboard() {
                     placeholder="Suchen nach Titel, Ort, Stufe..."
                     value={projectSearchQuery}
                     onChange={(e) => setProjectSearchQuery(e.target.value)}
-                    className="w-full pl-9 pr-8 py-2 bg-slate-50 focus:bg-white border border-slate-200 focus:border-[#fd761a] rounded-xl text-xs font-semibold outline-none transition-all"
+                    className="w-full pl-9 pr-8 py-2 bg-slate-50 focus:bg-white border border-slate-200 focus:border-[#2563eb] rounded-xl text-xs font-semibold outline-none transition-all"
                   />
                   {projectSearchQuery && (
                     <button onClick={() => setProjectSearchQuery('')} className="absolute inset-y-0 right-0 pr-2.5 flex items-center text-slate-400 hover:text-red-500">
@@ -814,7 +819,7 @@ export default function AdminDashboard() {
               {/* Grid content references */}
               {loadingProjects ? (
                 <div className="flex flex-col items-center justify-center p-20 gap-3 text-slate-400 bg-white border border-slate-100 rounded-3xl">
-                  <RefreshCw className="w-8 h-8 text-[#fd761a] animate-spin" />
+                  <RefreshCw className="w-8 h-8 text-[#2563eb] animate-spin" />
                   <p className="font-bold uppercase text-[10px] tracking-widest">Lade Referenz-Katalog...</p>
                 </div>
               ) : filteredProjects.length === 0 ? (
@@ -844,7 +849,7 @@ export default function AdminDashboard() {
                           
                           {/* Left upper category tags */}
                           <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
-                            <span className="text-[9px] font-black uppercase tracking-wider bg-orange-600 text-white px-2 py-0.5 rounded-md border border-orange-500 shadow-sm">
+                            <span className="text-[9px] font-black uppercase tracking-wider bg-blue-600 text-white px-2 py-0.5 rounded-md border border-blue-500 shadow-sm">
                               {p.category}
                             </span>
                             <span className="text-[9px] font-black uppercase tracking-wider bg-[#091426] text-white px-2 py-0.5 rounded-md border border-slate-800 shadow-sm">
@@ -856,14 +861,14 @@ export default function AdminDashboard() {
                           <div className="absolute top-3 right-3 flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-200">
                             <button 
                               onClick={() => reorderProject(p, 'up')}
-                              className="p-1.5 bg-white hover:bg-[#fd761a] hover:text-white border border-slate-200 rounded-lg text-slate-600 shadow transition-colors cursor-pointer"
+                              className="p-1.5 bg-white hover:bg-[#2563eb] hover:text-white border border-slate-200 rounded-lg text-slate-600 shadow transition-colors cursor-pointer"
                               title="Reihenfolge nach oben verschieben"
                             >
                               <ArrowUp className="w-3.5 h-3.5" />
                             </button>
                             <button 
                               onClick={() => reorderProject(p, 'down')}
-                              className="p-1.5 bg-white hover:bg-[#fd761a] hover:text-white border border-slate-200 rounded-lg text-slate-600 shadow transition-colors cursor-pointer"
+                              className="p-1.5 bg-white hover:bg-[#2563eb] hover:text-white border border-slate-200 rounded-lg text-slate-600 shadow transition-colors cursor-pointer"
                               title="Reihenfolge nach unten verschieben"
                             >
                               <ArrowDown className="w-3.5 h-3.5" />
@@ -875,7 +880,7 @@ export default function AdminDashboard() {
                         <div className="p-5 flex-1 flex flex-col justify-between">
                           <div>
                             <div className="flex items-start justify-between gap-3 mb-2">
-                              <h3 className="font-extrabold text-sm sm:text-base text-[#091426] uppercase line-clamp-1 group-hover:text-[#fd761a] transition-colors">{p.title}</h3>
+                              <h3 className="font-extrabold text-sm sm:text-base text-[#091426] uppercase line-clamp-1 group-hover:text-[#2563eb] transition-colors">{p.title}</h3>
                               <span className="text-[10px] text-slate-400 font-extrabold shrink-0 uppercase tracking-widest mt-0.5">#{p.order_index}</span>
                             </div>
 
@@ -958,20 +963,20 @@ export default function AdminDashboard() {
                   
                   {/* Step 1: Core credentials */}
                   <div className="bg-[#f8fafc] border border-slate-100 rounded-2xl p-5 space-y-4">
-                    <div className="text-[10px] font-black text-[#fd761a] uppercase tracking-widest flex items-center gap-2 mb-2">
-                      <span className="w-5 h-5 bg-orange-100 text-[#fd761a] rounded-lg flex items-center justify-center text-[10px] font-black">1</span>
+                    <div className="text-[10px] font-black text-[#2563eb] uppercase tracking-widest flex items-center gap-2 mb-2">
+                      <span className="w-5 h-5 bg-blue-100 text-[#2563eb] rounded-lg flex items-center justify-center text-[10px] font-black">1</span>
                       Basis-Informationen des Bauvorhabens
                     </div>
 
                     <div className="flex flex-col gap-1.5">
                       <label className="text-xs font-extrabold text-slate-700" htmlFor="title">Projekttitel *</label>
-                      <input id="title" type="text" required value={formData.title} onChange={handleFormChange} className="w-full bg-white border border-slate-200 focus:border-[#fd761a] focus:ring-1 focus:ring-[#fd761a] rounded-xl p-3 text-xs font-semibold outline-none transition-all placeholder:text-slate-400" placeholder="z.B. Innenausbau Einkaufszentrum Dresden" />
+                      <input id="title" type="text" required value={formData.title} onChange={handleFormChange} className="w-full bg-white border border-slate-200 focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] rounded-xl p-3 text-xs font-semibold outline-none transition-all placeholder:text-slate-400" placeholder="z.B. Innenausbau Einkaufszentrum Dresden" />
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-extrabold text-slate-700" htmlFor="category">Gewerk / Kategorie *</label>
-                        <select id="category" value={formData.category} onChange={handleFormChange} className="w-full bg-white border border-slate-200 focus:border-[#fd761a] rounded-xl p-3 text-xs font-bold outline-none cursor-pointer">
+                        <select id="category" value={formData.category} onChange={handleFormChange} className="w-full bg-white border border-slate-200 focus:border-[#2563eb] rounded-xl p-3 text-xs font-bold outline-none cursor-pointer">
                           <option value="Gewerbe">🏢 Gewerbebau / Büro</option>
                           <option value="Privat">🏠 Privatbau / Wohnung</option>
                           <option value="Industrie">🏭 Industrie / Lagerhallen</option>
@@ -984,7 +989,7 @@ export default function AdminDashboard() {
                         <label className="text-xs font-extrabold text-slate-700 flex items-center gap-1" htmlFor="q">
                           Spachtel-Qualitätsstufe *
                         </label>
-                        <select id="q" value={formData.q} onChange={handleFormChange} className="w-full bg-white border border-slate-200 focus:border-[#fd761a] rounded-xl p-3 text-xs font-bold outline-none cursor-pointer">
+                        <select id="q" value={formData.q} onChange={handleFormChange} className="w-full bg-white border border-slate-200 focus:border-[#2563eb] rounded-xl p-3 text-xs font-bold outline-none cursor-pointer">
                           <option value="Q1">Q1 (Einfache Verspachtelung für Fliesen)</option>
                           <option value="Q2">Q2 (Standardverspachtelung für Raufaser)</option>
                           <option value="Q3">Q3 (Erhöhte Anforderungen für feine Tapeten)</option>
@@ -996,20 +1001,20 @@ export default function AdminDashboard() {
 
                   {/* Step 2: Dimensions */}
                   <div className="bg-[#f8fafc] border border-slate-100 rounded-2xl p-5 space-y-4">
-                    <div className="text-[10px] font-black text-[#fd761a] uppercase tracking-widest flex items-center gap-2 mb-2">
-                      <span className="w-5 h-5 bg-orange-100 text-[#fd761a] rounded-lg flex items-center justify-center text-[10px] font-black">2</span>
+                    <div className="text-[10px] font-black text-[#2563eb] uppercase tracking-widest flex items-center gap-2 mb-2">
+                      <span className="w-5 h-5 bg-blue-100 text-[#2563eb] rounded-lg flex items-center justify-center text-[10px] font-black">2</span>
                       Technische Abmessungen & Termine
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-extrabold text-slate-700" htmlFor="area">Projekt-Gesamtfläche *</label>
-                        <input id="area" type="text" required value={formData.area} onChange={handleFormChange} className="w-full bg-white border border-slate-200 focus:border-[#fd761a] rounded-xl p-3 text-xs font-semibold outline-none" placeholder="z.B. 1.200 m²" />
+                        <input id="area" type="text" required value={formData.area} onChange={handleFormChange} className="w-full bg-white border border-slate-200 focus:border-[#2563eb] rounded-xl p-3 text-xs font-semibold outline-none" placeholder="z.B. 1.200 m²" />
                       </div>
 
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-extrabold text-slate-700" htmlFor="duration">Durchführungszeit / Dauer *</label>
-                        <input id="duration" type="text" required value={formData.duration} onChange={handleFormChange} className="w-full bg-white border border-slate-200 focus:border-[#fd761a] rounded-xl p-3 text-xs font-semibold outline-none" placeholder="z.B. 6 Wochen" />
+                        <input id="duration" type="text" required value={formData.duration} onChange={handleFormChange} className="w-full bg-white border border-slate-200 focus:border-[#2563eb] rounded-xl p-3 text-xs font-semibold outline-none" placeholder="z.B. 6 Wochen" />
                       </div>
                     </div>
 
@@ -1033,8 +1038,8 @@ export default function AdminDashboard() {
 
                   {/* Step 3: Media */}
                   <div className="bg-[#f8fafc] border border-slate-100 rounded-2xl p-5 space-y-4">
-                    <div className="text-[10px] font-black text-[#fd761a] uppercase tracking-widest flex items-center gap-2 mb-2">
-                      <span className="w-5 h-5 bg-orange-100 text-[#fd761a] rounded-lg flex items-center justify-center text-[10px] font-black">3</span>
+                    <div className="text-[10px] font-black text-[#2563eb] uppercase tracking-widest flex items-center gap-2 mb-2">
+                      <span className="w-5 h-5 bg-blue-100 text-[#2563eb] rounded-lg flex items-center justify-center text-[10px] font-black">3</span>
                       Visualisierungen, Bilder & Kundenmeinung
                     </div>
 
@@ -1068,15 +1073,15 @@ export default function AdminDashboard() {
 
                     {/* File Dropzone */}
                     <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
-                      <div className="sm:col-span-6 relative border-2 border-dashed border-slate-200 hover:border-[#fd761a] bg-white rounded-2xl flex flex-col items-center justify-center p-5 text-center cursor-pointer min-h-[110px] transition-all">
+                      <div className="sm:col-span-6 relative border-2 border-dashed border-slate-200 hover:border-[#2563eb] bg-white rounded-2xl flex flex-col items-center justify-center p-5 text-center cursor-pointer min-h-[110px] transition-all">
                         <input type="file" accept="image/*" onChange={handleFileUpload} disabled={uploadingImage} className="absolute inset-0 opacity-0 cursor-pointer w-full h-full" />
                         {uploadingImage ? (
                           <div className="flex flex-col items-center gap-1.5">
-                            <RefreshCw className="w-6 h-6 text-[#fd761a] animate-spin" />
+                            <RefreshCw className="w-6 h-6 text-[#2563eb] animate-spin" />
                             <span className="text-[11px] font-black text-slate-500 uppercase">Foto wird hochgeladen...</span>
                           </div>
                         ) : (
-                          <div className="flex flex-col items-center gap-1 text-slate-500 hover:text-[#fd761a]">
+                          <div className="flex flex-col items-center gap-1 text-slate-500 hover:text-[#2563eb]">
                             <FileUp className="w-6 h-6 text-slate-400" />
                             <span className="text-[10px] font-black uppercase tracking-wider">Bild von Festplatte wählen</span>
                           </div>
@@ -1085,7 +1090,7 @@ export default function AdminDashboard() {
 
                       <div className="sm:col-span-6 flex flex-col gap-2">
                         <span className="text-[10px] font-black uppercase text-slate-400">Oder über direkte Bild-URL:</span>
-                        <input type="text" placeholder="https://..." value={imageInput} onChange={(e) => setImageInput(e.target.value)} className="w-full bg-white border border-slate-200 focus:border-[#fd761a] rounded-xl p-2.5 text-xs outline-none" />
+                        <input type="text" placeholder="https://..." value={imageInput} onChange={(e) => setImageInput(e.target.value)} className="w-full bg-white border border-slate-200 focus:border-[#2563eb] rounded-xl p-2.5 text-xs outline-none" />
                         <button type="button" onClick={addImageUrl} className="w-full py-2 bg-slate-100 hover:bg-slate-200 text-xs font-bold uppercase text-slate-700 tracking-wider rounded-xl transition-colors cursor-pointer">
                           URL hinzufügen
                         </button>
@@ -1095,7 +1100,7 @@ export default function AdminDashboard() {
 
                   {/* Form Submission panels controls */}
                   <div className="flex gap-4 border-t border-slate-100 pt-6">
-                    <button type="submit" disabled={submittingProject} className="flex-1 py-3.5 bg-[#fd761a] hover:bg-[#091426] text-white font-extrabold uppercase text-xs tracking-wider rounded-2xl transition-all cursor-pointer flex items-center justify-center gap-2 shadow-sm shadow-orange-500/10 hover:shadow-md">
+                    <button type="submit" disabled={submittingProject} className="flex-1 py-3.5 bg-[#2563eb] hover:bg-[#091426] text-white font-extrabold uppercase text-xs tracking-wider rounded-2xl transition-all cursor-pointer flex items-center justify-center gap-2 shadow-sm shadow-blue-500/10 hover:shadow-md">
                       {submittingProject ? <RefreshCw className="w-4.5 h-4.5 animate-spin" /> : <Sparkles className="w-4.5 h-4.5" />}
                       {editingProjectId ? 'Projektänderungen sichern' : 'Referenzprojekt veröffentlichen'}
                     </button>
@@ -1127,7 +1132,7 @@ export default function AdminDashboard() {
                       placeholder="Posteingang filtern..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full pl-9 pr-8 py-2 bg-slate-50 focus:bg-white border border-slate-200 focus:border-[#fd761a] rounded-xl text-xs font-semibold outline-none transition-all"
+                      className="w-full pl-9 pr-8 py-2 bg-slate-50 focus:bg-white border border-slate-200 focus:border-[#2563eb] rounded-xl text-xs font-semibold outline-none transition-all"
                     />
                     {searchQuery && (
                       <button onClick={() => setSearchQuery('')} className="absolute inset-y-0 right-0 pr-2.5 flex items-center text-slate-400">
@@ -1142,7 +1147,7 @@ export default function AdminDashboard() {
                       <button
                         key={st}
                         onClick={() => setSubmissionFilter(st)}
-                        className={`px-3 py-1 bg-white hover:bg-slate-50 border rounded-lg text-[10px] font-bold uppercase tracking-wider shrink-0 transition-colors cursor-pointer ${submissionFilter === st ? 'border-[#fd761a] text-[#fd761a] bg-orange-50/20' : 'border-slate-200 text-slate-400'}`}
+                        className={`px-3 py-1 bg-white hover:bg-slate-50 border rounded-lg text-[10px] font-bold uppercase tracking-wider shrink-0 transition-colors cursor-pointer ${submissionFilter === st ? 'border-[#2563eb] text-[#2563eb] bg-blue-50/20' : 'border-slate-200 text-slate-400'}`}
                       >
                         {st === 'all' ? 'Alle' : (st === 'new' ? 'Neu 🔴' : (st === 'read' ? 'Gelesen' : 'Archiv'))}
                       </button>
@@ -1154,7 +1159,7 @@ export default function AdminDashboard() {
                 <div className="flex-1 overflow-y-auto p-3 space-y-2.5">
                   {loadingSubmissions ? (
                     <div className="flex flex-col items-center justify-center py-16 gap-2 text-slate-400">
-                      <RefreshCw className="w-6 h-6 text-[#fd761a] animate-spin" />
+                      <RefreshCw className="w-6 h-6 text-[#2563eb] animate-spin" />
                       <span className="text-[10px] font-bold uppercase">Lade Posteingang...</span>
                     </div>
                   ) : filteredSubmissions.length === 0 ? (
@@ -1173,7 +1178,7 @@ export default function AdminDashboard() {
                         <div 
                           key={sub.id}
                           onClick={() => setSelectedSubmission(sub)}
-                          className={`p-3.5 border rounded-xl cursor-pointer transition-all flex flex-col justify-between gap-1.5 ${isSelected ? 'bg-[#fd761a]/10 border-[#fd761a]/50 shadow-sm' : 'bg-white border-slate-100 hover:border-slate-200 hover:bg-slate-50'}`}
+                          className={`p-3.5 border rounded-xl cursor-pointer transition-all flex flex-col justify-between gap-1.5 ${isSelected ? 'bg-[#2563eb]/10 border-[#2563eb]/50 shadow-sm' : 'bg-white border-slate-100 hover:border-slate-200 hover:bg-slate-50'}`}
                         >
                           <div>
                             <div className="flex items-center justify-between gap-2 mb-1.5">
@@ -1184,7 +1189,7 @@ export default function AdminDashboard() {
                             </div>
 
                             <h4 className="font-bold text-xs text-[#091426] truncate flex items-center gap-1.5">
-                              {isNew && <span className="w-2 h-2 bg-[#fd761a] rounded-full shrink-0" />}
+                              {isNew && <span className="w-2 h-2 bg-[#2563eb] rounded-full shrink-0" />}
                               {sub.name}
                             </h4>
                             <p className="text-[10px] font-medium text-slate-400 truncate mt-0.5">{sub.email}</p>
@@ -1223,7 +1228,7 @@ export default function AdminDashboard() {
                         </div>
 
                         <div className="flex items-center gap-1.5">
-                          <span className="text-[9px] font-black uppercase tracking-widest bg-orange-50 text-[#fd761a] px-2.5 py-1 rounded-md border border-orange-200">
+                          <span className="text-[9px] font-black uppercase tracking-widest bg-blue-50 text-[#2563eb] px-2.5 py-1 rounded-md border border-blue-200">
                             {selectedSubmission.form_type === 'career' ? 'Karriere' : (selectedSubmission.form_type === 'callback' ? 'Rückrufanforderung' : 'Kontakt')}
                           </span>
                         </div>
@@ -1233,7 +1238,7 @@ export default function AdminDashboard() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                         <div className="bg-slate-50 border border-slate-100 p-3 rounded-xl flex flex-col gap-1.5">
                           <span className="text-[9px] uppercase font-black text-slate-400 tracking-wider">E-Mail-Adresse:</span>
-                          <a href={`mailto:${selectedSubmission.email}`} className="text-slate-800 hover:text-[#fd761a] font-extrabold text-xs sm:text-sm flex items-center gap-2 truncate">
+                          <a href={`mailto:${selectedSubmission.email}`} className="text-slate-800 hover:text-[#2563eb] font-extrabold text-xs sm:text-sm flex items-center gap-2 truncate">
                             <Mail className="w-4 h-4 text-slate-400 shrink-0" /> {selectedSubmission.email}
                           </a>
                         </div>
@@ -1241,7 +1246,7 @@ export default function AdminDashboard() {
                         <div className="bg-slate-50 border border-slate-100 p-3 rounded-xl flex flex-col gap-1.5">
                           <span className="text-[9px] uppercase font-black text-slate-400 tracking-wider">Telefonnummer:</span>
                           {selectedSubmission.phone ? (
-                            <a href={`tel:${selectedSubmission.phone}`} className="text-slate-800 hover:text-[#fd761a] font-extrabold text-xs sm:text-sm flex items-center gap-2 truncate">
+                            <a href={`tel:${selectedSubmission.phone}`} className="text-slate-800 hover:text-[#2563eb] font-extrabold text-xs sm:text-sm flex items-center gap-2 truncate">
                               <Phone className="w-4 h-4 text-slate-400 shrink-0" /> {selectedSubmission.phone}
                             </a>
                           ) : (
@@ -1250,7 +1255,7 @@ export default function AdminDashboard() {
                         </div>
 
                         {selectedSubmission.service && (
-                          <div className="bg-[#fd761a]/5 border border-[#fd761a]/10 p-3.5 rounded-xl flex flex-col gap-1.5 sm:col-span-2">
+                          <div className="bg-[#2563eb]/5 border border-[#2563eb]/10 p-3.5 rounded-xl flex flex-col gap-1.5 sm:col-span-2">
                             <span className="text-[9px] uppercase font-black text-slate-400 tracking-wider">Gewünschte Leistung / Gewerk:</span>
                             <span className="text-[#091426] font-extrabold text-xs uppercase flex items-center gap-2">
                               🛠️ {selectedSubmission.service}
@@ -1274,7 +1279,7 @@ export default function AdminDashboard() {
                       <div className="flex flex-wrap gap-2">
                         <a 
                           href={`mailto:${selectedSubmission.email}?subject=Ihre Anfrage bei VpTrockenbau`} 
-                          className="px-4 py-2 bg-[#091426] hover:bg-[#fd761a] text-white text-xs font-bold uppercase rounded-xl transition-all flex items-center gap-1.5 shadow-sm"
+                          className="px-4 py-2 bg-[#091426] hover:bg-[#2563eb] text-white text-xs font-bold uppercase rounded-xl transition-all flex items-center gap-1.5 shadow-sm"
                         >
                           <Mail className="w-4 h-4" /> E-Mail schreiben
                         </a>
@@ -1282,7 +1287,7 @@ export default function AdminDashboard() {
                         {selectedSubmission.phone && (
                           <a 
                             href={`tel:${selectedSubmission.phone}`} 
-                            className="px-4 py-2 bg-orange-50 hover:bg-[#fd761a]/10 text-[#fd761a] text-xs font-bold uppercase rounded-xl transition-all border border-orange-200/50 flex items-center gap-1.5"
+                            className="px-4 py-2 bg-blue-50 hover:bg-[#2563eb]/10 text-[#2563eb] text-xs font-bold uppercase rounded-xl transition-all border border-blue-200/50 flex items-center gap-1.5"
                           >
                             <Phone className="w-4 h-4" /> Anrufen
                           </a>
@@ -1309,7 +1314,7 @@ export default function AdminDashboard() {
                         ) : (
                           <button 
                             onClick={() => updateSubmissionStatus(selectedSubmission.id, 'new')}
-                            className="px-4 py-2 bg-slate-100 hover:bg-[#fd761a] hover:text-white text-slate-600 text-xs font-bold uppercase rounded-xl transition-all flex items-center gap-1 cursor-pointer"
+                            className="px-4 py-2 bg-slate-100 hover:bg-[#2563eb] hover:text-white text-slate-600 text-xs font-bold uppercase rounded-xl transition-all flex items-center gap-1 cursor-pointer"
                           >
                             <Check className="w-4 h-4" /> Reaktivieren
                           </button>

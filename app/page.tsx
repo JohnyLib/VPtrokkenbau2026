@@ -17,17 +17,17 @@ export default function Home() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="flex flex-col gap-8 z-10 p-4"
         >
-          <span className="text-sm font-bold uppercase text-[#fd761a] tracking-widest bg-[#eae7e9] border border-[#091426] px-3 py-1 self-start shadow-[2px_2px_0px_0px_#091426]">
+          <span className="text-sm font-bold uppercase text-[#2563eb] tracking-widest bg-[#eae7e9] border border-[#091426] px-3 py-1 self-start shadow-[2px_2px_0px_0px_#091426]">
             Ihr Trockenbau-Spezialist in Dresden
           </span>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-[#091426] border-l-8 border-[#fd761a] pl-6 leading-tight tracking-tight uppercase">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-[#091426] border-l-8 border-[#2563eb] pl-6 leading-tight tracking-tight uppercase">
             Präzision im Trockenbau & Innenausbau Dresden
           </h1>
           <p className="text-lg text-[#45474c] max-w-xl">
             Ihr zertifizierter Fachpartner für erstklassige Spachtelarbeiten (Q1-Q4), professionelle Gipskartonmontage, Fugenverspachtelung und Akustikbau im Großraum Dresden und ganz Sachsen.
           </p>
           <div className="mt-4 flex flex-col sm:flex-row gap-4">
-            <Link href="/kontakt" className="bg-[#1e293b] text-white font-bold uppercase px-6 sm:px-8 py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:bg-[#fd761a] hover:text-white transition-all inline-flex items-center gap-2 group active:translate-y-1 active:shadow-[2px_2px_0px_0px_#091426] text-xs sm:text-sm md:text-base text-center justify-center w-full sm:w-auto">
+            <Link href="/kontakt" className="bg-[#1e293b] text-white font-bold uppercase px-6 sm:px-8 py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:bg-[#2563eb] hover:text-white transition-all inline-flex items-center gap-2 group active:translate-y-1 active:shadow-[2px_2px_0px_0px_#091426] text-xs sm:text-sm md:text-base text-center justify-center w-full sm:w-auto">
               <span>Ausschreibung einreichen</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform shrink-0" />
             </Link>
@@ -40,7 +40,7 @@ export default function Home() {
           className="relative h-[400px] lg:h-[600px] border-2 border-[#091426] shadow-[4px_4px_0px_0px_#091426] bg-[#eae7e9] overflow-hidden group"
         >
           <Image src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Exklusive Trockenbau- und Spachtelarbeiten in Dresden" fill sizes="(max-width: 1024px) 100vw, 50vw" priority className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
-          <div className="absolute bottom-0 left-0 bg-[#fd761a] text-[#091426] font-bold uppercase px-4 py-2 border-t-2 border-r-2 border-[#091426]">
+          <div className="absolute bottom-0 left-0 bg-[#2563eb] text-[#091426] font-bold uppercase px-4 py-2 border-t-2 border-r-2 border-[#091426]">
             Qualitätsstufe Q4 Dresden
           </div>
         </motion.div>
@@ -61,7 +61,7 @@ export default function Home() {
           ].map((s, i) => (
             <div key={i} className="bg-white border border-[#091426] p-6 shadow-[4px_4px_0px_0px_#091426] flex flex-col gap-4 hover:bg-[#f5f3f4] transition-colors">
               <div className="w-12 h-12 bg-[#1e293b] flex items-center justify-center border border-[#091426]">
-                <s.icon className="text-[#fd761a] w-6 h-6" />
+                <s.icon className="text-[#2563eb] w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold text-[#091426] uppercase">{s.title}</h3>
               <p className="text-[#45474c]">{s.desc}</p>
@@ -109,12 +109,12 @@ export default function Home() {
             >
               <div className="h-48 border-b border-[#091426] relative overflow-hidden">
                 <Image src={p.img} alt={p.title} fill sizes="(max-width: 768px) 100vw, 33vw" loading="lazy" className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500" />
-                <div className="absolute top-2 right-2 bg-[#fd761a] text-white px-2 py-1 text-xs font-bold uppercase border border-[#091426]">
+                <div className="absolute top-2 right-2 bg-[#2563eb] text-white px-2 py-1 text-xs font-bold uppercase border border-[#091426]">
                   {p.category}
                 </div>
               </div>
               <div className="p-4 flex flex-col">
-                <h3 className="text-lg font-bold text-[#091426] uppercase leading-tight group-hover:text-[#fd761a] transition-colors">{p.title}</h3>
+                <h3 className="text-lg font-bold text-[#091426] uppercase leading-tight group-hover:text-[#2563eb] transition-colors">{p.title}</h3>
               </div>
             </motion.div>
           ))}
@@ -125,7 +125,7 @@ export default function Home() {
       <section className="pt-16" id="ueber-uns">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           <div className="lg:col-span-5 bg-[#1e293b] text-white p-8 md:p-12 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] flex flex-col justify-center">
-            <h2 className="text-3xl font-bold text-[#fd761a] mb-6 uppercase tracking-tight">Über Uns</h2>
+            <h2 className="text-3xl font-bold text-[#2563eb] mb-6 uppercase tracking-tight">Über Uns</h2>
             <p className="text-lg mb-6 leading-relaxed">
               VpTrockenbau steht für kompromisslose Qualität im regionalen Trockenbau im Großraum Dresden. Mit jahrelanger Erfahrung in der Umsetzung komplexer Bauvorhaben verbinden wir sächsisches Handwerk mit modernster Systemtechnik.
             </p>
@@ -169,7 +169,7 @@ export default function Home() {
             }
           ].map((item, i) => (
             <div key={i} className="bg-white border border-[#091426] p-6 shadow-[4px_4px_0px_0px_#091426] flex flex-col gap-4 hover:bg-[#f5f3f4] transition-colors group">
-              <div className="w-12 h-12 bg-[#091426] flex items-center justify-center border border-[#091426] group-hover:bg-[#fd761a] transition-colors">
+              <div className="w-12 h-12 bg-[#091426] flex items-center justify-center border border-[#091426] group-hover:bg-[#2563eb] transition-colors">
                 <item.icon className="text-white w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold text-[#091426] uppercase">{item.title}</h3>
@@ -184,14 +184,14 @@ export default function Home() {
         <div className="bg-[#1e293b] text-white p-8 md:p-12 border border-[#091426] shadow-[4px_4px_0px_0px_#091426]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-5 space-y-6">
-              <div className="inline-block bg-[#fd761a] text-white px-3 py-1 text-xs font-bold uppercase tracking-wider border border-[#091426]">Regionaler Partner</div>
+              <div className="inline-block bg-[#2563eb] text-white px-3 py-1 text-xs font-bold uppercase tracking-wider border border-[#091426]">Regionaler Partner</div>
               <h2 className="text-3xl md:text-4xl font-extrabold uppercase tracking-tight text-white leading-none">
                 Unser Einzugsgebiet<br/>in Sachsen
               </h2>
               <p className="text-slate-300">
                 Als lokaler Trockenbau-Fachbetrieb sind wir in ganz Dresden und im sächsischen Umland schnell für Sie vor Ort. Wir übernehmen Projekte im privaten und gewerblichen Bereich.
               </p>
-              <div className="flex items-center gap-2 text-[#fd761a] font-bold text-sm uppercase tracking-wider">
+              <div className="flex items-center gap-2 text-[#2563eb] font-bold text-sm uppercase tracking-wider">
                 <MapPin className="w-5 h-5" />
                 <span>Einsatzort Dresden & Umkreis</span>
               </div>
@@ -211,7 +211,7 @@ export default function Home() {
                 { title: 'Heidenau', zip: '01809' },
                 { title: 'Radeburg', zip: '01471' }
               ].map((loc, i) => (
-                <div key={i} className="bg-[#091426] border border-slate-800 p-4 flex flex-col gap-1 hover:border-[#fd761a] transition-colors">
+                <div key={i} className="bg-[#091426] border border-slate-800 p-4 flex flex-col gap-1 hover:border-[#2563eb] transition-colors">
                   <span className="text-white font-bold text-sm sm:text-base leading-tight">{loc.title}</span>
                   <span className="text-slate-500 text-xs font-mono">PLZ: {loc.zip}</span>
                 </div>
@@ -250,19 +250,19 @@ export default function Home() {
           ].map((review, i) => (
             <div key={i} className="bg-white border border-[#091426] p-6 shadow-[4px_4px_0px_0px_#091426] flex flex-col justify-between">
               <div className="space-y-4">
-                <div className="flex gap-1 text-[#fd761a]">
+                <div className="flex gap-1 text-[#2563eb]">
                   {[...Array(5)].map((_, idx) => (
                     <Star key={idx} className="w-5 h-5 fill-current" />
                   ))}
                 </div>
                 <p className="text-[#45474c] text-sm italic leading-relaxed">
-                  "{review.text}"
+                  &quot;{review.text}&quot;
                 </p>
               </div>
               <div className="mt-6 pt-4 border-t border-[#eae7e9] flex flex-col">
                 <span className="font-bold text-[#091426] uppercase text-sm">{review.name}</span>
                 <span className="text-xs text-slate-500">{review.role}</span>
-                <span className="text-xs text-[#fd761a] font-semibold mt-1 uppercase tracking-wider">{review.project}</span>
+                <span className="text-xs text-[#2563eb] font-semibold mt-1 uppercase tracking-wider">{review.project}</span>
               </div>
             </div>
           ))}

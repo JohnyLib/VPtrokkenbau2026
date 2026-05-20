@@ -30,7 +30,7 @@ function ProjectCard({ p, index, onClick }: { p: any, index: number, onClick: ()
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.3 }}
       onClick={onClick}
-      className="border-2 border-[#091426] bg-white shadow-[4px_4px_0px_0px_#091426] flex flex-col group hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#fd761a] transition-all duration-300 cursor-pointer"
+      className="border-2 border-[#091426] bg-white shadow-[4px_4px_0px_0px_#091426] flex flex-col group hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#2563eb] transition-all duration-300 cursor-pointer"
     >
       <div className="h-56 border-b-2 border-[#091426] relative overflow-hidden bg-[#eae7e9] group/slider">
         <AnimatePresence initial={false}>
@@ -52,26 +52,26 @@ function ProjectCard({ p, index, onClick }: { p: any, index: number, onClick: ()
 
         {p.images.length > 1 && (
           <>
-            <button onClick={prevImage} className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 p-1 border border-[#091426] text-[#091426] opacity-0 group-hover/slider:opacity-100 hover:bg-[#fd761a] hover:text-white transition-all shadow-[2px_2px_0px_0px_#091426] z-10" aria-label="Vorheriges Bild">
+            <button onClick={prevImage} className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 p-1 border border-[#091426] text-[#091426] opacity-0 group-hover/slider:opacity-100 hover:bg-[#2563eb] hover:text-white transition-all shadow-[2px_2px_0px_0px_#091426] z-10" aria-label="Vorheriges Bild">
               <ChevronLeft className="w-5 h-5" />
             </button>
-            <button onClick={nextImage} className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 p-1 border border-[#091426] text-[#091426] opacity-0 group-hover/slider:opacity-100 hover:bg-[#fd761a] hover:text-white transition-all shadow-[2px_2px_0px_0px_#091426] z-10" aria-label="Nächstes Bild">
+            <button onClick={nextImage} className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 p-1 border border-[#091426] text-[#091426] opacity-0 group-hover/slider:opacity-100 hover:bg-[#2563eb] hover:text-white transition-all shadow-[2px_2px_0px_0px_#091426] z-10" aria-label="Nächstes Bild">
               <ChevronRight className="w-5 h-5" />
             </button>
             <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10 bg-white/80 px-2 py-1 border border-[#091426]">
               {p.images.map((_: any, dotIndex: number) => (
-                <div key={dotIndex} className={`w-2 h-2 rounded-full ${dotIndex === currentImage ? 'bg-[#fd761a]' : 'bg-[#091426]/50'}`} />
+                <div key={dotIndex} className={`w-2 h-2 rounded-full ${dotIndex === currentImage ? 'bg-[#2563eb]' : 'bg-[#091426]/50'}`} />
               ))}
             </div>
           </>
         )}
 
-        <div className="absolute top-3 right-3 bg-[#fd761a] text-white px-3 py-1.5 text-xs font-bold uppercase border border-[#091426] shadow-[2px_2px_0px_0px_#091426] z-10">
+        <div className="absolute top-3 right-3 bg-[#2563eb] text-white px-3 py-1.5 text-xs font-bold uppercase border border-[#091426] shadow-[2px_2px_0px_0px_#091426] z-10">
           {p.category}
         </div>
       </div>
       <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-xl font-bold text-[#091426] mb-5 uppercase leading-tight group-hover:text-[#fd761a] transition-colors">{p.title}</h3>
+        <h3 className="text-xl font-bold text-[#091426] mb-5 uppercase leading-tight group-hover:text-[#2563eb] transition-colors">{p.title}</h3>
         <div className="mt-auto pt-5 border-t border-[#c5c6cd]">
           <table className="w-full text-left text-sm font-medium">
             <tbody className="divide-y divide-[#eae7e9]">
@@ -113,12 +113,12 @@ function ProjectModal({ p, onClose }: { p: any, onClose: () => void }) {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 20, scale: 0.95 }}
         transition={{ duration: 0.3 }}
-        className="bg-white border-2 border-[#091426] shadow-[8px_8px_0px_0px_#fd761a] w-full max-w-5xl max-h-[90vh] overflow-y-auto flex flex-col md:flex-row relative"
+        className="bg-white border-2 border-[#091426] shadow-[8px_8px_0px_0px_#2563eb] w-full max-w-5xl max-h-[90vh] overflow-y-auto flex flex-col md:flex-row relative"
         onClick={(e) => e.stopPropagation()}
       >
         <button 
           onClick={onClose} 
-          className="absolute top-4 right-4 bg-white/90 p-2 border border-[#091426] text-[#091426] hover:bg-[#fd761a] hover:text-white transition-all shadow-[2px_2px_0px_0px_#091426] z-20"
+          className="absolute top-4 right-4 bg-white/90 p-2 border border-[#091426] text-[#091426] hover:bg-[#2563eb] hover:text-white transition-all shadow-[2px_2px_0px_0px_#091426] z-20"
           aria-label="Schließen"
         >
           <X className="w-6 h-6" />
@@ -146,15 +146,15 @@ function ProjectModal({ p, onClose }: { p: any, onClose: () => void }) {
 
             {p.images.length > 1 && (
               <>
-                <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 p-2 border border-[#091426] text-[#091426] hover:bg-[#fd761a] hover:text-white transition-all shadow-[2px_2px_0px_0px_#091426] z-10" aria-label="Vorheriges Bild">
+                <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 p-2 border border-[#091426] text-[#091426] hover:bg-[#2563eb] hover:text-white transition-all shadow-[2px_2px_0px_0px_#091426] z-10" aria-label="Vorheriges Bild">
                   <ChevronLeft className="w-6 h-6" />
                 </button>
-                <button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 p-2 border border-[#091426] text-[#091426] hover:bg-[#fd761a] hover:text-white transition-all shadow-[2px_2px_0px_0px_#091426] z-10" aria-label="Nächstes Bild">
+                <button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 p-2 border border-[#091426] text-[#091426] hover:bg-[#2563eb] hover:text-white transition-all shadow-[2px_2px_0px_0px_#091426] z-10" aria-label="Nächstes Bild">
                   <ChevronRight className="w-6 h-6" />
                 </button>
               </>
             )}
-            <div className="absolute top-4 left-4 bg-[#fd761a] text-white px-4 py-2 text-sm font-bold uppercase border border-[#091426] shadow-[2px_2px_0px_0px_#091426] z-10">
+            <div className="absolute top-4 left-4 bg-[#2563eb] text-white px-4 py-2 text-sm font-bold uppercase border border-[#091426] shadow-[2px_2px_0px_0px_#091426] z-10">
               {p.category}
             </div>
           </div>
@@ -167,7 +167,7 @@ function ProjectModal({ p, onClose }: { p: any, onClose: () => void }) {
                   <button 
                     key={idx}
                     onClick={(e) => { e.stopPropagation(); setCurrentImage(idx); }}
-                    className={`relative w-24 h-16 shrink-0 border-2 overflow-hidden transition-all ${idx === currentImage ? 'border-[#fd761a] shadow-[2px_2px_0px_0px_#fd761a] scale-105' : 'border-[#091426] hover:border-[#fd761a] opacity-60 hover:opacity-100 hover:shadow-[2px_2px_0px_0px_#091426]'} cursor-pointer`}
+                    className={`relative w-24 h-16 shrink-0 border-2 overflow-hidden transition-all ${idx === currentImage ? 'border-[#2563eb] shadow-[2px_2px_0px_0px_#2563eb] scale-105' : 'border-[#091426] hover:border-[#2563eb] opacity-60 hover:opacity-100 hover:shadow-[2px_2px_0px_0px_#091426]'} cursor-pointer`}
                     aria-label={`Gehe zu Bild ${idx + 1}`}
                   >
                     <Image src={img} alt={`Thumbnail ${idx + 1}`} fill sizes="96px" loading="lazy" className="object-cover" />
@@ -180,7 +180,7 @@ function ProjectModal({ p, onClose }: { p: any, onClose: () => void }) {
 
         {/* Right Side: Details */}
         <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col">
-          <h2 className="text-3xl font-bold text-[#091426] mb-6 uppercase border-l-4 border-[#fd761a] pl-4 leading-tight pr-8">{p.title}</h2>
+          <h2 className="text-3xl font-bold text-[#091426] mb-6 uppercase border-l-4 border-[#2563eb] pl-4 leading-tight pr-8">{p.title}</h2>
           
           <div className="grid grid-cols-2 gap-y-4 gap-x-6 mb-8 text-sm md:text-base border-y-2 border-[#eae7e9] py-6">
             <div>
@@ -199,7 +199,7 @@ function ProjectModal({ p, onClose }: { p: any, onClose: () => void }) {
               <div>
                 <span className="block text-[#45474c] mb-1 font-medium">Standort:</span>
                 <span className="font-bold text-[#091426] flex items-center gap-1.5">
-                  <MapPin className="w-4 h-4 text-[#fd761a] inline" /> {p.location}
+                  <MapPin className="w-4 h-4 text-[#2563eb] inline" /> {p.location}
                 </span>
               </div>
             )}
@@ -214,7 +214,7 @@ function ProjectModal({ p, onClose }: { p: any, onClose: () => void }) {
                 </p>
                 {p.client && (
                   <div className="flex items-center gap-2 font-bold text-[#45474c] uppercase text-sm border-t border-[#eae7e9] pt-4">
-                    <Building2 className="w-4 h-4 text-[#fd761a]" />
+                    <Building2 className="w-4 h-4 text-[#2563eb]" />
                     {p.client}
                   </div>
                 )}
@@ -223,7 +223,7 @@ function ProjectModal({ p, onClose }: { p: any, onClose: () => void }) {
 
             {!p.testimonial && p.client && (
                <div className="flex items-center gap-2 font-bold text-[#45474c] uppercase mt-auto">
-                 <Building2 className="w-5 h-5 text-[#fd761a]" />
+                 <Building2 className="w-5 h-5 text-[#2563eb]" />
                  Auftraggeber: {p.client}
                </div>
             )}
@@ -256,7 +256,8 @@ const steps = [
 ];
 
 export function PortfolioClient() {
-  const [projects, setProjects] = useState<PortfolioProject[]>(staticProjects);
+  const [projects, setProjects] = useState<PortfolioProject[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("Alle");
   const [activeQuality, setActiveQuality] = useState("Alle");
   const [selectedProject, setSelectedProject] = useState<any>(null);
@@ -273,6 +274,8 @@ export function PortfolioClient() {
         }
       } catch (err) {
         console.error('Failed to load portfolio projects from database:', err);
+      } finally {
+        setIsLoading(false);
       }
     };
     loadProjects();
@@ -302,14 +305,14 @@ export function PortfolioClient() {
         className="border-2 border-[#091426] bg-white p-8 md:p-12 shadow-[4px_4px_0px_0px_#091426] flex flex-col lg:flex-row items-center gap-12"
       >
         <div className="flex-1 flex flex-col gap-6">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-[#091426] uppercase border-l-8 border-[#fd761a] pl-4 tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-[#091426] uppercase border-l-8 border-[#2563eb] pl-4 tracking-tight">
             Unsere Referenzen
           </h1>
           <p className="text-lg text-[#45474c] max-w-2xl leading-relaxed">
             Entdecken Sie unsere herausragenden Projekte im Großraum Dresden. Von modernen Bürokomplexen bis hin zu luxuriösen Villen – VpTrockenbau steht für höchste Qualität, Termintreue und architektonische Exzellenz im Trockenbau.
           </p>
           <div className="pt-4">
-            <Link href="/kontakt" className="bg-[#1e293b] text-white font-bold uppercase px-8 py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:bg-[#fd761a] transition-all inline-flex items-center gap-2 group active:translate-y-1">
+            <Link href="/kontakt" className="bg-[#1e293b] text-white font-bold uppercase px-8 py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:bg-[#2563eb] transition-all inline-flex items-center gap-2 group active:translate-y-1">
               Projekt anfragen <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -334,7 +337,7 @@ export function PortfolioClient() {
                 <button 
                   key={i} 
                   onClick={() => setActiveCategory(c)}
-                  className={`px-4 py-2 font-bold text-sm uppercase transition-colors border-2 ${activeCategory === c ? 'border-[#091426] bg-[#091426] text-white shadow-[2px_2px_0px_0px_#fd761a]' : 'border-[#091426] bg-white text-[#091426] hover:bg-[#eae7e9]'}`}
+                  className={`px-4 py-2 font-bold text-sm uppercase transition-colors border-2 ${activeCategory === c ? 'border-[#091426] bg-[#091426] text-white shadow-[2px_2px_0px_0px_#2563eb]' : 'border-[#091426] bg-white text-[#091426] hover:bg-[#eae7e9]'}`}
                 >
                   {c}
                 </button>
@@ -351,7 +354,7 @@ export function PortfolioClient() {
                 <button 
                   key={i} 
                   onClick={() => setActiveQuality(q)}
-                  className={`px-4 py-2 font-bold text-sm uppercase transition-colors border-2 ${activeQuality === q ? 'border-[#091426] bg-[#091426] text-white shadow-[2px_2px_0px_0px_#fd761a]' : 'border-[#091426] bg-white text-[#091426] hover:bg-[#eae7e9]'}`}
+                  className={`px-4 py-2 font-bold text-sm uppercase transition-colors border-2 ${activeQuality === q ? 'border-[#091426] bg-[#091426] text-white shadow-[2px_2px_0px_0px_#2563eb]' : 'border-[#091426] bg-white text-[#091426] hover:bg-[#eae7e9]'}`}
                 >
                   {q}
                 </button>
@@ -360,10 +363,38 @@ export function PortfolioClient() {
           </div>
         </div>
 
-        {filteredProjects.length === 0 ? (
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[...Array(6)].map((_, i) => (
+              <div 
+                key={i} 
+                className="border-2 border-[#091426] bg-white shadow-[4px_4px_0px_0px_#091426] flex flex-col h-[400px] animate-pulse"
+              >
+                <div className="h-56 bg-slate-200/60 border-b-2 border-[#091426]" />
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="h-6 bg-slate-200 rounded w-3/4 mb-5" />
+                  <div className="mt-auto pt-5 border-t border-[#c5c6cd]">
+                    <div className="flex items-center justify-between h-10 border-b border-[#eae7e9]">
+                      <div className="h-4 bg-slate-200 rounded w-1/3" />
+                      <div className="h-4 bg-slate-200 rounded w-1/4" />
+                    </div>
+                    <div className="flex items-center justify-between h-10 border-b border-[#eae7e9]">
+                      <div className="h-4 bg-slate-200 rounded w-1/4" />
+                      <div className="h-4 bg-slate-200 rounded w-1/3" />
+                    </div>
+                    <div className="flex items-center justify-between h-10">
+                      <div className="h-4 bg-slate-200 rounded w-1/3" />
+                      <div className="h-4 bg-slate-200 rounded w-1/5" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : filteredProjects.length === 0 ? (
           <div className="bg-white border-2 border-[#091426] p-8 text-center text-[#45474c] shadow-[4px_4px_0px_0px_#091426]">
              <p className="text-lg">Keine Projekte mit den gewählten Kriterien gefunden.</p>
-             <button onClick={() => {setActiveCategory("Alle"); setActiveQuality("Alle");}} className="mt-4 text-[#fd761a] font-bold uppercase hover:underline">Filter zurücksetzen</button>
+             <button onClick={() => {setActiveCategory("Alle"); setActiveQuality("Alle");}} className="mt-4 text-[#2563eb] font-bold uppercase hover:underline">Filter zurücksetzen</button>
           </div>
         ) : (
           <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -399,7 +430,7 @@ export function PortfolioClient() {
                key={i} 
                className="relative"
              >
-                <div className={`absolute -left-10 md:-left-12 top-0 w-10 h-10 flex items-center justify-center font-bold text-sm border-2 border-[#091426] ${s.highlight ? 'bg-[#fd761a] text-white shadow-[2px_2px_0px_0px_#091426]' : 'bg-white text-[#091426] shadow-[2px_2px_0px_0px_#091426]'} z-10 transition-colors`}>
+                <div className={`absolute -left-10 md:-left-12 top-0 w-10 h-10 flex items-center justify-center font-bold text-sm border-2 border-[#091426] ${s.highlight ? 'bg-[#2563eb] text-white shadow-[2px_2px_0px_0px_#091426]' : 'bg-white text-[#091426] shadow-[2px_2px_0px_0px_#091426]'} z-10 transition-colors`}>
                     {s.num}
                 </div>
                 <div className="pl-6 md:pl-8 bg-transparent">

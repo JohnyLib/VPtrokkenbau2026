@@ -72,15 +72,15 @@ export function HomeContactForm() {
             </p>
             <div className="mt-auto flex flex-col gap-4 pt-8">
               <div className="flex items-start gap-3 text-[#091426] font-bold text-sm uppercase">
-                <Mail className="w-5 h-5 text-[#fd761a] mt-0.5" />
+                <Mail className="w-5 h-5 text-[#2563eb] mt-0.5" />
                 <div className="flex flex-col gap-1">
-                  <a href="mailto:info@vptrockenbau.de" className="hover:text-[#fd761a] transition-colors">info@vptrockenbau.de</a>
-                  <a href="mailto:perevalovvasilii@gmail.com" className="text-xs text-[#45474c] lowercase font-semibold hover:text-[#fd761a] transition-colors">perevalovvasilii@gmail.com</a>
+                  <a href="mailto:info@vptrockenbau.de" className="hover:text-[#2563eb] transition-colors">info@vptrockenbau.de</a>
+                  <a href="mailto:perevalovvasilii@gmail.com" className="text-xs text-[#45474c] lowercase font-semibold hover:text-[#2563eb] transition-colors">perevalovvasilii@gmail.com</a>
                 </div>
               </div>
               <div className="flex items-center gap-3 text-[#091426] font-bold text-sm uppercase">
-                <Phone className="w-5 h-5 text-[#fd761a]" />
-                <a href="tel:+4915161559335" className="hover:text-[#fd761a] transition-colors">+49 (0) 151 61559335</a>
+                <Phone className="w-5 h-5 text-[#2563eb]" />
+                <a href="tel:+4915161559335" className="hover:text-[#2563eb] transition-colors">+49 (0) 151 61559335</a>
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@ export function HomeContactForm() {
                     onChange={handleChange}
                     required
                     autoComplete="name"
-                    className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-2 focus:ring-[#fd761a]/20 outline-none transition-all"
+                    className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/20 outline-none transition-all"
                     type="text"
                   />
                 </div>
@@ -110,7 +110,7 @@ export function HomeContactForm() {
                     onChange={handleChange}
                     required
                     autoComplete="email"
-                    className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-2 focus:ring-[#fd761a]/20 outline-none transition-all"
+                    className="border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/20 outline-none transition-all"
                     type="email"
                   />
                 </div>
@@ -123,7 +123,7 @@ export function HomeContactForm() {
                     name="service"
                     value={formData.service}
                     onChange={handleChange}
-                    className="w-full border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#fd761a] focus:ring-2 focus:ring-[#fd761a]/20 outline-none appearance-none rounded-none"
+                    className="w-full border border-[#091426] bg-[#fbf8fa] p-3 focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/20 outline-none appearance-none rounded-none"
                   >
                     <option>Gewerblicher Innenausbau</option>
                     <option>Wohnungsbau (Großprojekt)</option>
@@ -147,7 +147,7 @@ export function HomeContactForm() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="bg-[#1e293b] text-white font-bold uppercase py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] transition-all hover:bg-[#fd761a] active:translate-y-1 mt-4 disabled:opacity-50 min-h-[58px]"
+                className="bg-[#1e293b] text-white font-bold uppercase py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] transition-all hover:bg-[#2563eb] active:translate-y-1 mt-4 disabled:opacity-50 min-h-[58px]"
               >
                 {isLoading ? 'Senden...' : 'Anfrage Senden'}
               </button>

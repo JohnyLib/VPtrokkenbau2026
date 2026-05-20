@@ -8,7 +8,7 @@ export function Footer() {
         {/* Spalte 1: Brand & SEO */}
         <div className="flex flex-col gap-4">
           <div className="text-2xl font-black tracking-tighter text-white uppercase">
-            Vp<span className="text-[#fd761a]">Trockenbau</span>
+            Vp<span className="text-[#2563eb]">Trockenbau</span>
           </div>
           <p className="text-sm text-slate-400 leading-relaxed">
             Ihr professioneller Fachbetrieb für Trockenbau, präzise Spachtelarbeiten (Q1-Q4), Gipskartonmontage und Akustikbau im Großraum Dresden und ganz Sachsen.
@@ -24,11 +24,11 @@ export function Footer() {
             Unsere Leistungen
           </h3>
           <nav className="flex flex-col gap-2.5 text-sm">
-            <Link href="/leistungen" className="hover:text-[#fd761a] transition-colors">Trockenbau & Trennwände</Link>
-            <Link href="/leistungen" className="hover:text-[#fd761a] transition-colors">Spachtelarbeiten Q1-Q4</Link>
-            <Link href="/leistungen" className="hover:text-[#fd761a] transition-colors">Fugenverspachtelung</Link>
-            <Link href="/leistungen" className="hover:text-[#fd761a] transition-colors">Gipskartonmontage</Link>
-            <Link href="/leistungen" className="hover:text-[#fd761a] transition-colors">Akustikdecken & Schallschutz</Link>
+            <Link href="/leistungen" className="hover:text-[#2563eb] transition-colors">Trockenbau & Trennwände</Link>
+            <Link href="/leistungen" className="hover:text-[#2563eb] transition-colors">Spachtelarbeiten Q1-Q4</Link>
+            <Link href="/leistungen" className="hover:text-[#2563eb] transition-colors">Fugenverspachtelung</Link>
+            <Link href="/leistungen" className="hover:text-[#2563eb] transition-colors">Gipskartonmontage</Link>
+            <Link href="/leistungen" className="hover:text-[#2563eb] transition-colors">Akustikdecken & Schallschutz</Link>
           </nav>
         </div>
 
@@ -38,11 +38,11 @@ export function Footer() {
             Unternehmen
           </h3>
           <nav className="flex flex-col gap-2.5 text-sm">
-            <Link href="/" className="hover:text-[#fd761a] transition-colors">Startseite</Link>
-            <Link href="/portfolio" className="hover:text-[#fd761a] transition-colors">Referenzen & Portfolio</Link>
-            <Link href="/faq" className="hover:text-[#fd761a] transition-colors">Häufige Fragen (FAQ)</Link>
-            <Link href="/karriere" className="hover:text-[#fd761a] transition-colors">Karriere & Stellenangebote</Link>
-            <Link href="/kontakt" className="hover:text-[#fd761a] transition-colors">Kontakt & Angebot</Link>
+            <Link href="/" className="hover:text-[#2563eb] transition-colors">Startseite</Link>
+            <Link href="/portfolio" className="hover:text-[#2563eb] transition-colors">Referenzen & Portfolio</Link>
+            <Link href="/faq" className="hover:text-[#2563eb] transition-colors">Häufige Fragen (FAQ)</Link>
+            <Link href="/karriere" className="hover:text-[#2563eb] transition-colors">Karriere & Stellenangebote</Link>
+            <Link href="/kontakt" className="hover:text-[#2563eb] transition-colors">Kontakt & Angebot</Link>
           </nav>
         </div>
 
@@ -57,8 +57,8 @@ export function Footer() {
           </div>
           <div className="flex flex-col gap-2">
             <p className="font-bold text-white uppercase text-xs tracking-wider">Erreichbarkeit:</p>
-            <a href="tel:+4915161559335" className="hover:text-[#fd761a] transition-colors">Tel: +49 (0) 151 61559335</a>
-            <a href="mailto:info@vptrockenbau.de" className="hover:text-[#fd761a] transition-colors">info@vptrockenbau.de</a>
+            <a href="tel:+4915161559335" className="hover:text-[#2563eb] transition-colors">Tel: +49 (0) 151 61559335</a>
+            <a href="mailto:info@vptrockenbau.de" className="hover:text-[#2563eb] transition-colors">info@vptrockenbau.de</a>
           </div>
           <div className="flex flex-col gap-2">
             <p className="font-bold text-white uppercase text-xs tracking-wider">Geschäftszeiten:</p>
@@ -71,11 +71,11 @@ export function Footer() {
       <div className="bg-[#050b14] border-t border-slate-900 py-6 px-4 md:px-8">
         <div className="max-w-[1280px] mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500 uppercase tracking-widest">
           <div>
-            © {new Date().getFullYear()} VpTrockenbau GmbH. Alle Rechte vorbehalten.
+            © {new Date().getFullYear()} VpTrockenbau. Alle Rechte vorbehalten.
           </div>
           <nav className="flex gap-6">
-            <Link href="/impressum" className="hover:text-[#fd761a] transition-colors">Impressum</Link>
-            <Link href="/datenschutz" className="hover:text-[#fd761a] transition-colors">Datenschutzerklärung</Link>
+            <Link href="/impressum" className="hover:text-[#2563eb] transition-colors">Impressum</Link>
+            <Link href="/datenschutz" className="hover:text-[#2563eb] transition-colors">Datenschutzerklärung</Link>
           </nav>
         </div>
       </div>

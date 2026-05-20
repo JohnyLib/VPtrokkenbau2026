@@ -18,10 +18,14 @@ export default function AdminLogin() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const errType = params.get('error');
-    if (errType === 'email_not_whitelisted') {
-      setError('Diese Gmail-Adresse ist nicht für das Admin-Dashboard autorisiert (keine Berechtigung).');
-    } else if (errType === 'auth_failed') {
-      setError('Die Authentifizierung über Google/Gmail ist fehlgeschlagen.');
+    if (errType) {
+      setTimeout(() => {
+        if (errType === 'email_not_whitelisted') {
+          setError('Diese Gmail-Adresse ist nicht für das Admin-Dashboard autorisiert (keine Berechtigung).');
+        } else if (errType === 'auth_failed') {
+          setError('Die Authentifizierung über Google/Gmail ist fehlgeschlagen.');
+        }
+      }, 0);
     }
   }, []);
 
@@ -128,13 +132,13 @@ export default function AdminLogin() {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center p-4 bg-[#fbf8fa]">
-      <div className="w-full max-w-md bg-white border-4 border-[#091426] shadow-[10px_10px_0px_0px_#091426] p-8 relative overflow-hidden transition-all duration-300 hover:shadow-[12px_12px_0px_0px_#fd761a]">
+      <div className="w-full max-w-md bg-white border-4 border-[#091426] shadow-[10px_10px_0px_0px_#091426] p-8 relative overflow-hidden transition-all duration-300 hover:shadow-[12px_12px_0px_0px_#2563eb]">
         {/* Accent strip */}
-        <div className="absolute top-0 left-0 right-0 h-2 bg-[#fd761a]" />
+        <div className="absolute top-0 left-0 right-0 h-2 bg-[#2563eb]" />
 
         <div className="text-center mb-8">
           <h1 className="text-3xl font-black text-[#091426] uppercase tracking-tight">
-            VP<span className="text-[#fd761a]">Trockenbau</span>
+            VP<span className="text-[#2563eb]">Trockenbau</span>
           </h1>
           <p className="text-xs font-bold text-[#45474c] uppercase tracking-widest mt-1">
             Admin Kontrollzentrum
@@ -164,7 +168,7 @@ export default function AdminLogin() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="z.B. admin"
-                className="w-full pl-11 pr-4 py-3 bg-[#f5f3f4] border-2 border-[#091426] outline-none font-medium focus:bg-white focus:ring-4 focus:ring-[#fd761a]/20 focus:border-[#fd761a] transition-all"
+                className="w-full pl-11 pr-4 py-3 bg-[#f5f3f4] border-2 border-[#091426] outline-none font-medium focus:bg-white focus:ring-4 focus:ring-[#2563eb]/20 focus:border-[#2563eb] transition-all"
               />
             </div>
           </div>
@@ -184,12 +188,12 @@ export default function AdminLogin() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full pl-11 pr-12 py-3 bg-[#f5f3f4] border-2 border-[#091426] outline-none font-medium focus:bg-white focus:ring-4 focus:ring-[#fd761a]/20 focus:border-[#fd761a] transition-all"
+                className="w-full pl-11 pr-12 py-3 bg-[#f5f3f4] border-2 border-[#091426] outline-none font-medium focus:bg-white focus:ring-4 focus:ring-[#2563eb]/20 focus:border-[#2563eb] transition-all"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#091426] hover:text-[#fd761a] transition-colors"
+                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#091426] hover:text-[#2563eb] transition-colors"
               >
                 {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
@@ -199,7 +203,7 @@ export default function AdminLogin() {
           <button
             type="submit"
             disabled={isLoading || isGoogleLoading}
-            className="mt-2 bg-[#1e293b] hover:bg-[#fd761a] text-white font-extrabold uppercase py-4 border-2 border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:shadow-[4px_4px_0px_0px_#091426] hover:-translate-y-0.5 active:translate-y-1 active:shadow-none transition-all duration-200 cursor-pointer text-center text-sm tracking-wider flex items-center justify-center gap-2 min-h-[56px] disabled:opacity-50"
+            className="mt-2 bg-[#1e293b] hover:bg-[#2563eb] text-white font-extrabold uppercase py-4 border-2 border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:shadow-[4px_4px_0px_0px_#091426] hover:-translate-y-0.5 active:translate-y-1 active:shadow-none transition-all duration-200 cursor-pointer text-center text-sm tracking-wider flex items-center justify-center gap-2 min-h-[56px] disabled:opacity-50"
           >
             {isLoading ? (
               <>
@@ -227,10 +231,10 @@ export default function AdminLogin() {
           type="button"
           onClick={handleGoogleLogin}
           disabled={isLoading || isGoogleLoading}
-          className="w-full bg-white hover:bg-[#fbf8fa] text-[#091426] font-extrabold uppercase py-3.5 border-2 border-[#091426] shadow-[4px_4px_0px_0px_#fd761a] hover:shadow-[4px_4px_0px_0px_#091426] hover:-translate-y-0.5 active:translate-y-1 active:shadow-none transition-all duration-200 cursor-pointer text-center text-xs tracking-wider flex items-center justify-center gap-3 disabled:opacity-50 min-h-[52px]"
+          className="w-full bg-white hover:bg-[#fbf8fa] text-[#091426] font-extrabold uppercase py-3.5 border-2 border-[#091426] shadow-[4px_4px_0px_0px_#2563eb] hover:shadow-[4px_4px_0px_0px_#091426] hover:-translate-y-0.5 active:translate-y-1 active:shadow-none transition-all duration-200 cursor-pointer text-center text-xs tracking-wider flex items-center justify-center gap-3 disabled:opacity-50 min-h-[52px]"
         >
           {isGoogleLoading ? (
-            <Loader2 className="w-4 h-4 animate-spin text-[#fd761a]" />
+            <Loader2 className="w-4 h-4 animate-spin text-[#2563eb]" />
           ) : (
             <svg className="w-4.5 h-4.5 shrink-0" viewBox="0 0 24 24" width="24" height="24">
               <path
@@ -256,7 +260,7 @@ export default function AdminLogin() {
 
         <div className="mt-8 text-center border-t border-[#091426]/10 pt-4">
           <p className="text-xs font-semibold text-[#45474c]">
-            VP<span className="text-[#fd761a]">Trockenbau</span> Handwerker-Portal Dresden
+            VP<span className="text-[#2563eb]">Trockenbau</span> Handwerker-Portal Dresden
           </p>
         </div>
       </div>

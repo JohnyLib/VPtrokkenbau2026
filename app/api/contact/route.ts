@@ -40,7 +40,7 @@ export async function POST(request: Request) {
     const htmlContent = `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #091426; border-radius: 4px;">
         <div style="background-color: #091426; color: #ffffff; padding: 15px; text-align: center; font-weight: bold; font-size: 20px; text-transform: uppercase; margin-bottom: 20px;">
-          Vp<span style="color: #fd761a;">Trockenbau</span> - ${typeLabel}
+          Vp<span style="color: #2563eb;">Trockenbau</span> - ${typeLabel}
         </div>
         <p style="font-size: 16px; color: #45474c;">Sie haben eine neue Nachricht über das Online-Formular erhalten:</p>
         
@@ -65,7 +65,7 @@ export async function POST(request: Request) {
           ` : ''}
         </table>
         
-        <div style="background-color: #f5f3f4; padding: 15px; border-left: 4px solid #fd761a; margin-top: 15px; border-radius: 2px;">
+        <div style="background-color: #f5f3f4; padding: 15px; border-left: 4px solid #2563eb; margin-top: 15px; border-radius: 2px;">
           <strong style="display: block; margin-bottom: 8px; color: #091426;">Nachricht:</strong>
           <p style="margin: 0; color: #45474c; white-space: pre-wrap; line-height: 1.5;">${message || 'Keine Nachricht hinterlassen.'}</p>
         </div>

@@ -117,7 +117,7 @@ export default function Leistungen() {
             <div className="bg-white border border-[#091426] shadow-[4px_4px_0px_0px_#091426] p-8 flex flex-col group hover:bg-[#f5f3f4] transition-colors">
               <div className="flex justify-between items-start mb-6">
                 <h3 className="text-2xl font-bold text-[#091426] uppercase">Spachtelarbeiten (Q1-Q4)</h3>
-                <PaintRoller className="w-8 h-8 text-[#fd761a] group-hover:scale-110 transition-transform" />
+                <PaintRoller className="w-8 h-8 text-[#2563eb] group-hover:scale-110 transition-transform" />
               </div>
               <p className="text-[#45474c] mb-6">Höchste Oberflächenqualität für anspruchsvolle Raumkonzepte. Wir realisieren Verspachtelungen bis zur Qualitätsstufe Q4 für makellose, streiflichtfreie Ergebnisse.</p>
               <table className="w-full text-left border-collapse mt-auto">
@@ -137,7 +137,7 @@ export default function Leistungen() {
             <div className="bg-white border border-[#091426] shadow-[4px_4px_0px_0px_#091426] p-8 flex flex-col group hover:bg-[#f5f3f4] transition-colors">
               <div className="flex justify-between items-start mb-6">
                 <h3 className="text-2xl font-bold text-[#091426] uppercase">Gipskartonmontage</h3>
-                <Hammer className="w-8 h-8 text-[#fd761a] group-hover:scale-110 transition-transform" />
+                <Hammer className="w-8 h-8 text-[#2563eb] group-hover:scale-110 transition-transform" />
               </div>
               <p className="text-[#45474c] mb-6 flex-grow">Professionelle und passgenaue Montage von Gipsplatten für Wände, Decken und raumbildende Konstruktionen. Wir errichten stabile Metallständerwerke, verlegen hochwertige Platten und bereiten alles malerfertig vor.</p>
               <div className="relative h-40 border border-[#091426] overflow-hidden">
@@ -150,7 +150,7 @@ export default function Leistungen() {
             <div className="bg-white border border-[#091426] shadow-[4px_4px_0px_0px_#091426] p-8 flex flex-col group hover:bg-[#f5f3f4] transition-colors">
               <div className="flex justify-between items-start mb-6">
                 <h3 className="text-2xl font-bold text-[#091426] uppercase">Akustikbau</h3>
-                <Volume2 className="w-8 h-8 text-[#fd761a] group-hover:scale-110 transition-transform" />
+                <Volume2 className="w-8 h-8 text-[#2563eb] group-hover:scale-110 transition-transform" />
               </div>
               <p className="text-[#45474c] mb-6 flex-grow">Optimierung der Raumakustik durch hochwirksame Schallabsorber und Akustikdecken. Reduzierung von Nachhallzeiten und Verbesserung der Sprachverständlichkeit für Büros, Foyers und Veranstaltungsräume.</p>
               <div className="flex flex-wrap gap-2 mt-auto">
@@ -164,7 +164,7 @@ export default function Leistungen() {
             <div className="bg-white border border-[#091426] shadow-[4px_4px_0px_0px_#091426] p-8 flex flex-col group hover:bg-[#f5f3f4] transition-colors">
               <div className="flex justify-between items-start mb-6">
                 <h3 className="text-2xl font-bold text-[#091426] uppercase">Dachausbau</h3>
-                <Home className="w-8 h-8 text-[#fd761a] group-hover:scale-110 transition-transform" />
+                <Home className="w-8 h-8 text-[#2563eb] group-hover:scale-110 transition-transform" />
               </div>
               <p className="text-[#45474c] mb-6 flex-grow">Effiziente Transformation ungenutzter Dachgeschosse in hochwertigen Wohn- oder Gewerberaum. Inklusive fachgerechter Dämmung, Dampfsperren und präziser Beplankung komplexer Dachschrägen.</p>
               <div className="relative h-40 border border-[#091426] overflow-hidden">
@@ -185,22 +185,22 @@ export default function Leistungen() {
                <form className="space-y-4">
                   <div>
                     <label className="block text-sm font-bold text-[#091426] uppercase mb-1">Firma / Name</label>
-                    <input type="text" className="w-full bg-white border border-[#091426] p-3 focus:outline-none focus:border-[#fd761a] focus:border-2" />
+                    <input type="text" className="w-full bg-white border border-[#091426] p-3 focus:outline-none focus:border-[#2563eb] focus:border-2" />
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-[#091426] uppercase mb-1">E-Mail Adresse</label>
-                    <input type="email" className="w-full bg-white border border-[#091426] p-3 focus:outline-none focus:border-[#fd761a] focus:border-2" />
+                    <input type="email" className="w-full bg-white border border-[#091426] p-3 focus:outline-none focus:border-[#2563eb] focus:border-2" />
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-[#091426] uppercase mb-1">Gewerke</label>
-                    <select className="w-full bg-white border border-[#091426] p-3 focus:outline-none focus:border-[#fd761a] focus:border-2 rounded-none">
+                    <select className="w-full bg-white border border-[#091426] p-3 focus:outline-none focus:border-[#2563eb] focus:border-2 rounded-none">
                         <option>Spachtelarbeiten (Q1-Q4)</option>
                         <option>Gipskartonmontage</option>
                         <option>Akustikbau</option>
                         <option>Dachausbau</option>
                     </select>
                   </div>
-                  <button type="submit" className="w-full bg-[#091426] text-white font-bold uppercase py-4 border border-[#091426] hover:bg-[#fd761a] active:translate-y-1 transition-all mt-4">Angebot Anfordern</button>
+                  <button type="submit" className="w-full bg-[#091426] text-white font-bold uppercase py-4 border border-[#091426] hover:bg-[#2563eb] active:translate-y-1 transition-all mt-4">Angebot Anfordern</button>
                </form>
             </div>
         </div>

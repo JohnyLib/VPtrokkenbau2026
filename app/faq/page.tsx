@@ -91,7 +91,7 @@ export default function FAQ() {
                 <details key={j} className="group bg-white border border-[#091426] shadow-[4px_4px_0px_0px_#091426] [&_summary::-webkit-details-marker]:hidden">
                   <summary className="flex items-center justify-between p-6 font-bold text-lg text-[#091426] cursor-pointer uppercase hover:bg-[#f5f3f4] transition-colors">
                     <span>{faq.q}</span>
-                    <span className="ml-4 shrink-0 bg-[#1e293b] p-1 text-white border border-[#091426] group-open:bg-[#fd761a] transition-colors">
+                    <span className="ml-4 shrink-0 bg-[#1e293b] p-1 text-white border border-[#091426] group-open:bg-[#2563eb] transition-colors">
                       <ChevronDown className="w-5 h-5 group-open:rotate-180 transition-transform duration-300" />
                     </span>
                   </summary>
@@ -109,10 +109,10 @@ export default function FAQ() {
 
       <div className="mt-8 bg-[#1e293b] p-8 md:p-12 text-white border border-[#091426] shadow-[4px_4px_0px_0px_#091426] flex flex-col md:flex-row items-center justify-between gap-8">
         <div>
-          <h3 className="text-2xl font-bold uppercase mb-2 text-[#fd761a]">Ihre Frage war nicht dabei?</h3>
+          <h3 className="text-2xl font-bold uppercase mb-2 text-[#2563eb]">Ihre Frage war nicht dabei?</h3>
           <p className="text-[#bcc7de]">Kontaktieren Sie uns direkt. Unser Dresdner Team berät Sie gerne unverbindlich zu Ihrem Bauvorhaben.</p>
         </div>
-        <a href="/kontakt" className="bg-white text-[#091426] font-bold uppercase px-8 py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:bg-[#fd761a] hover:text-white transition-all active:translate-y-1 whitespace-nowrap">
+        <a href="/kontakt" className="bg-white text-[#091426] font-bold uppercase px-8 py-4 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:bg-[#2563eb] hover:text-white transition-all active:translate-y-1 whitespace-nowrap">
           Zum Kontaktformular
         </a>
       </div>
