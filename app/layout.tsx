@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     default: 'VpTrockenbau | Trockenbau & Innenausbau Dresden',
     template: '%s | VpTrockenbau Dresden',
   },
-  description: 'Ihr Spezialist für gewerbliche Spachtelarbeiten, Gipskartonmontage, Akustikbau und Dachausbau in Dresden. Höchste Qualitätsstufen bis Q4.',
+  description: 'Ihr Spezialist für Trockenbau, Spachtelarbeiten (Q1–Q4), Gipskartonmontage und Akustikbau in Dresden & Sachsen. Jetzt kostenloses Angebot anfordern!',
   keywords: [
     'Trockenbau Dresden',
     'Innenausbau Dresden',
@@ -95,8 +95,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
+    site: '@vptrockenbau',
     title: 'VpTrockenbau | Trockenbau & Innenausbau Dresden',
-    description: 'Ihr Spezialist für gewerbliche Spachtelarbeiten, Gipskartonmontage und Akustikbau in Dresden.',
+    description: 'Ihr Spezialist für Trockenbau, Spachtelarbeiten (Q1–Q4), Gipskartonmontage und Akustikbau in Dresden & Sachsen.',
     images: ['https://vptrockenbau.de/og-image.png'],
   },
   robots: {
@@ -114,27 +115,31 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'DrywallContractor',
+  '@type': ['LocalBusiness', 'HomeAndConstructionBusiness'],
   'name': 'VpTrockenbau',
   'alternateName': 'VpTrockenbau Dresden',
-  'image': 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
-  'description': 'Ihr Spezialist für Trockenbau, gewerbliche Spachtelarbeiten (Q1-Q4), präzise Gipskartonmontage, Akustikbau und Dachausbau in Dresden und ganz Sachsen.',
+  'image': 'https://vptrockenbau.de/og-image.png',
+  'logo': 'https://vptrockenbau.de/Ico.ico',
+  'description': 'Ihr Spezialist für Trockenbau, gewerbliche Spachtelarbeiten (Q1–Q4), präzise Gipskartonmontage, Akustikbau und Dachausbau in Dresden und ganz Sachsen.',
   'address': {
     '@type': 'PostalAddress',
     'streetAddress': 'Königsbrücker Landstraße 54',
     'addressLocality': 'Dresden',
     'postalCode': '01109',
+    'addressRegion': 'Sachsen',
     'addressCountry': 'DE'
   },
   'geo': {
     '@type': 'GeoCoordinates',
-    'latitude': 51.0504,
-    'longitude': 13.7373
+    'latitude': 51.1076,
+    'longitude': 13.7709
   },
   'url': 'https://vptrockenbau.de',
   'telephone': '+4915161559335',
   'email': 'info@vptrockenbau.de',
-  'priceRange': '$$',
+  'sameAs': [
+    'https://vptrockenbau.de'
+  ],
   'openingHoursSpecification': [
     {
       '@type': 'OpeningHoursSpecification',
@@ -144,14 +149,25 @@ const jsonLd = {
     }
   ],
   'areaServed': [
-    { '@type': 'AdministrativeArea', 'name': 'Dresden' },
-    { '@type': 'AdministrativeArea', 'name': 'Radebeul' },
-    { '@type': 'AdministrativeArea', 'name': 'Freital' },
-    { '@type': 'AdministrativeArea', 'name': 'Pirna' },
-    { '@type': 'AdministrativeArea', 'name': 'Meißen' },
-    { '@type': 'AdministrativeArea', 'name': 'Radeberg' },
+    { '@type': 'City', 'name': 'Dresden' },
+    { '@type': 'City', 'name': 'Radebeul' },
+    { '@type': 'City', 'name': 'Freital' },
+    { '@type': 'City', 'name': 'Pirna' },
+    { '@type': 'City', 'name': 'Meißen' },
+    { '@type': 'City', 'name': 'Radeberg' },
     { '@type': 'AdministrativeArea', 'name': 'Sachsen' }
   ],
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'Trockenbau Leistungen',
+    'itemListElement': [
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'Spachtelarbeiten Q1–Q4' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'Gipskartonmontage' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'Akustikbau' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'Dachausbau' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'Fugenverspachtelung' } }
+    ]
+  },
   'knowsAbout': [
     'Trockenbau',
     'Spachtelarbeiten',
@@ -159,7 +175,9 @@ const jsonLd = {
     'Gipskartonmontage',
     'Akustikbau',
     'Dachgeschossausbau',
-    'Fugenverspachtelung'
+    'Fugenverspachtelung',
+    'Brandschutz Trockenbau',
+    'Innenausbau'
   ]
 };
 

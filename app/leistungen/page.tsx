@@ -4,28 +4,37 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  title: 'Trockenbau Leistungen & Spachtelarbeiten | VpTrockenbau Dresden',
-  description: 'Unsere Expertise umfasst hochwertigen Trockenbau, Spachtelarbeiten (Q1-Q4), professionelle Gipskartonmontage, Fugenverspachtelung und Akustikbau für Dresden und Region.',
-  keywords: ['Trockenbau Leistungen', 'Spachtelarbeiten Q4', 'Gipskartonmontage', 'Akustikbau Fachbetrieb', 'Dresden Bau', 'VpTrockenbau Leistungen'],
+  title: 'Trockenbau & Spachtelarbeiten Dresden | VpTrockenbau',
+  description: 'Unsere Expertise: hochwertiger Trockenbau, Spachtelarbeiten (Q1–Q4), Gipskartonmontage, Fugenverspachtelung und Akustikbau in Dresden & ganz Sachsen.',
+  keywords: ['Trockenbau Leistungen', 'Spachtelarbeiten Q4', 'Gipskartonmontage Dresden', 'Akustikbau Fachbetrieb', 'Dachausbau Dresden', 'Innenausbau Dresden', 'VpTrockenbau Leistungen'],
   alternates: {
     canonical: 'https://vptrockenbau.de/leistungen',
   },
   openGraph: {
-    title: 'Unsere Leistungen im Trockenbau | VpTrockenbau',
-    description: 'Expertise in Trockenbau, Spachtelarbeiten Q1-Q4, Gipskartonmontage und Akustikbau.',
+    title: 'Trockenbau Leistungen | VpTrockenbau Dresden',
+    description: 'Spachtelarbeiten Q1–Q4, Gipskartonmontage, Akustikbau und Dachausbau aus einer Hand in Dresden.',
     url: 'https://vptrockenbau.de/leistungen',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
+        url: 'https://vptrockenbau.de/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Trockenbau Leistungen VpTrockenbau',
+        alt: 'VpTrockenbau – Trockenbau Leistungen Dresden',
       },
     ],
   },
 };
 
 export default function Leistungen() {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Startseite', 'item': 'https://vptrockenbau.de' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Leistungen', 'item': 'https://vptrockenbau.de/leistungen' }
+    ]
+  };
+
   const servicesSchema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -95,6 +104,11 @@ export default function Leistungen() {
   return (
     <div className="flex flex-col min-h-screen">
       <Script
+        id="breadcrumb-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <Script
         id="services-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
@@ -106,7 +120,7 @@ export default function Leistungen() {
           <p className="text-lg text-[#45474c] max-w-lg">Präzision in jedem Detail. Wir bieten spezialisierte Trockenbaulösungen für komplexe gewerbliche und industrielle Bauvorhaben. Von Q4-Spachtelarbeiten bis hin zu fachgerechter Gipskartonmontage.</p>
         </div>
         <div className="md:col-span-6 relative h-[400px]">
-          <Image src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" fill sizes="(max-width: 768px) 100vw, 50vw" priority alt="Technical" className="object-cover border border-[#091426] shadow-[4px_4px_0px_0px_#091426] grayscale" />
+          <Image src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" fill sizes="(max-width: 768px) 100vw, 50vw" priority alt="Professionelle Trockenbau Leistungen und Spachtelarbeiten in Dresden" className="object-cover border border-[#091426] shadow-[4px_4px_0px_0px_#091426] grayscale" />
         </div>
       </section>
 
@@ -154,9 +168,9 @@ export default function Leistungen() {
               </div>
               <p className="text-[#45474c] mb-6 flex-grow">Optimierung der Raumakustik durch hochwirksame Schallabsorber und Akustikdecken. Reduzierung von Nachhallzeiten und Verbesserung der Sprachverständlichkeit für Büros, Foyers und Veranstaltungsräume.</p>
               <div className="flex flex-wrap gap-2 mt-auto">
-                <span className="bg-[#white] border border-[#091426] px-3 py-1 text-xs font-bold text-[#091426] uppercase shadow-[2px_2px_0px_0px_#091426]">Akustikdecken</span>
-                <span className="bg-[#white] border border-[#091426] px-3 py-1 text-xs font-bold text-[#091426] uppercase shadow-[2px_2px_0px_0px_#091426]">Schallabsorber</span>
-                <span className="bg-[#white] border border-[#091426] px-3 py-1 text-xs font-bold text-[#091426] uppercase shadow-[2px_2px_0px_0px_#091426]">Lochplatten</span>
+                <span className="bg-white border border-[#091426] px-3 py-1 text-xs font-bold text-[#091426] uppercase shadow-[2px_2px_0px_0px_#091426]">Akustikdecken</span>
+                <span className="bg-white border border-[#091426] px-3 py-1 text-xs font-bold text-[#091426] uppercase shadow-[2px_2px_0px_0px_#091426]">Schallabsorber</span>
+                <span className="bg-white border border-[#091426] px-3 py-1 text-xs font-bold text-[#091426] uppercase shadow-[2px_2px_0px_0px_#091426]">Lochplatten</span>
               </div>
             </div>
 
@@ -182,22 +196,22 @@ export default function Leistungen() {
                <p className="text-lg text-[#45474c]">Kontaktieren Sie uns für eine detaillierte technische Beratung und ein maßgeschneidertes Angebot für Ihr nächstes Bauvorhaben.</p>
             </div>
             <div className="w-full max-w-md bg-white border border-[#091426] shadow-[4px_4px_0px_0px_#091426] p-8">
-               <form className="space-y-4">
+               <form className="space-y-4" aria-label="Trockenbau Anfrage Formular">
                   <div>
-                    <label className="block text-sm font-bold text-[#091426] uppercase mb-1">Firma / Name</label>
-                    <input type="text" className="w-full bg-white border border-[#091426] p-3 focus:outline-none focus:border-[#2563eb] focus:border-2" />
+                    <label htmlFor="contact-name" className="block text-sm font-bold text-[#091426] uppercase mb-1">Firma / Name</label>
+                    <input id="contact-name" name="name" type="text" autoComplete="organization" className="w-full bg-white border border-[#091426] p-3 focus:outline-none focus:border-[#2563eb] focus:border-2" />
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-[#091426] uppercase mb-1">E-Mail Adresse</label>
-                    <input type="email" className="w-full bg-white border border-[#091426] p-3 focus:outline-none focus:border-[#2563eb] focus:border-2" />
+                    <label htmlFor="contact-email" className="block text-sm font-bold text-[#091426] uppercase mb-1">E-Mail Adresse</label>
+                    <input id="contact-email" name="email" type="email" autoComplete="email" className="w-full bg-white border border-[#091426] p-3 focus:outline-none focus:border-[#2563eb] focus:border-2" />
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-[#091426] uppercase mb-1">Gewerke</label>
-                    <select className="w-full bg-white border border-[#091426] p-3 focus:outline-none focus:border-[#2563eb] focus:border-2 rounded-none">
-                        <option>Spachtelarbeiten (Q1-Q4)</option>
-                        <option>Gipskartonmontage</option>
-                        <option>Akustikbau</option>
-                        <option>Dachausbau</option>
+                    <label htmlFor="contact-service" className="block text-sm font-bold text-[#091426] uppercase mb-1">Gewerke</label>
+                    <select id="contact-service" name="service" className="w-full bg-white border border-[#091426] p-3 focus:outline-none focus:border-[#2563eb] focus:border-2 rounded-none">
+                        <option value="spachtelarbeiten">Spachtelarbeiten (Q1–Q4)</option>
+                        <option value="gipskartonmontage">Gipskartonmontage</option>
+                        <option value="akustikbau">Akustikbau</option>
+                        <option value="dachausbau">Dachausbau</option>
                     </select>
                   </div>
                   <button type="submit" className="w-full bg-[#091426] text-white font-bold uppercase py-4 border border-[#091426] hover:bg-[#2563eb] active:translate-y-1 transition-all mt-4">Angebot Anfordern</button>

@@ -77,7 +77,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-[#091426] uppercase border-b-2 border-[#091426] pb-2 self-start tracking-tight">Referenzen</h2>
             <p className="text-base text-[#45474c]">Zuletzt abgeschlossene Großprojekte in Dresden.</p>
           </div>
-          <Link href="/portfolio" className="bg-[#white] text-[#091426] font-bold uppercase px-6 py-3 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:bg-[#1e293b] hover:text-white transition-all inline-flex items-center gap-2 group">
+          <Link href="/portfolio" className="bg-white text-[#091426] font-bold uppercase px-6 py-3 border border-[#091426] shadow-[4px_4px_0px_0px_#091426] hover:bg-[#1e293b] hover:text-white transition-all inline-flex items-center gap-2 group">
             Alle Projekte ansehen <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
