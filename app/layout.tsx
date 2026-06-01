@@ -66,9 +66,6 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  alternates: {
-    canonical: 'https://vptrockenbau.de',
-  },
   icons: {
     icon: '/Ico.ico',
     shortcut: '/Ico.ico',
